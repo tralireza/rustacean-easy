@@ -20,5 +20,39 @@ impl Sol2399 {
     }
 }
 
+/// 2409 Count Days Spent Together
+struct Sol2409 {}
+
+impl Sol2409 {
+    pub fn count_days_together(
+        arrive_alice: String,
+        leave_alice: String,
+        arrive_bob: String,
+        leave_bob: String,
+    ) -> i32 {
+        let mut days = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        for m in 1..days.len() {
+            days[m] += days[m - 1];
+        }
+        println!("-> {days:?}");
+
+        let mut data = [[[0i32; 3]; 2]; 2];
+        for (p, p_data) in [[arrive_alice, leave_alice], [arrive_bob, leave_bob]]
+            .iter()
+            .enumerate()
+        {
+            for (x, date_str) in p_data.iter().enumerate() {
+                for (i, part) in date_str.split('-').enumerate() {
+                    data[p][x][i] = part.parse().unwrap();
+                }
+                data[p][x][2] = days[data[p][x][0] as usize - 1] + data[p][x][1];
+            }
+        }
+        println!("-> {data:?}");
+
+        0.max(data[0][1][2].min(data[1][1][2]) - data[0][0][2].max(data[1][0][2]) + 1)
+    }
+}
+
 #[cfg(test)]
 mod tests;
