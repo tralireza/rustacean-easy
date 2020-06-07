@@ -5,6 +5,7 @@ struct Sol2413 {}
 
 impl Sol2413 {
     pub fn smallest_even_multiple(n: i32) -> i32 {
+        println!(":? {}", n << (n & 1));
         if n & 1 == 0 { n } else { 2 * n }
     }
 }
