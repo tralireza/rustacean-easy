@@ -54,5 +54,37 @@ impl Sol2409 {
     }
 }
 
+/// 2423 Remove Letters To Equalize Frequency
+struct Sol2423 {}
+
+impl Sol2423 {
+    pub fn equal_frequency(word: String) -> bool {
+        let mut freqs = [0; 26];
+        for chr in word.as_bytes() {
+            freqs[(chr - b'a') as usize] += 1;
+        }
+
+        for x in 0..26 {
+            if freqs[x] > 0 {
+                freqs[x] -= 1;
+
+                if freqs
+                    .iter()
+                    .filter(|f| **f > 0)
+                    .collect::<Vec<_>>()
+                    .windows(2)
+                    .all(|w| w[0] == w[1])
+                {
+                    return true;
+                }
+
+                freqs[x] += 1;
+            }
+        }
+
+        false
+    }
+}
+
 #[cfg(test)]
 mod tests;

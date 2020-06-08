@@ -43,3 +43,16 @@ fn test_2409() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2423() {
+    for (rst, word) in [
+        (true, "abcc"),
+        (false, "aazz"),
+        (true, "bac"), // 34/50
+    ] {
+        println!("* {word:?}");
+        assert_eq!(Sol2423::equal_frequency(word.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
