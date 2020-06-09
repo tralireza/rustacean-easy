@@ -53,6 +53,8 @@ struct Sol2432 {}
 
 impl Sol2432 {
     pub fn hardest_worker(n: i32, logs: Vec<Vec<i32>>) -> i32 {
+        println!("-> {n}");
+
         logs.windows(2)
             .fold((logs[0][0], logs[0][1]), |(wkr, ltask), w| {
                 let l = w[1][1] - w[0][1];
