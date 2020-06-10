@@ -91,6 +91,21 @@ struct Sol2437 {}
 
 impl Sol2437 {
     pub fn count_time(time: String) -> i32 {
+        let mut bforce = 0;
+        for hour in 0..24 {
+            for minute in 0..60 {
+                let ctime = format!("{:02}:{:02}", hour, minute);
+                if time
+                    .chars()
+                    .zip(ctime.chars())
+                    .all(|(t, c)| t == '?' || t == c)
+                {
+                    bforce += 1;
+                }
+            }
+        }
+        println!(":? {bforce}");
+
         let mut count = 1;
 
         if let [h1, h2, _, m1, m2] = time.chars().collect::<Vec<_>>()[..] {
