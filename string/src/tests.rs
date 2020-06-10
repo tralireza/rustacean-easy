@@ -56,3 +56,12 @@ fn test_2423() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2437() {
+    for (rst, time) in [(2, "?5:00"), (100, "0?:0?"), (1440, "??:??")] {
+        println!("* {time:?}");
+        assert_eq!(Sol2437::count_time(time.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}

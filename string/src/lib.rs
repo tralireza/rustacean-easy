@@ -86,5 +86,30 @@ impl Sol2423 {
     }
 }
 
+/// 2437 Number of Valid Clock Times
+struct Sol2437 {}
+
+impl Sol2437 {
+    pub fn count_time(time: String) -> i32 {
+        let mut count = 1;
+
+        if let [h1, h2, _, m1, m2] = time.chars().collect::<Vec<_>>()[..] {
+            count *= match (h1, h2) {
+                ('?', '?') => 24,
+                ('?', '0'..='3') => 3,
+                ('?', _) => 2,
+                ('2', '?') => 4,
+                (_, '?') => 10,
+                _ => 1,
+            };
+
+            count *= if m1 == '?' { 6 } else { 1 };
+            count *= if m2 == '?' { 10 } else { 1 };
+        }
+
+        count
+    }
+}
+
 #[cfg(test)]
 mod tests;
