@@ -22,5 +22,53 @@ impl Sol2395 {
     }
 }
 
+/// 2451 Odd String Difference
+struct Sol2451 {}
+
+impl Sol2451 {
+    pub fn odd_string(words: Vec<String>) -> String {
+        let mut diffs = vec![];
+        words.iter().take(2).for_each(|w| {
+            let dw: Vec<_> = w
+                .as_bytes()
+                .windows(2)
+                .map(|w| b'a' + w[1] - w[0])
+                .collect();
+            diffs.push(dw);
+        });
+
+        let equal = diffs[0]
+            .iter()
+            .zip(diffs[1].iter())
+            .all(|(d1, d2)| d1 == d2);
+
+        println!("-> {equal} {diffs:?}");
+
+        let word0 = words[0].clone();
+        let word1 = words[1].clone();
+        for word in words.into_iter().skip(2) {
+            let dw: Vec<_> = word
+                .as_bytes()
+                .windows(2)
+                .map(|w| b'a' + w[1] - w[0])
+                .collect();
+
+            println!("-> {word:?} {dw:?}");
+
+            return match (
+                equal,
+                diffs[0].iter().zip(dw.iter()).all(|(d1, d2)| d1 == d2),
+            ) {
+                (false, true) => word1,
+                (false, false) => word0,
+                (true, false) => word,
+                _ => continue,
+            };
+        }
+
+        "".to_string()
+    }
+}
+
 #[cfg(test)]
 mod tests;

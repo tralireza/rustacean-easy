@@ -13,3 +13,17 @@ fn test_2395() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2451() {
+    for (rst, words) in [
+        ("abc", vec!["adc", "wzy", "abc"]),
+        ("bob", vec!["aaa", "bob", "ccc", "ddd"]),
+    ] {
+        let words: Vec<_> = words.iter().map(|w| w.to_string()).collect();
+
+        println!("* {words:?}");
+        assert_eq!(Sol2451::odd_string(words), rst);
+        println!(":: {rst:?}");
+    }
+}
