@@ -70,5 +70,34 @@ impl Sol2451 {
     }
 }
 
+/// 2500 Delete Greatest Value in Each Row
+struct Sol2500 {}
+
+impl Sol2500 {
+    pub fn delete_greatest_value(grid: Vec<Vec<i32>>) -> i32 {
+        use std::collections::BinaryHeap;
+
+        let m = grid[0].len();
+
+        let mut qs = vec![];
+        for row in grid {
+            qs.push(BinaryHeap::from(row));
+        }
+
+        println!("-> {qs:?}");
+
+        let mut g = 0;
+        for _ in 0..m {
+            let mut gs = vec![];
+            for q in &mut qs {
+                gs.push(q.pop().unwrap());
+            }
+            g += gs.into_iter().max().unwrap();
+        }
+
+        g
+    }
+}
+
 #[cfg(test)]
 mod tests;

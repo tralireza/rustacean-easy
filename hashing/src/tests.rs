@@ -27,3 +27,15 @@ fn test_2451() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2500() {
+    for (rst, grid) in [
+        (8, vec![vec![1, 2, 4], vec![3, 3, 1]]),
+        (10, vec![vec![10]]),
+    ] {
+        println!("* {grid:?}");
+        assert_eq!(Sol2500::delete_greatest_value(grid), rst);
+        println!(":: {rst:?}");
+    }
+}
