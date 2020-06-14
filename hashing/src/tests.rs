@@ -39,3 +39,17 @@ fn test_2500() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2506() {
+    for (rst, words) in [
+        (2, vec!["aba", "aabb", "abcd", "bac", "aabc"]),
+        (3, vec!["aabb", "ab", "ba"]),
+        (0, vec!["nba", "cba", "dba"]),
+    ] {
+        let words: Vec<_> = words.iter().map(|w| w.to_string()).collect();
+        println!("* {words:?}");
+        assert_eq!(Sol2506::similar_pairs(words), rst);
+        println!(":: {rst:?}");
+    }
+}

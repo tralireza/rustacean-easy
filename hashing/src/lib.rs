@@ -99,5 +99,31 @@ impl Sol2500 {
     }
 }
 
+/// 2506 Count Pairs Of Similar Strings
+struct Sol2506 {}
+
+impl Sol2506 {
+    pub fn similar_pairs(words: Vec<String>) -> i32 {
+        use std::collections::HashMap;
+
+        let mut freqs = HashMap::new();
+        words
+            .iter()
+            .map(|w| {
+                let mut a = [false; 26];
+                for c in w.as_bytes() {
+                    a[(c - b'a') as usize] = true;
+                }
+                a
+            })
+            .map(|a| {
+                let count = *freqs.get(&a).unwrap_or(&0);
+                freqs.insert(a, count + 1);
+                count
+            })
+            .sum::<i32>()
+    }
+}
+
 #[cfg(test)]
 mod tests;
