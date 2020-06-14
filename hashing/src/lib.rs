@@ -125,6 +125,7 @@ impl Sol2506 {
                 })
                 .sum::<i32>()
         );
+        println!("-> Bitwise Frequencey: {m_freqs:?}");
 
         let mut freqs = HashMap::new();
         words
