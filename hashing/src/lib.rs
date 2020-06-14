@@ -106,6 +106,26 @@ impl Sol2506 {
     pub fn similar_pairs(words: Vec<String>) -> i32 {
         use std::collections::HashMap;
 
+        let mut m_freqs = HashMap::new();
+        println!(
+            ":? {}",
+            words
+                .iter()
+                .map(|w| {
+                    let mut mask = 0;
+                    for c in w.as_bytes() {
+                        mask |= 1 << (c - b'a');
+                    }
+                    mask
+                })
+                .map(|m| {
+                    let count = *m_freqs.get(&m).unwrap_or(&0);
+                    m_freqs.insert(m, count + 1);
+                    count
+                })
+                .sum::<i32>()
+        );
+
         let mut freqs = HashMap::new();
         words
             .iter()
