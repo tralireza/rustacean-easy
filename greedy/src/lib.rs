@@ -13,7 +13,7 @@ impl Sol2511 {
                     .iter()
                     .enumerate()
                     .filter(|(_, f)| **f == 1)
-                    .map(|(i, _)| {
+                    .filter_map(|(i, _)| {
                         forts[i + 1..]
                             .iter()
                             .enumerate()
@@ -21,8 +21,8 @@ impl Sol2511 {
                             .take(1)
                             .next()
                     })
-                    .filter(|p| p.is_some() && *p.unwrap().1 == -1)
-                    .map(|p| p.unwrap().0)
+                    .filter(|p| *p.1 == -1)
+                    .map(|p| p.0)
                     .max()
                     .unwrap_or(0),
             );
