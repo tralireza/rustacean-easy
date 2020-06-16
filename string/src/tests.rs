@@ -65,3 +65,20 @@ fn test_2437() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2515() {
+    for (rst, words, target, start_index) in [
+        (1, vec!["hello", "i", "am", "leetcode", "hello"], "hello", 1),
+        (1, vec!["a", "b", "leetcode"], "leetcode", 1),
+        (-1, vec!["i", "eat", "leetcode"], "ate", 0),
+    ] {
+        let words: Vec<_> = words.iter().map(|w| w.to_string()).collect();
+        println!("* {words:?} {target:?} {start_index}");
+        assert_eq!(
+            Sol2515::closest_target(words, target.to_string(), start_index),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}

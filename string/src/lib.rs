@@ -126,5 +126,30 @@ impl Sol2437 {
     }
 }
 
+/// 2515 Shortest Distance to Target String in a Circular Array
+struct Sol2515 {}
+
+impl Sol2515 {
+    pub fn closest_target(words: Vec<String>, target: String, start_index: i32) -> i32 {
+        let mut dist = usize::MAX;
+
+        let start_index = start_index as usize;
+        for i in (start_index..words.len()).chain(0..start_index) {
+            if words[i] == target {
+                let mut d_cur = (words.len() + i - start_index) % words.len();
+                if 2 * d_cur > words.len() {
+                    d_cur = words.len() - d_cur;
+                }
+                dist = dist.min(d_cur);
+            }
+        }
+
+        if dist == usize::MAX {
+            return -1;
+        }
+        dist as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
