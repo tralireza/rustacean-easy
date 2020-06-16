@@ -131,9 +131,25 @@ struct Sol2515 {}
 
 impl Sol2515 {
     pub fn closest_target(words: Vec<String>, target: String, start_index: i32) -> i32 {
-        let mut dist = usize::MAX;
-
         let start_index = start_index as usize;
+
+        println!(
+            ":? {}",
+            words[start_index..]
+                .iter()
+                .chain(words[..start_index].iter())
+                .enumerate()
+                .filter(|(_, w)| **w == target)
+                .fold(usize::MAX, |dist, (i, _)| {
+                    if 2 * i > words.len() {
+                        dist.min(words.len() - i)
+                    } else {
+                        dist.min(i)
+                    }
+                })
+        );
+
+        let mut dist = usize::MAX;
         for i in (start_index..words.len()).chain(0..start_index) {
             if words[i] == target {
                 let mut d_cur = (words.len() + i - start_index) % words.len();
