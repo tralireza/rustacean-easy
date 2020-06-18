@@ -31,5 +31,23 @@ impl Sol2525 {
     }
 }
 
+/// 2544 Alternate Digit Sum
+struct Sol2544 {}
+
+impl Sol2544 {
+    pub fn alternate_digit_sum(mut n: i32) -> i32 {
+        let mut ds = vec![];
+        while n > 0 {
+            ds.push(n % 10);
+            n /= 10;
+        }
+        ds.reverse();
+
+        ds.iter()
+            .zip([1, -1].iter().cycle())
+            .fold(0, |d_sum, (d, sign)| d_sum + sign * d)
+    }
+}
+
 #[cfg(test)]
 mod tests;

@@ -19,3 +19,12 @@ fn test_2525() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2544() {
+    for (rst, n) in [(4, 521), (1, 111), (0, 886996)] {
+        println!("* {n}");
+        assert_eq!(Sol2544::alternate_digit_sum(n), rst);
+        println!(":: {rst:?}");
+    }
+}
