@@ -43,6 +43,14 @@ impl Sol2544 {
         }
         ds.reverse();
 
+        println!(
+            ":? {}",
+            ds.iter()
+                .zip([1, -1].iter().cycle())
+                .map(|(d, sign)| d * sign)
+                .sum::<i32>()
+        );
+
         ds.iter()
             .zip([1, -1].iter().cycle())
             .fold(0, |d_sum, (d, sign)| d_sum + sign * d)
