@@ -57,5 +57,30 @@ impl Sol2544 {
     }
 }
 
+/// 2578 Split With Minimum Sum
+struct Sol2578 {}
+
+impl Sol2578 {
+    pub fn split_num(mut num: i32) -> i32 {
+        let mut digits = vec![];
+        while num > 0 {
+            digits.push(num % 10);
+            num /= 10;
+        }
+        digits.sort();
+
+        digits
+            .iter()
+            .enumerate()
+            .filter(|(i, _)| i & 1 == 0)
+            .fold(0, |n, (_, &d)| 10 * n + d)
+            + digits
+                .iter()
+                .enumerate()
+                .filter(|(i, _)| i & 1 == 1)
+                .fold(0, |n, (_, &d)| 10 * n + d)
+    }
+}
+
 #[cfg(test)]
 mod tests;

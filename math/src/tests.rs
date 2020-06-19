@@ -28,3 +28,12 @@ fn test_2544() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2578() {
+    for (rst, num) in [(59, 4325), (75, 687)] {
+        println!("* {num}");
+        assert_eq!(Sol2578::split_num(num), rst);
+        println!(":: {rst:?}");
+    }
+}
