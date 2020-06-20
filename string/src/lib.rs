@@ -167,5 +167,33 @@ impl Sol2515 {
     }
 }
 
+/// 2609 Find the Longest Balanced Substring of a Binary String
+struct Sol2609 {}
+
+impl Sol2609 {
+    pub fn find_the_longest_balanced_substring(s: String) -> i32 {
+        let chars: Vec<_> = s.chars().collect();
+
+        (0..chars.len()).fold(0, |longest, start| {
+            let z = chars
+                .iter()
+                .skip(start)
+                .take_while(|chr| **chr == '0')
+                .count();
+            let o = chars
+                .iter()
+                .skip(start + z)
+                .take_while(|chr| **chr == '1')
+                .count();
+
+            if z <= o && longest < 2 * z {
+                2 * z
+            } else {
+                longest
+            }
+        }) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

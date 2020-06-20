@@ -82,3 +82,15 @@ fn test_2515() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2609() {
+    for (rst, s) in [(6, "01000111"), (4, "00111"), (0, "111")] {
+        println!("* {s:?}");
+        assert_eq!(
+            Sol2609::find_the_longest_balanced_substring(s.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
