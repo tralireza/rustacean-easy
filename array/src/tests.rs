@@ -41,3 +41,15 @@ fn test_2432() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2614() {
+    for (rst, nums) in [
+        (11, vec![vec![1, 2, 3], vec![5, 6, 7], vec![9, 10, 11]]),
+        (17, vec![vec![1, 2, 3], vec![5, 17, 7], vec![9, 11, 10]]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2614::diagonal_prime(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

@@ -68,5 +68,42 @@ impl Sol2432 {
     }
 }
 
+/// 2614 Prime In Diagonal
+struct Sol2614 {}
+
+impl Sol2614 {
+    pub fn diagonal_prime(nums: Vec<Vec<i32>>) -> i32 {
+        *nums
+            .iter()
+            .enumerate()
+            .filter_map(|(d, row)| {
+                row.iter()
+                    .skip(d)
+                    .take(1)
+                    .zip(row.iter().rev().skip(d).take(1))
+                    .next()
+            })
+            .map(|(x, y)| vec![x, y])
+            .flatten()
+            .filter(|&&x| {
+                if x > 1 {
+                    let mut m = 2;
+                    while m * m <= x {
+                        if x % m == 0 {
+                            return false;
+                        }
+                        m += 1;
+                    }
+
+                    true
+                } else {
+                    false
+                }
+            })
+            .max()
+            .unwrap_or(&0)
+    }
+}
+
 #[cfg(test)]
 mod tests;
