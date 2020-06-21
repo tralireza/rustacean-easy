@@ -85,20 +85,17 @@ impl Sol2614 {
             })
             .map(|(x, y)| vec![x, y])
             .flatten()
-            .filter(|&&x| {
-                if x > 1 {
-                    let mut m = 2;
-                    while m * m <= x {
-                        if x % m == 0 {
-                            return false;
-                        }
-                        m += 1;
+            .filter(|&&n| n > 1)
+            .filter(|&&n| {
+                let mut m = 2;
+                while m * m <= n {
+                    if n % m == 0 {
+                        return false;
                     }
-
-                    true
-                } else {
-                    false
+                    m += 1;
                 }
+
+                true
             })
             .max()
             .unwrap_or(&0)
