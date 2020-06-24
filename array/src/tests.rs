@@ -62,3 +62,19 @@ fn test_2614() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2639() {
+    for (rst, grid) in [
+        (vec![3], vec![vec![1], vec![22], vec![333]]),
+        (
+            vec![3, 1, 2],
+            vec![vec![-15, 1, 3], vec![15, 7, 12], vec![5, 6, -2]],
+        ),
+        (vec![1], vec![vec![0]]),
+    ] {
+        println!("* {grid:?}");
+        assert_eq!(Sol2639::find_column_width(grid), rst);
+        println!(":: {rst:?}");
+    }
+}

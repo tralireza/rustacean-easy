@@ -102,5 +102,21 @@ impl Sol2614 {
     }
 }
 
+/// 2639 Find the Width of Columns of a Grid
+struct Sol2639 {}
+
+impl Sol2639 {
+    pub fn find_column_width(grid: Vec<Vec<i32>>) -> Vec<i32> {
+        (0..grid[0].len())
+            .map(|c| {
+                grid.iter()
+                    .map(|row| row[c].to_string().len() as i32)
+                    .max()
+                    .unwrap_or(0)
+            })
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;
