@@ -118,5 +118,49 @@ impl Sol2639 {
     }
 }
 
+/// 2660 Determine the Winnder of a Bowling  Game
+struct Sol2660 {}
+
+impl Sol2660 {
+    pub fn is_winner(player1: Vec<i32>, player2: Vec<i32>) -> i32 {
+        let mut scores = vec![];
+
+        for player in [player1, player2] {
+            let mut score = player[0];
+            if player.len() > 1 {
+                if player[0] == 10 {
+                    score += 2 * player[1];
+                } else {
+                    score += player[1];
+                }
+            }
+
+            score += player
+                .windows(3)
+                .map(|w| {
+                    if w[0] == 10 || w[1] == 10 {
+                        2 * w[2]
+                    } else {
+                        w[2]
+                    }
+                })
+                .sum::<i32>();
+            scores.push(score);
+        }
+
+        use std::cmp::Ordering::*;
+
+        if let [score1, score2, ..] = scores[..] {
+            match score1.cmp(&score2) {
+                Less => 2,
+                Greater => 1,
+                Equal => 0,
+            }
+        } else {
+            0
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests;

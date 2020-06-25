@@ -78,3 +78,21 @@ fn test_2639() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2660() {
+    for (rst, player1, player2) in [
+        (1, vec![5, 10, 3, 2], vec![6, 5, 7, 3]),
+        (2, vec![3, 5, 7, 6], vec![8, 10, 10, 2]),
+        (0, vec![2, 3], vec![4, 1]),
+        (
+            2,
+            vec![1, 1, 1, 10, 10, 10, 10],
+            vec![10, 10, 10, 10, 1, 1, 1],
+        ),
+    ] {
+        println!("* {player1:?} {player2:?}");
+        assert_eq!(Sol2660::is_winner(player1, player2), rst);
+        println!(":: {rst:?}");
+    }
+}
