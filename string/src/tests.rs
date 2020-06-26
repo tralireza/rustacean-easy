@@ -94,3 +94,12 @@ fn test_2609() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2697() {
+    for (rst, s) in [("efcfe", "egcfe"), ("abba", "abcd")] {
+        println!("* {s:?}");
+        assert_eq!(Sol2697::make_smallest_palindrome(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}

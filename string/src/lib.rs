@@ -195,5 +195,17 @@ impl Sol2609 {
     }
 }
 
+/// 2697 Lexicographically Smallest Palindrome
+struct Sol2697 {}
+
+impl Sol2697 {
+    pub fn make_smallest_palindrome(s: String) -> String {
+        s.chars()
+            .zip(s.chars().rev())
+            .map(|(l, r)| if l > r { r } else { l })
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;
