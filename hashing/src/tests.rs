@@ -53,3 +53,12 @@ fn test_2506() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2682() {
+    for (rst, n, k) in [(vec![4, 5], 5, 2), (vec![2, 3, 4], 4, 4)] {
+        println!("* {n} {k}");
+        assert_eq!(Sol2682::circular_game_losers(n, k), rst);
+        println!(":: {rst:?}");
+    }
+}
