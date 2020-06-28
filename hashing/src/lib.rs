@@ -153,17 +153,12 @@ impl Sol2682 {
     pub fn circular_game_losers(n: i32, k: i32) -> Vec<i32> {
         use std::collections::HashSet;
 
-        let mut cur = 0;
         let mut played = HashSet::new();
-        played.insert(cur);
 
-        for round in 1.. {
-            let next = (cur + round * k) % n;
-            if !played.insert(next) {
-                break;
-            }
-
-            cur = next;
+        let (mut player, mut round) = (0, 1);
+        while played.insert(player) {
+            player = (player + round * k) % n;
+            round += 1;
         }
 
         (0..n)
