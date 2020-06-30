@@ -103,3 +103,16 @@ fn test_2697() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2744() {
+    for (rst, words) in [
+        (2, vec!["cd", "ac", "dc", "ca", "zz"]),
+        (1, vec!["ab", "ba", "cc"]),
+    ] {
+        let words: Vec<_> = words.iter().map(|w| w.to_string()).collect();
+        println!("* {words:?}");
+        assert_eq!(Sol2744::maximum_number_of_string_pairs(words), rst);
+        println!(":: {rst:?}");
+    }
+}

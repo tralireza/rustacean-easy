@@ -207,5 +207,28 @@ impl Sol2697 {
     }
 }
 
+/// 2744 Find Maximum Number of String Pairs
+struct Sol2744 {}
+
+impl Sol2744 {
+    pub fn maximum_number_of_string_pairs(words: Vec<String>) -> i32 {
+        use std::collections::HashMap;
+
+        let mut frevs = HashMap::new();
+        words.iter().fold(0, |mut pairs, w| {
+            let mut chars: Vec<_> = w.chars().collect();
+            if let Some(f) = frevs.get_mut(&chars) {
+                pairs += *f;
+                *f += 1;
+            } else {
+                chars.reverse();
+                frevs.insert(chars.clone(), 1);
+            }
+
+            pairs
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;
