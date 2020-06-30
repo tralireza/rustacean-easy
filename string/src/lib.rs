@@ -224,6 +224,7 @@ impl Sol2744 {
                 chars.reverse();
                 frevs.insert(chars.clone(), 1);
             }
+            println!("-> {w:?} {frevs:?}");
 
             pairs
         })
