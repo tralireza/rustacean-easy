@@ -168,5 +168,46 @@ impl Sol2682 {
     }
 }
 
+/// 2748 Number of Beautiful Pairs
+struct Sol2748 {}
+
+impl Sol2748 {
+    pub fn count_beautiful_pairs(nums: Vec<i32>) -> i32 {
+        use std::collections::HashMap;
+
+        fn gcd(mut a: i32, mut b: i32) -> i32 {
+            if b > a {
+                (a, b) = (b, a);
+            }
+            while b > 0 {
+                (a, b) = (b, a % b);
+            }
+
+            a
+        }
+
+        let mut fdigs = HashMap::new();
+
+        nums.into_iter().fold(0, |mut pairs, mut n| {
+            let (mut fdig, ldig) = (n % 10, n % 10);
+            while n > 0 {
+                fdig = n % 10;
+                n /= 10;
+            }
+
+            for (dig, f) in fdigs.iter() {
+                if gcd(*dig, ldig) == 1 {
+                    pairs += *f;
+                }
+            }
+
+            fdigs.entry(fdig).and_modify(|f| *f += 1).or_insert(1);
+            println!("-> {pairs} {fdigs:?}");
+
+            pairs
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;

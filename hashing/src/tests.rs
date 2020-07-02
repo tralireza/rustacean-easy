@@ -62,3 +62,12 @@ fn test_2682() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2748() {
+    for (rst, nums) in [(5, vec![2, 5, 1, 4]), (2, vec![11, 21, 12])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2748::count_beautiful_pairs(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
