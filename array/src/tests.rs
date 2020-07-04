@@ -1,6 +1,27 @@
 use super::*;
 
 #[test]
+fn test_118() {
+    for (rst, row_nums) in [
+        (
+            vec![
+                vec![1],
+                vec![1, 1],
+                vec![1, 2, 1],
+                vec![1, 3, 3, 1],
+                vec![1, 4, 6, 4, 1],
+            ],
+            5,
+        ),
+        (vec![vec![1]], 1),
+    ] {
+        println!("* {row_nums}");
+        assert_eq!(Sol118::generate(row_nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),

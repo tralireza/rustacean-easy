@@ -1,5 +1,25 @@
 //! # Array
 
+/// 118 Pascal's Triangle
+struct Sol118 {}
+
+impl Sol118 {
+    pub fn generate(num_rows: i32) -> Vec<Vec<i32>> {
+        let mut triangle = vec![vec![1; 1]];
+        for r in 1..num_rows as usize {
+            let mut row = vec![1; 1];
+            triangle[r - 1]
+                .windows(2)
+                .for_each(|w| row.push(w.iter().sum::<i32>()));
+            row.push(1);
+
+            triangle.push(row);
+        }
+
+        triangle
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 
