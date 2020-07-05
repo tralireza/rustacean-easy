@@ -182,5 +182,29 @@ impl Sol2660 {
     }
 }
 
+/// 2760 Longest Even Odd Subarray With Threshold
+struct Sol2760 {}
+
+impl Sol2760 {
+    pub fn longest_alternating_subarray(nums: Vec<i32>, threshold: i32) -> i32 {
+        nums.chunk_by(|&a, &b| a & 1 != b & 1 && a <= threshold && b <= threshold)
+            .fold(0, |longest, chunk| {
+                println!("-> {chunk:?}");
+
+                if chunk[0] & 1 == 0 {
+                    if chunk[0] <= threshold {
+                        chunk.len().max(longest)
+                    } else {
+                        longest
+                    }
+                } else if chunk.len() > 1 {
+                    longest.max(chunk.len() - 1)
+                } else {
+                    longest
+                }
+            }) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

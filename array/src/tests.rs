@@ -117,3 +117,17 @@ fn test_2660() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2760() {
+    for (rst, nums, threshold) in [
+        (3, vec![3, 2, 5, 4], 5),
+        (1, vec![1, 2], 2),
+        (3, vec![2, 3, 4, 5], 4),
+        (0, vec![1, 6], 2), // 6710 / 6873
+    ] {
+        println!("* {nums:?} {threshold}");
+        assert_eq!(Sol2760::longest_alternating_subarray(nums, threshold), rst);
+        println!(":: {rst:?}");
+    }
+}
