@@ -206,5 +206,39 @@ impl Sol2760 {
     }
 }
 
+/// 2765 Longest Alternating Subarray
+struct Sol2765 {}
+
+impl Sol2765 {
+    pub fn alternating_subarray(nums: Vec<i32>) -> i32 {
+        let longest = nums.iter().enumerate().fold(0, |longest, (i, _)| {
+            let mut cur = 0;
+            for (w, &diff) in nums
+                .iter()
+                .skip(i)
+                .collect::<Vec<_>>()
+                .windows(2)
+                .zip([1, -1].iter().cycle())
+            {
+                println!("-> {i} {diff:>2} {w:?}");
+
+                if w[1] - w[0] == diff {
+                    cur += 1;
+                } else {
+                    break;
+                }
+            }
+
+            longest.max(cur)
+        });
+
+        if longest == 0 {
+            return -1;
+        }
+
+        (longest + 1) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

@@ -131,3 +131,16 @@ fn test_2760() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2765() {
+    for (rst, nums) in [
+        (4, vec![2, 3, 4, 3, 4]),
+        (2, vec![4, 5, 6]),
+        (4, vec![31, 32, 31, 32, 33]), // 1532/2880
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2765::alternating_subarray(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
