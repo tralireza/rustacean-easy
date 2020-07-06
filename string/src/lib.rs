@@ -231,5 +231,19 @@ impl Sol2744 {
     }
 }
 
+// 2788 Split String by Separator
+struct Sol2788 {}
+
+impl Sol2788 {
+    pub fn split_words_by_separator(words: Vec<String>, separator: char) -> Vec<String> {
+        words
+            .iter()
+            .flat_map(|w| w.split(separator))
+            .filter(|w| !w.is_empty())
+            .map(|w| w.to_string())
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;

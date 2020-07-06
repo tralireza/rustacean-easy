@@ -116,3 +116,21 @@ fn test_2744() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2788() {
+    for (rst, words, separator) in [
+        (
+            vec!["one", "two", "three", "four", "five", "six"],
+            vec!["one.two.three", "four.five", "six"],
+            '.',
+        ),
+        (vec!["easy", "problem"], vec!["$easy$", "$problem$"], '$'),
+        (vec![], vec!["|||"], '|'),
+    ] {
+        let words: Vec<_> = words.iter().map(|w| w.to_string()).collect();
+        println!("* {words:?} {separator:?}");
+        assert_eq!(Sol2788::split_words_by_separator(words, separator), rst);
+        println!(":: {rst:?}");
+    }
+}
