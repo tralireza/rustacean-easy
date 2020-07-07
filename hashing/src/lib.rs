@@ -213,5 +213,35 @@ impl Sol2748 {
     }
 }
 
+/// 2815 Max Pair Sum in an Array
+struct Sol2815 {}
+
+impl Sol2815 {
+    pub fn max_sum(nums: Vec<i32>) -> i32 {
+        use std::cmp::Reverse;
+
+        let mut nums: Vec<_> = nums
+            .iter()
+            .map(|&n| {
+                let mut key = 0;
+                let mut x = n;
+                while x > 0 {
+                    key = key.max(x % 10);
+                    x /= 10;
+                }
+                (key, n)
+            })
+            .collect();
+
+        nums.sort_unstable_by_key(|&(key, n)| Reverse((key, n)));
+        println!("-> {nums:?}");
+
+        nums.chunk_by(|(k1, _), (k2, _)| k1 == k2)
+            .filter(|chunk| chunk.len() > 1)
+            .map(|chunk| chunk[0].1 + chunk[1].1)
+            .fold(-1, |max_sum, cur_sum| max_sum.max(cur_sum))
+    }
+}
+
 #[cfg(test)]
 mod tests;
