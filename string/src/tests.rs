@@ -134,3 +134,15 @@ fn test_2788() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2833() {
+    for (rst, moves) in [(3, "L_RL__R"), (5, "_R__LL_"), (7, "_______")] {
+        println!("* {moves:?}");
+        assert_eq!(
+            Sol2833::furthest_distance_from_origin(moves.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}

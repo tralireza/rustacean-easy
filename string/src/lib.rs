@@ -231,7 +231,7 @@ impl Sol2744 {
     }
 }
 
-// 2788 Split String by Separator
+/// 2788 Split String by Separator
 struct Sol2788 {}
 
 impl Sol2788 {
@@ -242,6 +242,23 @@ impl Sol2788 {
             .filter(|w| !w.is_empty())
             .map(|w| w.to_string())
             .collect()
+    }
+}
+
+/// 2833 Furthest Point From Origin
+struct Sol2833 {}
+
+impl Sol2833 {
+    pub fn furthest_distance_from_origin(moves: String) -> i32 {
+        let (mut dir, mut extra) = (0i32, 0);
+        moves.chars().for_each(|chr| match chr {
+            'L' => dir -= 1,
+            'R' => dir += 1,
+            '_' => extra += 1,
+            _ => {}
+        });
+
+        dir.abs() + extra
     }
 }
 
