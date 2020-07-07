@@ -237,6 +237,7 @@ impl Sol2815 {
         println!("-> {nums:?}");
 
         nums.chunk_by(|(k1, _), (k2, _)| k1 == k2)
+            .inspect(|chunk| println!("-> {chunk:?}"))
             .filter(|chunk| chunk.len() > 1)
             .map(|chunk| chunk[0].1 + chunk[1].1)
             .fold(-1, |max_sum, cur_sum| max_sum.max(cur_sum))
