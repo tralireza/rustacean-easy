@@ -262,5 +262,28 @@ impl Sol2833 {
     }
 }
 
+/// 2839 Check if Strings Can be Made Equal With Operations I
+struct Sol2839 {}
+
+impl Sol2839 {
+    pub fn can_be_equal(s1: String, s2: String) -> bool {
+        for start in [0, 1] {
+            let mut s1: Vec<_> = s1.chars().skip(start).step_by(2).collect();
+            s1.sort();
+
+            let mut s2: Vec<_> = s2.chars().skip(start).step_by(2).collect();
+            s2.sort();
+
+            for (chr1, chr2) in s1.iter().zip(s2.iter()) {
+                if chr1 != chr2 {
+                    return false;
+                }
+            }
+        }
+
+        true
+    }
+}
+
 #[cfg(test)]
 mod tests;

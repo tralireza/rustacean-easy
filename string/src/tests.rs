@@ -146,3 +146,12 @@ fn test_2833() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2839() {
+    for (rst, s1, s2) in [(true, "abcd", "cdab"), (false, "abcd", "dacb")] {
+        println!("* {s1:?} {s2:?}");
+        assert_eq!(Sol2839::can_be_equal(s1.to_string(), s2.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
