@@ -240,5 +240,26 @@ impl Sol2765 {
     }
 }
 
+/// 2848 Points That Intersect With Cars
+struct Sol2848 {}
+
+impl Sol2848 {
+    pub fn number_of_points(nums: Vec<Vec<i32>>) -> i32 {
+        use std::collections::HashSet;
+
+        let mut covered = HashSet::new();
+        for car in nums {
+            if let [start, end, ..] = car[..] {
+                for point in start..=end {
+                    covered.insert(point);
+                }
+            }
+        }
+        println!("-> {covered:?}");
+
+        covered.len() as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

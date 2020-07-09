@@ -144,3 +144,15 @@ fn test_2765() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2848() {
+    for (rst, nums) in [
+        (7, vec![vec![3, 6], vec![1, 5], vec![4, 7]]),
+        (7, vec![vec![1, 3], vec![5, 8]]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2848::number_of_points(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
