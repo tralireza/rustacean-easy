@@ -245,17 +245,38 @@ struct Sol2848 {}
 
 impl Sol2848 {
     pub fn number_of_points(nums: Vec<Vec<i32>>) -> i32 {
-        use std::collections::HashSet;
+        use std::collections::{BTreeMap, HashSet};
+
+        let mut sweep = BTreeMap::new();
 
         let mut covered = HashSet::new();
         for car in nums {
             if let [start, end, ..] = car[..] {
+                sweep.entry(start).and_modify(|f| *f += 1).or_insert(1);
+                sweep.entry(end + 1).and_modify(|f| *f -= 1).or_insert(-1);
+
                 for point in start..=end {
                     covered.insert(point);
                 }
             }
         }
         println!("-> {covered:?}");
+
+        println!(
+            ":? {sweep:?} {:?}",
+            sweep
+                .iter()
+                .collect::<Vec<_>>()
+                .windows(2)
+                .fold((0, 0), |(psum, points), w| {
+                    let psum = psum + w[0].1;
+                    if psum > 0 {
+                        (psum, points + w[1].0 - w[0].0)
+                    } else {
+                        (psum, points)
+                    }
+                })
+        );
 
         covered.len() as _
     }
