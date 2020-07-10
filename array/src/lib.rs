@@ -103,8 +103,7 @@ impl Sol2614 {
                     .zip(row.iter().rev().skip(d).take(1))
                     .next()
             })
-            .map(|(x, y)| vec![x, y])
-            .flatten()
+            .flat_map(|(x, y)| vec![x, y])
             .filter(|&&n| n > 1)
             .filter(|&&n| {
                 let mut m = 2;
