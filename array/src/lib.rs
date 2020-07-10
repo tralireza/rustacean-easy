@@ -282,5 +282,36 @@ impl Sol2848 {
     }
 }
 
+/// 2899 Last Visited Integers
+struct Sol2899 {}
+
+impl Sol2899 {
+    pub fn last_visited_integers(nums: Vec<i32>) -> Vec<i32> {
+        use std::collections::VecDeque;
+
+        let mut seen = VecDeque::new();
+        let mut k = 0;
+
+        nums.iter().fold(vec![], |mut lvis, &n| {
+            match n {
+                -1 => {
+                    k += 1;
+                    if k <= seen.len() {
+                        lvis.push(seen[k - 1]);
+                    } else {
+                        lvis.push(-1);
+                    }
+                }
+                _ => {
+                    k = 0;
+                    seen.push_front(n);
+                }
+            }
+
+            lvis
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;

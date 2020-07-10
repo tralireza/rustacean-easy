@@ -156,3 +156,15 @@ fn test_2848() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2899() {
+    for (rst, nums) in [
+        (vec![2, 1, -1], vec![1, 2, -1, -1, -1]),
+        (vec![1, 2, 1], vec![1, -1, 2, -1, -1]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2899::last_visited_integers(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
