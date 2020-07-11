@@ -168,3 +168,19 @@ fn test_2899() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2903() {
+    for (rst, nums, index_difference, value_difference) in [
+        (vec![0, 3], vec![5, 1, 4, 1], 2, 4),
+        (vec![0, 0], vec![2, 1], 0, 0),
+        (vec![-1, -1], vec![1, 2, 3], 2, 4),
+    ] {
+        println!("* {nums:?} {index_difference} {value_difference}");
+        assert_eq!(
+            Sol2903::find_indices(nums, index_difference, value_difference),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}

@@ -312,5 +312,22 @@ impl Sol2899 {
     }
 }
 
+/// 2903 Find Indices With Index and Value Difference I
+struct Sol2903 {}
+
+impl Sol2903 {
+    pub fn find_indices(nums: Vec<i32>, index_difference: i32, value_difference: i32) -> Vec<i32> {
+        for (i, a) in nums.iter().enumerate() {
+            for (j, b) in nums.iter().enumerate().skip(i + index_difference as usize) {
+                if (a - b).abs() >= value_difference {
+                    return vec![i as i32, j as i32];
+                }
+            }
+        }
+
+        vec![-1, -1]
+    }
+}
+
 #[cfg(test)]
 mod tests;
