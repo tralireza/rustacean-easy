@@ -184,3 +184,16 @@ fn test_2903() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2908() {
+    for (rst, nums) in [
+        (9, vec![8, 6, 1, 5, 3]),
+        (13, vec![5, 4, 8, 7, 10, 2]),
+        (-1, vec![6, 5, 4, 3, 4, 5]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2908::minimum_sum(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

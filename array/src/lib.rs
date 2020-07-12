@@ -329,5 +329,25 @@ impl Sol2903 {
     }
 }
 
+/// 2908 Minimum Sum of Mountain Triplets I
+struct Sol2908 {}
+
+impl Sol2908 {
+    pub fn minimum_sum(nums: Vec<i32>) -> i32 {
+        let mut msum = i32::MAX;
+        for (i, a) in nums.iter().enumerate() {
+            for (j, b) in nums.iter().enumerate().skip(i + 1) {
+                for c in nums.iter().skip(j + 1) {
+                    if a < b && c < b {
+                        msum = msum.min(a + b + c);
+                    }
+                }
+            }
+        }
+
+        if msum < i32::MAX { msum } else { -1 }
+    }
+}
+
 #[cfg(test)]
 mod tests;
