@@ -345,6 +345,36 @@ impl Sol2908 {
             }
         }
 
+        let mut left_min = nums[0];
+        let mut right_mins = nums.iter().rev().enumerate().skip(1).fold(
+            vec![nums[nums.len() - 1]],
+            |mut right_mins, (i, &n)| {
+                right_mins.push(right_mins[i - 1].min(n));
+                right_mins
+            },
+        );
+        right_mins.reverse();
+        println!("-> {right_mins:?}");
+        println!(
+            ":? {:?}",
+            nums.iter()
+                .enumerate()
+                .skip(1)
+                .take(nums.len() - 2)
+                .fold(i32::MAX, |msum, (i, &n)| {
+                    if n > left_min && n > right_mins[i + 1] {
+                        let cur = n + left_min + right_mins[i + 1];
+                        left_min = left_min.min(n);
+
+                        msum.min(cur)
+                    } else {
+                        left_min = left_min.min(n);
+
+                        msum
+                    }
+                })
+        );
+
         if msum < i32::MAX { msum } else { -1 }
     }
 }
