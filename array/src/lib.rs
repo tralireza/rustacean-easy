@@ -395,7 +395,7 @@ impl Sol2917 {
         counts
             .iter()
             .enumerate()
-            .filter(|(_, f)| **f >= k)
+            .filter(|&(_, &f)| f >= k)
             .fold(0, |k_or, (p, _)| k_or | 1 << p) as _
     }
 }
