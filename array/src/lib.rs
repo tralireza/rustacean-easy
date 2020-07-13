@@ -379,5 +379,26 @@ impl Sol2908 {
     }
 }
 
+/// 2917 Find the K-or of an Array
+struct Sol2917 {}
+
+impl Sol2917 {
+    pub fn find_k_or(nums: Vec<i32>, k: i32) -> i32 {
+        let mut counts = [0; 32];
+
+        for n in nums {
+            for p in 0..32 {
+                counts[p] += (n & 1 << p) >> p;
+            }
+        }
+
+        counts
+            .iter()
+            .enumerate()
+            .filter(|(_, f)| **f >= k)
+            .fold(0, |k_or, (p, _)| k_or | 1 << p) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

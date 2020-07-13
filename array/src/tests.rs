@@ -197,3 +197,16 @@ fn test_2908() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2917() {
+    for (rst, nums, k) in [
+        (9, vec![7, 12, 9, 8, 9, 15], 4),
+        (0, vec![2, 12, 1, 11, 4, 5], 6),
+        (15, vec![10, 8, 5, 9, 11, 6, 8], 1),
+    ] {
+        println!("* {nums:?} {k}");
+        assert_eq!(Sol2917::find_k_or(nums, k), rst);
+        println!(":: {rst:?}");
+    }
+}
