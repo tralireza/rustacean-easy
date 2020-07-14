@@ -82,5 +82,25 @@ impl Sol2578 {
     }
 }
 
+/// 2928 Distribute Candies Among Children I
+struct Sol2928 {}
+
+impl Sol2928 {
+    pub fn distribute_candies(n: i32, limit: i32) -> i32 {
+        let mut ways = 0;
+        for first in 0..=n.min(limit) {
+            for second in 0..=(n - first).min(limit) {
+                println!("-> {first} {second} ? {}", n - (first + second));
+
+                if 0 <= n - (first + second) && n - (first + second) <= limit {
+                    ways += 1;
+                }
+            }
+        }
+
+        ways
+    }
+}
+
 #[cfg(test)]
 mod tests;

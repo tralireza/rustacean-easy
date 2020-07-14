@@ -37,3 +37,12 @@ fn test_2578() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2928() {
+    for (rst, n, limit) in [(3, 5, 2), (10, 3, 3)] {
+        println!("* {n} {limit}");
+        assert_eq!(Sol2928::distribute_candies(n, limit), rst);
+        println!(":: {rst:?}");
+    }
+}
