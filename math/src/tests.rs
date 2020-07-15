@@ -46,3 +46,16 @@ fn test_2928() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2932() {
+    for (rst, nums) in [
+        (7, vec![1, 2, 3, 4, 5]),
+        (0, vec![10, 100]),
+        (7, vec![5, 6, 25, 30]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2932::maximum_strong_pair_xor(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

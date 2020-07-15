@@ -102,5 +102,22 @@ impl Sol2928 {
     }
 }
 
+/// 2932 Maximum Strong Pair XOR I
+struct Sol2932 {}
+
+impl Sol2932 {
+    pub fn maximum_strong_pair_xor(nums: Vec<i32>) -> i32 {
+        nums.iter().enumerate().fold(0, |x_xor, (i, &n)| {
+            nums.iter()
+                .skip(i)
+                .filter(|&&p| (p - n).abs() <= p.min(n))
+                .map(|&p| p ^ n)
+                .max()
+                .unwrap_or(0)
+                .max(x_xor)
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;
