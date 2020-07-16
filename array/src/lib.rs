@@ -425,7 +425,7 @@ impl Sol2970 {
             .filter(|&(l, r)| {
                 nums[..l]
                     .iter()
-                    .chain(nums[r + 1..].iter())
+                    .chain(&nums[r + 1..])
                     .collect::<Vec<_>>()
                     .is_sorted_by(|a, b| a < b)
             })
