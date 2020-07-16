@@ -423,6 +423,7 @@ impl Sol2970 {
         (0..nums.len())
             .flat_map(|l| (l..nums.len()).map(move |r| (l, r)))
             .filter(|&(l, r)| {
+                println!("{:?}", (l, r));
                 nums[..l]
                     .iter()
                     .chain(&nums[r + 1..])
