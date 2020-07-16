@@ -227,3 +227,16 @@ fn test_2946() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2970() {
+    for (rst, nums) in [
+        (10, vec![1, 2, 3, 4]),
+        (7, vec![6, 5, 7, 8]),
+        (3, vec![8, 7, 6, 6]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2970::incremovable_subarray_count(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

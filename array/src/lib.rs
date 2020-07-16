@@ -415,5 +415,23 @@ impl Sol2946 {
     }
 }
 
+/// 2970 Count the Number of Incremovable Subarrays I
+struct Sol2970 {}
+
+impl Sol2970 {
+    pub fn incremovable_subarray_count(nums: Vec<i32>) -> i32 {
+        (0..nums.len())
+            .flat_map(|l| (l..nums.len()).map(move |r| (l, r)))
+            .filter(|&(l, r)| {
+                nums[..l]
+                    .iter()
+                    .chain(nums[r + 1..].iter())
+                    .collect::<Vec<_>>()
+                    .is_sorted_by(|a, b| a < b)
+            })
+            .count() as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
