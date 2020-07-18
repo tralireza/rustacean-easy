@@ -434,5 +434,17 @@ impl Sol2970 {
     }
 }
 
+/// 2974 Minimum Number Game
+struct Sol2974 {}
+
+impl Sol2974 {
+    pub fn number_game(mut nums: Vec<i32>) -> Vec<i32> {
+        nums.sort();
+        nums.chunks(2)
+            .flat_map(|chunk| [chunk[1], chunk[0]])
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;

@@ -240,3 +240,15 @@ fn test_2970() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_2974() {
+    for (rst, nums) in [
+        (vec![3, 2, 5, 4], vec![5, 4, 2, 3]),
+        (vec![5, 2], vec![2, 5]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2974::number_game(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
