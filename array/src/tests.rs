@@ -252,3 +252,12 @@ fn test_2974() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3028() {
+    for (rst, nums) in [(1, vec![2, 3, -5]), (0, vec![3, 2, -3, -4])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3028::return_to_boundary_count(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

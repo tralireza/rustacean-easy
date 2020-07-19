@@ -446,5 +446,20 @@ impl Sol2974 {
     }
 }
 
+/// 3028 Ant on the Boundary
+struct Sol3028 {}
+
+impl Sol3028 {
+    pub fn return_to_boundary_count(nums: Vec<i32>) -> i32 {
+        nums.iter()
+            .scan(0, |psum, &n| {
+                *psum += n;
+                Some(*psum)
+            })
+            .filter(|&n| n == 0)
+            .count() as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
