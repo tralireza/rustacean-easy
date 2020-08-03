@@ -155,3 +155,12 @@ fn test_2839() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3090() {
+    for (rst, s) in [(4, "bcbbbcba"), (2, "aaaa")] {
+        println!("* {s:?}");
+        assert_eq!(Sol3090::maximum_length_substring(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}

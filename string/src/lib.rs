@@ -285,5 +285,30 @@ impl Sol2839 {
     }
 }
 
+/// 3090 Maximum Length Substring With Two Occurences
+struct Sol3090 {}
+
+impl Sol3090 {
+    pub fn maximum_length_substring(s: String) -> i32 {
+        use std::collections::HashMap;
+
+        (0..s.len())
+            .map(|l| (l..s.len()).map(move |r| (l, r)))
+            .flatten()
+            .fold(0, |longest, (l, r)| {
+                let mut freqs = HashMap::new();
+                for chr in s[l..=r].chars() {
+                    freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+                }
+
+                if freqs.values().all(|&f| f <= 2) && (r - l + 1) > longest {
+                    r - l + 1
+                } else {
+                    longest
+                }
+            }) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
