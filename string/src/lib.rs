@@ -292,6 +292,25 @@ impl Sol3090 {
     pub fn maximum_length_substring(s: String) -> i32 {
         use std::collections::HashMap;
 
+        {
+            let s: Vec<_> = s.chars().collect();
+            let mut freqs = HashMap::new();
+            let mut l = 0;
+            println!(
+                ":? {}",
+                s.iter().enumerate().fold(0, |longest, (r, &chr)| {
+                    freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+
+                    while freqs.get(&chr).unwrap() > &2 {
+                        freqs.entry(s[l]).and_modify(|f| *f -= 1);
+                        l += 1;
+                    }
+
+                    longest.max(r - l + 1)
+                })
+            );
+        }
+
         (0..s.len())
             .map(|l| (l..s.len()).map(move |r| (l, r)))
             .flatten()
