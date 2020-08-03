@@ -312,8 +312,7 @@ impl Sol3090 {
         }
 
         (0..s.len())
-            .map(|l| (l..s.len()).map(move |r| (l, r)))
-            .flatten()
+            .flat_map(|l| (l..s.len()).map(move |r| (l, r)))
             .fold(0, |longest, (l, r)| {
                 let mut freqs = HashMap::new();
                 for chr in s[l..=r].chars() {
