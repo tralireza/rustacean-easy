@@ -164,3 +164,12 @@ fn test_3090() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3114() {
+    for (rst, s) in [("11:54", "1?:?4"), ("09:59", "0?:5?")] {
+        println!("* {s:?}");
+        assert_eq!(Sol3114::find_latest_time(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}

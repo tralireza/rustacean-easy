@@ -328,5 +328,36 @@ impl Sol3090 {
     }
 }
 
+/// 3114 Latest Time You Can Obtain After Replacing Characters
+struct Sol3114 {}
+
+impl Sol3114 {
+    pub fn find_latest_time(s: String) -> String {
+        if let [s0, s1, _, s3, s4, ..] = s.chars().collect::<Vec<_>>()[..] {
+            for h1 in ['1', '0'] {
+                for h2 in ('0'..='9').rev() {
+                    if h1 == '1' && h2 > '1' {
+                        continue;
+                    }
+
+                    for m1 in ('0'..='5').rev() {
+                        for m2 in ('0'..='9').rev() {
+                            if (s0 == h1 || s0 == '?')
+                                && (s1 == h2 || s1 == '?')
+                                && (s3 == m1 || s3 == '?')
+                                && (s4 == m2 || s4 == '?')
+                            {
+                                return [h1, h2, ':', m1, m2].iter().collect();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        "00:00".to_string()
+    }
+}
+
 #[cfg(test)]
 mod tests;
