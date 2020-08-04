@@ -333,6 +333,30 @@ struct Sol3114 {}
 
 impl Sol3114 {
     pub fn find_latest_time(s: String) -> String {
+        println!(
+            ":? {:?}",
+            s.chars()
+                .enumerate()
+                .map(|(i, chr)| match (i, chr) {
+                    (0, '?') =>
+                        if s.chars().nth(1) <= Some('1') || s.chars().nth(1) == Some('?') {
+                            '1'
+                        } else {
+                            '0'
+                        },
+                    (1, '?') =>
+                        if s.chars().nth(0) == Some('1') || s.chars().nth(0) == Some('?') {
+                            '1'
+                        } else {
+                            '9'
+                        },
+                    (3, '?') => '5',
+                    (4, '?') => '9',
+                    (_, chr) => chr,
+                })
+                .collect::<String>()
+        );
+
         if let [s0, s1, _, s3, s4, ..] = s.chars().collect::<Vec<_>>()[..] {
             for h1 in ['1', '0'] {
                 for h2 in ('0'..='9').rev() {
