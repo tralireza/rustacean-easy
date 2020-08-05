@@ -461,5 +461,25 @@ impl Sol3028 {
     }
 }
 
+/// 3127 Make a Square with the Same Color
+struct Sol3127 {}
+
+impl Sol3127 {
+    pub fn can_make_square(grid: Vec<Vec<char>>) -> bool {
+        !(0..2).all(|r| {
+            (0..2).all(|c| {
+                grid.iter().skip(r).take(2).fold(0, |count, row| {
+                    row.iter()
+                        .skip(c)
+                        .take(2)
+                        .filter(|&&color| color == 'W')
+                        .count()
+                        + count
+                }) == 2
+            })
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;

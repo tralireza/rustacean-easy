@@ -261,3 +261,29 @@ fn test_3028() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3127() {
+    for (rst, grid) in [
+        (
+            true,
+            vec![
+                vec!['B', 'W', 'B'],
+                vec!['B', 'W', 'W'],
+                vec!['B', 'W', 'B'],
+            ],
+        ),
+        (
+            false,
+            vec![
+                vec!['B', 'W', 'B'],
+                vec!['W', 'B', 'W'],
+                vec!['B', 'W', 'B'],
+            ],
+        ),
+    ] {
+        println!("* {grid:?}");
+        assert_eq!(Sol3127::can_make_square(grid), rst);
+        println!(":: {rst:?}");
+    }
+}
