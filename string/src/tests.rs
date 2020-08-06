@@ -178,3 +178,15 @@ fn test_3114() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3280() {
+    for (rst, date) in [
+        ("100000100000-10-11101", "2080-02-29"),
+        ("11101101100-1-1", "1900-01-01"),
+    ] {
+        println!("* {date:?}");
+        assert_eq!(Sol3280::convert_date_to_binary(date.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}

@@ -383,5 +383,18 @@ impl Sol3114 {
     }
 }
 
+/// 3280 Convert Date to Binary
+struct Sol3280 {}
+
+impl Sol3280 {
+    pub fn convert_date_to_binary(date: String) -> String {
+        date.split('-')
+            .filter_map(|s| s.parse::<i32>().ok())
+            .map(|n| format!("{n:b}"))
+            .collect::<Vec<_>>()
+            .join("-")
+    }
+}
+
 #[cfg(test)]
 mod tests;
