@@ -263,6 +263,15 @@ fn test_3028() {
 }
 
 #[test]
+fn test_3200() {
+    for (rst, red, blue) in [(3, 2, 4), (2, 2, 1), (1, 1, 1), (2, 10, 1)] {
+        println!("* {red} {blue}");
+        assert_eq!(Sol3200::max_height_of_triangle(red, blue), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3127() {
     for (rst, grid) in [
         (

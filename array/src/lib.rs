@@ -461,6 +461,46 @@ impl Sol3028 {
     }
 }
 
+/// 3200 Maximum Height of a Triangle
+struct Sol3200 {}
+
+impl Sol3200 {
+    pub fn max_height_of_triangle(red: i32, blue: i32) -> i32 {
+        [(red, blue), (blue, red)]
+            .into_iter()
+            .map(|(red, blue)| {
+                let (mut r, mut b) = (0, 0);
+                let mut height = 0;
+                for (n, color) in (1..).zip(['r', 'b'].iter().cycle()) {
+                    match color {
+                        'r' => {
+                            r += n;
+                            if r <= red {
+                                height += 1;
+                            } else {
+                                break;
+                            }
+                        }
+                        'b' => {
+                            b += n;
+                            if b <= blue {
+                                height += 1;
+                            } else {
+                                break;
+                            }
+                        }
+                        _ => {}
+                    }
+
+                    println!("-> {n} {color:?} :: {height}");
+                }
+                height
+            })
+            .max()
+            .unwrap_or(0)
+    }
+}
+
 /// 3127 Make a Square with the Same Color
 struct Sol3127 {}
 
