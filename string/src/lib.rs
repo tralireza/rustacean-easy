@@ -396,5 +396,25 @@ impl Sol3280 {
     }
 }
 
+/// 3345 Smallest Divisible Digit Product I
+struct Sol3345 {}
+
+impl Sol3345 {
+    pub fn smallest_number(mut n: i32, t: i32) -> i32 {
+        while n
+            .to_string()
+            .chars()
+            .filter_map(|chr| chr.to_digit(10))
+            .product::<u32>()
+            % t as u32
+            != 0
+        {
+            n += 1;
+        }
+
+        n
+    }
+}
+
 #[cfg(test)]
 mod tests;

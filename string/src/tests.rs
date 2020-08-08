@@ -190,3 +190,12 @@ fn test_3280() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3345() {
+    for (rst, n, t) in [(10, 10, 2), (16, 15, 3)] {
+        println!("* {n} {t}");
+        assert_eq!(Sol3345::smallest_number(n, t), rst);
+        println!(":: {rst:?}");
+    }
+}
