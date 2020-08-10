@@ -5,6 +5,24 @@ struct Sol3354 {}
 
 impl Sol3354 {
     pub fn count_valid_selections(nums: Vec<i32>) -> i32 {
+        let (mut pfx, mut sfx) = (0, nums.iter().sum::<i32>());
+        println!(
+            ":? {}",
+            nums.iter().fold(0, |mut count, &n| {
+                if n == 0 {
+                    if pfx == sfx {
+                        count += 2;
+                    } else if (pfx - sfx).abs() == 1 {
+                        count += 1;
+                    }
+                }
+                pfx += n;
+                sfx -= n;
+
+                count
+            })
+        );
+
         let prefix_sum: Vec<_> = nums
             .iter()
             .scan(0, |csum, n| {
