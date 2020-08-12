@@ -396,6 +396,24 @@ impl Sol3280 {
     }
 }
 
+/// 3340 Check Balanced String
+struct Sol3340 {}
+
+impl Sol3340 {
+    pub fn is_balanced(num: String) -> bool {
+        num.chars()
+            .step_by(2)
+            .filter_map(|chr| chr.to_digit(10))
+            .sum::<u32>()
+            == num
+                .chars()
+                .skip(1)
+                .step_by(2)
+                .filter_map(|chr| chr.to_digit(10))
+                .sum::<u32>()
+    }
+}
+
 /// 3345 Smallest Divisible Digit Product I
 struct Sol3345 {}
 

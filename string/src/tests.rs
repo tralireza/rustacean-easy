@@ -192,6 +192,15 @@ fn test_3280() {
 }
 
 #[test]
+fn test_3340() {
+    for (rst, num) in [(false, "1234"), (true, "24123")] {
+        println!("* {num:?}");
+        assert_eq!(Sol3340::is_balanced(num.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3345() {
     for (rst, n, t) in [(10, 10, 2), (16, 15, 3)] {
         println!("* {n} {t}");
