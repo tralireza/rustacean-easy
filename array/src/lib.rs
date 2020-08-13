@@ -527,6 +527,14 @@ struct Sol3349 {}
 impl Sol3349 {
     pub fn has_increasing_subarrays(nums: Vec<i32>, k: i32) -> bool {
         let k = k as usize;
+
+        println!(
+            ":? {}",
+            nums.windows(k)
+                .zip(nums.windows(k).skip(k))
+                .any(|(w1, w2)| w1.is_sorted_by(|a, b| a < b) && w2.is_sorted_by(|a, b| a < b))
+        );
+
         (0..=nums.len() - 2 * k).any(|start| {
             nums.iter().skip(start).take(k).is_sorted_by(|a, b| a < b)
                 && nums
