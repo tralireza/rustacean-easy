@@ -521,5 +521,22 @@ impl Sol3127 {
     }
 }
 
+/// 3349 Adjacent Increasing Subarrays Detection I
+struct Sol3349 {}
+
+impl Sol3349 {
+    pub fn has_increasing_subarrays(nums: Vec<i32>, k: i32) -> bool {
+        let k = k as usize;
+        (0..=nums.len() - 2 * k).any(|start| {
+            nums.iter().skip(start).take(k).is_sorted_by(|a, b| a < b)
+                && nums
+                    .iter()
+                    .skip(start + k)
+                    .take(k)
+                    .is_sorted_by(|a, b| a < b)
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests;

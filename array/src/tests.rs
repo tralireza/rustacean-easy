@@ -296,3 +296,16 @@ fn test_3127() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3349() {
+    for (rst, nums, k) in [
+        (true, vec![2, 5, 7, 8, 9, 2, 3, 4, 3, 1], 3),
+        (false, vec![1, 2, 3, 4, 4, 4, 4, 5, 6, 7], 5),
+        (false, vec![-15, 3, 16, 0], 2), // 1358/1422
+    ] {
+        println!("* {nums:?} {k}");
+        assert_eq!(Sol3349::has_increasing_subarrays(nums, k), rst);
+        println!(":: {rst:?}");
+    }
+}
