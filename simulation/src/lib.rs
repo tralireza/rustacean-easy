@@ -56,6 +56,23 @@ impl Sol3354 {
     }
 }
 
+/// 3360 Stone Removal Game
+struct Sol3360 {}
+
+impl Sol3360 {
+    pub fn can_alice_win(mut n: i32) -> bool {
+        for (take, &player) in (1..=10).rev().zip(['a', 'b'].iter().cycle()) {
+            match player {
+                'a' if n < take => return false,
+                'b' if n < take => return true,
+                _ => n -= take,
+            }
+        }
+
+        unreachable!()
+    }
+}
+
 /// 3379 Transformed Array
 struct Sol3379 {}
 

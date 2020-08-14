@@ -15,6 +15,15 @@ fn test_3354() {
 }
 
 #[test]
+fn test_3360() {
+    for (rst, n) in [(true, 12), (false, 1)] {
+        println!("* {n}");
+        assert_eq!(Sol3360::can_alice_win(n), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3379() {
     for (rst, nums) in [
         (vec![1, 1, 1, 3], vec![3, -2, 1, 1]),
