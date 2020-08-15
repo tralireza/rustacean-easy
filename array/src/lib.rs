@@ -546,5 +546,19 @@ impl Sol3349 {
     }
 }
 
+/// 3502 Minimum Cost to Reach Every Person
+struct Sol3502 {}
+
+impl Sol3502 {
+    pub fn min_costs(cost: Vec<i32>) -> Vec<i32> {
+        cost.iter()
+            .scan(i32::MAX, |m, &c| {
+                *m = c.min(*m);
+                Some(*m)
+            })
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;

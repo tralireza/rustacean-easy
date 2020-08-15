@@ -309,3 +309,15 @@ fn test_3349() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3502() {
+    for (rst, cost) in [
+        (vec![5, 3, 3, 1, 1, 1], vec![5, 3, 4, 1, 3, 2]),
+        (vec![1, 1, 1, 1, 1], vec![1, 2, 4, 6, 7]),
+    ] {
+        println!("* {cost:?}");
+        assert_eq!(Sol3502::min_costs(cost), rst);
+        println!(":: {rst:?}");
+    }
+}
