@@ -546,6 +546,22 @@ impl Sol3349 {
     }
 }
 
+/// 3386 Button with Longest Push Time
+struct Sol3386 {}
+
+impl Sol3386 {
+    pub fn button_with_longest_time(events: Vec<Vec<i32>>) -> i32 {
+        events.windows(2).fold(events[0].clone(), |longest, w| {
+            let diff = w[1][1] - w[0][1];
+            if diff > longest[1] || diff == longest[1] && w[1][0] < longest[0] {
+                vec![w[1][0], diff]
+            } else {
+                longest
+            }
+        })[0]
+    }
+}
+
 /// 3502 Minimum Cost to Reach Every Person
 struct Sol3502 {}
 

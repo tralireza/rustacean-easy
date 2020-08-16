@@ -311,6 +311,18 @@ fn test_3349() {
 }
 
 #[test]
+fn test_3386() {
+    for (rst, events) in [
+        (1, vec![vec![1, 2], vec![2, 5], vec![3, 9], vec![1, 15]]),
+        (10, vec![vec![10, 5], vec![1, 7]]),
+    ] {
+        println!("* {events:?}");
+        assert_eq!(Sol3386::button_with_longest_time(events), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3502() {
     for (rst, cost) in [
         (vec![5, 3, 3, 1, 1, 1], vec![5, 3, 4, 1, 3, 2]),
