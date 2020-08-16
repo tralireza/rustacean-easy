@@ -315,6 +315,16 @@ fn test_3386() {
     for (rst, events) in [
         (1, vec![vec![1, 2], vec![2, 5], vec![3, 9], vec![1, 15]]),
         (10, vec![vec![10, 5], vec![1, 7]]),
+        (
+            2,
+            vec![
+                vec![9, 4],
+                vec![19, 5],
+                vec![2, 8],
+                vec![3, 11],
+                vec![2, 15],
+            ],
+        ), // 552/588
     ] {
         println!("* {events:?}");
         assert_eq!(Sol3386::button_with_longest_time(events), rst);
