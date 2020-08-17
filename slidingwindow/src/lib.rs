@@ -15,6 +15,7 @@ impl Sol3411 {
         nums.iter()
             .take(nums.len() - 1)
             .enumerate()
+            .inspect(|(_, n)| println!("-> {n:?}"))
             .fold(1, |longest, (i, &n)| {
                 nums.iter()
                     .skip(i + 1)
@@ -30,10 +31,10 @@ impl Sol3411 {
                             None
                         }
                     })
-                    .inspect(|state| println!("-> {state:?}"))
+                    .inspect(|state| println!(" {state:?}"))
                     .map(|(_, _, _, longest)| longest + 1)
                     .max()
-                    .unwrap_or(0)
+                    .unwrap_or(1)
                     .max(longest)
             }) as _
     }
