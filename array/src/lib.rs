@@ -564,6 +564,33 @@ impl Sol3386 {
     }
 }
 
+/// 3417 Zigzag Grid Traversal With Skip
+struct Sol3417 {}
+
+impl Sol3417 {
+    pub fn zigzag_traversal(grid: Vec<Vec<i32>>) -> Vec<i32> {
+        let mut tzz = grid
+            .iter()
+            .step_by(2)
+            .zip(grid.iter().skip(1).step_by(2))
+            .fold(vec![], |mut tzz, (e_row, o_row)| {
+                for &n in e_row.iter().chain(o_row.iter().rev()).step_by(2) {
+                    tzz.push(n);
+                }
+
+                tzz
+            });
+
+        if grid.len() & 1 == 1 {
+            for &n in grid.last().unwrap().iter().step_by(2) {
+                tzz.push(n);
+            }
+        }
+
+        tzz
+    }
+}
+
 /// 3502 Minimum Cost to Reach Every Person
 struct Sol3502 {}
 

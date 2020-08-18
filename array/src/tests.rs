@@ -333,6 +333,22 @@ fn test_3386() {
 }
 
 #[test]
+fn test_3417() {
+    for (rst, grid) in [
+        (vec![1, 4], vec![vec![1, 2], vec![3, 4]]),
+        (vec![2, 1, 2], vec![vec![2, 1], vec![2, 1], vec![2, 1]]),
+        (
+            vec![1, 3, 5, 7, 9],
+            vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]],
+        ),
+    ] {
+        println!("* {grid:?}");
+        assert_eq!(Sol3417::zigzag_traversal(grid), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3502() {
     for (rst, cost) in [
         (vec![5, 3, 3, 1, 1, 1], vec![5, 3, 4, 1, 3, 2]),
