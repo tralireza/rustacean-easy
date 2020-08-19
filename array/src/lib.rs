@@ -591,6 +591,27 @@ impl Sol3417 {
     }
 }
 
+/// 3432 Count Partitions with Even Sum Difference
+struct Sol3432 {}
+
+impl Sol3432 {
+    pub fn count_partitions(nums: Vec<i32>) -> i32 {
+        let mut sfx = nums.iter().sum::<i32>();
+        let mut pfx = 0;
+
+        nums.iter().take(nums.len() - 1).fold(0, |count, &n| {
+            sfx -= n;
+            pfx += n;
+
+            if (sfx - pfx) & 1 == 0 {
+                count + 1
+            } else {
+                count
+            }
+        }) as _
+    }
+}
+
 /// 3502 Minimum Cost to Reach Every Person
 struct Sol3502 {}
 

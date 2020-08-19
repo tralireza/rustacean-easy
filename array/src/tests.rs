@@ -349,6 +349,19 @@ fn test_3417() {
 }
 
 #[test]
+fn test_3432() {
+    for (rst, nums) in [
+        (4, vec![10, 10, 3, 7, 6]),
+        (0, vec![1, 2, 2]),
+        (3, vec![2, 4, 6, 8]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3432::count_partitions(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3502() {
     for (rst, cost) in [
         (vec![5, 3, 3, 1, 1, 1], vec![5, 3, 4, 1, 3, 2]),
