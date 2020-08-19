@@ -596,6 +596,9 @@ struct Sol3432 {}
 
 impl Sol3432 {
     pub fn count_partitions(nums: Vec<i32>) -> i32 {
+        let tsum = nums.iter().sum::<i32>();
+        println!(":? {}", if tsum & 1 == 0 { nums.len() - 1 } else { 0 });
+
         let mut sfx = nums.iter().sum::<i32>();
         let mut pfx = 0;
 
