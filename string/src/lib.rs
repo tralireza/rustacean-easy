@@ -434,5 +434,31 @@ impl Sol3345 {
     }
 }
 
+/// 3438 Find Valid Pair of Adjacent Digits in String
+struct Sol3438 {}
+
+impl Sol3438 {
+    pub fn find_valid_pair(s: String) -> String {
+        use std::collections::HashMap;
+
+        let mut freqs = HashMap::new();
+        for chr in s.chars() {
+            freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+        }
+        println!("-> {freqs:?}");
+
+        s.chars()
+            .zip(s.chars().skip(1))
+            .filter(|(chr, nchr)| {
+                chr != nchr
+                    && freqs[&chr] == chr.to_digit(10).unwrap()
+                    && freqs[&nchr] == nchr.to_digit(10).unwrap()
+            })
+            .take(1)
+            .flat_map(|(chr1, chr2)| vec![chr1, chr2])
+            .collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;

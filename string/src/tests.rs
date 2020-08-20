@@ -208,3 +208,12 @@ fn test_3345() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3438() {
+    for (rst, s) in [("23", "2523533"), ("21", "221"), ("", "22")] {
+        println!("* {s:?}");
+        assert_eq!(Sol3438::find_valid_pair(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
