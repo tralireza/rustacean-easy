@@ -362,6 +362,15 @@ fn test_3432() {
 }
 
 #[test]
+fn test_3452() {
+    for (rst, nums, k) in [(12, vec![1, 3, 2, 1, 5, 4], 2), (2, vec![2, 1], 1)] {
+        println!("* {nums:?} {k}");
+        assert_eq!(Sol3452::sum_of_good_numbers(nums, k), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3502() {
     for (rst, cost) in [
         (vec![5, 3, 3, 1, 1, 1], vec![5, 3, 4, 1, 3, 2]),

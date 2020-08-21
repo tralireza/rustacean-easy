@@ -615,6 +615,24 @@ impl Sol3432 {
     }
 }
 
+/// 3452 Sum of Good Numbers
+struct Sol3452 {}
+
+impl Sol3452 {
+    pub fn sum_of_good_numbers(nums: Vec<i32>, k: i32) -> i32 {
+        let k = k as usize;
+
+        nums.iter()
+            .enumerate()
+            .filter(|&(i, &n)| {
+                nums.get(i + k).is_none_or(|&x| x < n)
+                    && nums.get(i.wrapping_sub(k)).is_none_or(|&x| x < n)
+            })
+            .map(|(_, &n)| n)
+            .sum()
+    }
+}
+
 /// 3502 Minimum Cost to Reach Every Person
 struct Sol3502 {}
 
