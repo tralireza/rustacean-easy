@@ -460,5 +460,31 @@ impl Sol3438 {
     }
 }
 
+/// 3602 Hexadeciaml and Hexatrigesimal Conversion
+struct Sol3602 {}
+
+impl Sol3602 {
+    /// 1 <= n <= 1000
+    pub fn concat_hex36(n: i32) -> String {
+        let mut chars = vec![];
+        for (n, radix) in [(n * n * n, 36), (n * n, 16)] {
+            chars.reverse();
+
+            let mut n = n as u32;
+            while n > 0 {
+                chars.push(char::from_digit(n % radix, radix));
+                n /= radix;
+            }
+            chars.reverse();
+        }
+
+        chars
+            .into_iter()
+            .filter_map(|o| o)
+            .collect::<String>()
+            .to_uppercase()
+    }
+}
+
 #[cfg(test)]
 mod tests;
