@@ -482,7 +482,7 @@ impl Sol3602 {
 
         chars
             .into_iter()
-            .filter_map(|o| o)
+            .flatten()
             .collect::<String>()
             .to_uppercase()
     }
