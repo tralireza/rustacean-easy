@@ -478,6 +478,8 @@ impl Sol3602 {
             chars.reverse();
         }
 
+        println!("-> {chars:?}");
+
         chars
             .into_iter()
             .filter_map(|o| o)

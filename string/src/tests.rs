@@ -220,7 +220,7 @@ fn test_3438() {
 
 #[test]
 fn test_3602() {
-    for (rst, n) in [("A91P1", 13), ("5101000", 36)] {
+    for (rst, n) in [("A91P1", 13), ("5101000", 36), ("F4240GJDGXS", 1000)] {
         println!("* {n}");
         assert_eq!(Sol3602::concat_hex36(n), rst);
         println!(":: {rst:?}");
