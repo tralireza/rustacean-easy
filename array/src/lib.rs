@@ -647,5 +647,27 @@ impl Sol3502 {
     }
 }
 
+/// 3550 Smallest Index With Digit Sum Equal to Index
+struct Sol3550 {}
+
+impl Sol3550 {
+    pub fn smallest_index(nums: Vec<i32>) -> i32 {
+        nums.iter()
+            .enumerate()
+            .filter(|&(i, &n)| {
+                let mut dsum = 0;
+                let mut n = n;
+                while n > 0 {
+                    dsum += n % 10;
+                    n /= 10;
+                }
+                dsum as usize == i
+            })
+            .nth(0)
+            .map(|(i, _)| i as i32)
+            .unwrap_or(-1)
+    }
+}
+
 #[cfg(test)]
 mod tests;

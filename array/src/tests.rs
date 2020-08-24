@@ -381,3 +381,16 @@ fn test_3502() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3550() {
+    for (rst, nums) in [
+        (2, vec![1, 3, 2]),
+        (1, vec![1, 10, 11]),
+        (-1, vec![1, 2, 3]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3550::smallest_index(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
