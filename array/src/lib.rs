@@ -660,9 +660,7 @@ impl Sol3507 {
                 .map(|(i, w)| (w.iter().sum::<i32>(), i))
                 .min()
             {
-                nums.remove(m_index);
-                nums.remove(m_index);
-                nums.insert(m_index, m_sum);
+                nums.splice(m_index..m_index + 2, [m_sum]);
             }
 
             println!("-> {nums:?}");
