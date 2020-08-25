@@ -647,6 +647,32 @@ impl Sol3502 {
     }
 }
 
+/// 3507 Minimum Pair Removal to Sort Array I
+struct Sol3507 {}
+
+impl Sol3507 {
+    pub fn minimum_pair_removal(mut nums: Vec<i32>) -> i32 {
+        let mut ops = 0;
+        while !nums.is_sorted() {
+            if let Some((m_sum, m_index)) = nums
+                .windows(2)
+                .enumerate()
+                .map(|(i, w)| (w.iter().sum::<i32>(), i))
+                .min()
+            {
+                nums.remove(m_index);
+                nums.remove(m_index);
+                nums.insert(m_index, m_sum);
+            }
+
+            println!("-> {nums:?}");
+            ops += 1;
+        }
+
+        ops
+    }
+}
+
 /// 3550 Smallest Index With Digit Sum Equal to Index
 struct Sol3550 {}
 

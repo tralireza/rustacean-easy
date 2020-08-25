@@ -383,6 +383,15 @@ fn test_3502() {
 }
 
 #[test]
+fn test_3507() {
+    for (rst, nums) in [(2, vec![5, 2, 3, 1]), (0, vec![1, 2, 2])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3507::minimum_pair_removal(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3550() {
     for (rst, nums) in [
         (2, vec![1, 3, 2]),
