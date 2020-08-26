@@ -488,5 +488,35 @@ impl Sol3602 {
     }
 }
 
+/// 3606 Coupon Code Validator
+struct Sol3606 {}
+
+impl Sol3606 {
+    pub fn validate_coupons(
+        code: Vec<String>,
+        business_line: Vec<String>,
+        is_active: Vec<bool>,
+    ) -> Vec<String> {
+        use std::iter::zip;
+
+        let mut valids: Vec<_> = zip(business_line, code)
+            .zip(is_active)
+            .filter_map(|(bc, a)| a.then_some(bc))
+            .filter(|(b, _)| b != "invalid")
+            .filter(|(_, c)| {
+                !c.is_empty()
+                    && c.chars().all(|chr| {
+                        chr.is_lowercase() || chr.is_uppercase() || chr.is_digit(10) || chr == '_'
+                    })
+            })
+            .collect();
+
+        println!("-> {valids:?}");
+        valids.sort();
+
+        valids.into_iter().map(|(_, c)| c).collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;
