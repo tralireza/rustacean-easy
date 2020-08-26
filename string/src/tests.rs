@@ -229,22 +229,38 @@ fn test_3602() {
 
 #[test]
 fn test_3606() {
-    for (rst, code, business_line, is_active) in [(
-        vec!["PHARMA5".to_string(), "SAVE20".to_string()],
-        vec![
-            "SAVE20".to_string(),
-            "".to_string(),
-            "PHARMA5".to_string(),
-            "SAVE@20".to_string(),
-        ],
-        vec![
-            "restaurant".to_string(),
-            "grocery".to_string(),
-            "pharmacy".to_string(),
-            "restaurant".to_string(),
-        ],
-        vec![true, true, true, true],
-    )] {
+    for (rst, code, business_line, is_active) in [
+        (
+            vec!["PHARMA5".to_string(), "SAVE20".to_string()],
+            vec![
+                "SAVE20".to_string(),
+                "".to_string(),
+                "PHARMA5".to_string(),
+                "SAVE@20".to_string(),
+            ],
+            vec![
+                "restaurant".to_string(),
+                "grocery".to_string(),
+                "pharmacy".to_string(),
+                "restaurant".to_string(),
+            ],
+            vec![true, true, true, true],
+        ),
+        (
+            vec!["ELECTRONICS_50".to_string()],
+            vec![
+                "GROCERY15".to_string(),
+                "ELECTRONICS_50".to_string(),
+                "DISCOUNT10".to_string(),
+            ],
+            vec![
+                "grocery".to_string(),
+                "electronics".to_string(),
+                "invalid".to_string(),
+            ],
+            vec![false, true, true],
+        ),
+    ] {
         println!("* {code:?} {business_line:?} {is_active:?}");
         assert_eq!(
             Sol3606::validate_coupons(code, business_line, is_active),
