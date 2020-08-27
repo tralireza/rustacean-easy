@@ -1,6 +1,15 @@
 use super::*;
 
 #[test]
+fn test_1323() {
+    for (rst, num) in [(9969, 9669), (9999, 9996), (9999, 9999)] {
+        println!("* {num}");
+        assert_eq!(Sol1323::maximum69_number(num), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2413() {
     for (rst, n) in [(10, 5), (6, 6)] {
         println!("* {n}");

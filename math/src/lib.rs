@@ -1,5 +1,32 @@
 //! # Math
 
+/// 1323 Maximum 69 Number
+struct Sol1323 {}
+
+impl Sol1323 {
+    pub fn maximum69_number(mut num: i32) -> i32 {
+        let mut digits = vec![];
+        while num > 0 {
+            digits.push(num % 10);
+            num /= 10;
+        }
+        digits.reverse();
+
+        let mut swap = true;
+        digits
+            .iter()
+            .map(|&d| {
+                if d == 6 && swap {
+                    swap = false;
+                    9
+                } else {
+                    d
+                }
+            })
+            .fold(0, |x69, d| 10 * x69 + d)
+    }
+}
+
 /// 2413 Smallest Even Multiple
 struct Sol2413 {}
 
