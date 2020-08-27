@@ -5,6 +5,14 @@ struct Sol1323 {}
 
 impl Sol1323 {
     pub fn maximum69_number(mut num: i32) -> i32 {
+        println!(
+            ":? {:?}",
+            num.to_string()
+                .replacen("6", "9", 1)
+                .parse::<i32>()
+                .unwrap()
+        );
+
         let mut digits = vec![];
         while num > 0 {
             digits.push(num % 10);
