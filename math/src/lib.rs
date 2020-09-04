@@ -35,6 +35,25 @@ impl Sol1323 {
     }
 }
 
+/// 2348m Number of Zero-Filled Subarrays
+struct Sol2348 {}
+
+impl Sol2348 {
+    pub fn zero_filled_subarray(nums: Vec<i32>) -> i64 {
+        nums.iter()
+            .fold((0, 0), |(count, mut zeros), &n| {
+                if n == 0 {
+                    zeros += 1;
+                } else {
+                    zeros = 0;
+                }
+
+                (count + zeros, zeros)
+            })
+            .0
+    }
+}
+
 /// 2413 Smallest Even Multiple
 struct Sol2413 {}
 

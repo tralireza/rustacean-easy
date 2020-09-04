@@ -10,6 +10,19 @@ fn test_1323() {
 }
 
 #[test]
+fn test_2348() {
+    for (rst, nums) in [
+        (6, vec![1, 3, 0, 0, 2, 0, 0, 4]),
+        (9, vec![0, 0, 0, 2, 0, 0]),
+        (0, vec![2, 10, 2019]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2348::zero_filled_subarray(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2413() {
     for (rst, n) in [(10, 5), (6, 6)] {
         println!("* {n}");
