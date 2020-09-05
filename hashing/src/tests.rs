@@ -7,6 +7,26 @@ fn test_1181() {
             vec!["writing code rocks"],
             vec!["writing code", "code rocks"],
         ),
+        (
+            vec![
+                "a chip off the old block party",
+                "a man on a mission impossible",
+                "a man on a mission statement",
+                "a quick bite to eat my words",
+                "chocolate bar of soap",
+            ],
+            vec![
+                "mission statement",
+                "a quick bite to eat",
+                "a chip off the old block",
+                "chocolate bar",
+                "mission impossible",
+                "a man on a mission",
+                "block party",
+                "eat my words",
+                "bar of soap",
+            ],
+        ),
         (vec!["a"], vec!["a", "b", "a"]),
     ] {
         let phrases: Vec<_> = phrases.iter().map(|p| p.to_string()).collect();
