@@ -1,6 +1,23 @@
 use super::*;
 
 #[test]
+fn test_1181() {
+    for (rst, phrases) in [
+        (
+            vec!["writing code rocks"],
+            vec!["writing code", "code rocks"],
+        ),
+        (vec!["a"], vec!["a", "b", "a"]),
+    ] {
+        let phrases: Vec<_> = phrases.iter().map(|p| p.to_string()).collect();
+
+        println!("* {phrases:?}");
+        assert_eq!(Sol1181::before_and_after_puzzles(phrases), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2395() {
     for (rst, nums) in [
         (true, vec![4, 2, 4]),

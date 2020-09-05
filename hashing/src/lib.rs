@@ -1,5 +1,43 @@
 //! # Hashing
 
+/// 1181m Before and After Puzzle
+struct Sol1181 {}
+
+impl Sol1181 {
+    pub fn before_and_after_puzzles(phrases: Vec<String>) -> Vec<String> {
+        use std::collections::HashSet;
+
+        let phrases: Vec<_> = phrases
+            .iter()
+            .map(|p| p.split(' ').collect::<Vec<_>>())
+            .collect();
+
+        println!("-> {phrases:?}");
+
+        let mut puzzle: HashSet<_> = (0..phrases.len())
+            .flat_map(|i| (0..phrases.len()).map(move |j| (i, j)))
+            .filter(|(i, j)| i != j)
+            .flat_map(|(i, j)| {
+                if phrases[i].last().unwrap() == phrases[j].first().unwrap() {
+                    let mut phrase = phrases[i].join(" ").to_string();
+                    if phrases[j].len() > 1 {
+                        phrase.push(' ');
+                        phrase.push_str(phrases[j][1..].join(" ").as_str());
+                    }
+                    Some(phrase)
+                } else {
+                    None
+                }
+            })
+            .collect();
+
+        let mut puzzle: Vec<_> = puzzle.drain().map(|p| p.to_string()).collect();
+        puzzle.sort();
+
+        puzzle
+    }
+}
+
 /// 2395 Find Subarrays With Equal Sum
 struct Sol2395 {}
 
