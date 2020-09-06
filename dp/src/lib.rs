@@ -35,6 +35,14 @@ impl Sol198 {
             value
         }
 
+        let mut xvals = vec![0; nums.len()];
+        (xvals[0], xvals[1]) = (nums[0], nums[0].max(nums[1]));
+        for i in 2..xvals.len() {
+            xvals[i] = (xvals[i - 2] + nums[i]).max(xvals[i - 1]);
+        }
+
+        println!(":? {:?} {xvals:?}", xvals.last());
+
         search(nums.len() - 1, &nums, &mut cache, &mut sorted_cache)
     }
 }
