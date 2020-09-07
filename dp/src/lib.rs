@@ -60,9 +60,12 @@ impl Sol746 {
             m_cost[i] = cost[i] + m_cost[i - 2].min(m_cost[i - 1]);
         }
 
-        println!("-> {m_cost:?}");
+        println!(
+            ":? {} | {m_cost:?}",
+            m_cost[m_cost.len() - 2].min(m_cost[m_cost.len() - 1])
+        );
 
-        *m_cost.iter().skip(m_cost.len() - 2).min().unwrap()
+        m_cost.into_iter().skip(cost.len() - 2).min().unwrap()
     }
 }
 
