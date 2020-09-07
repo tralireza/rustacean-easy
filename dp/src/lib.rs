@@ -47,5 +47,24 @@ impl Sol198 {
     }
 }
 
+/// 746 Min Cost Climbing Stairs
+struct Sol746 {}
+
+impl Sol746 {
+    pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
+        let mut m_cost = vec![0; cost.len()];
+        m_cost[0] = cost[0];
+        m_cost[1] = cost[1];
+
+        for i in 2..m_cost.len() {
+            m_cost[i] = cost[i] + m_cost[i - 2].min(m_cost[i - 1]);
+        }
+
+        println!("-> {m_cost:?}");
+
+        *m_cost.iter().skip(m_cost.len() - 2).min().unwrap()
+    }
+}
+
 #[cfg(test)]
 mod tests;

@@ -8,3 +8,15 @@ fn test_198() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_746() {
+    for (rst, cost) in [
+        (15, vec![10, 15, 20]),
+        (6, vec![1, 100, 1, 1, 1, 100, 1, 1, 100, 1]),
+    ] {
+        println!("* {cost:?}");
+        assert_eq!(Sol746::min_cost_climbing_stairs(cost), rst);
+        println!(":: {rst:?}");
+    }
+}
