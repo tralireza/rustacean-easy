@@ -69,5 +69,39 @@ impl Sol746 {
     }
 }
 
+/// 1137 N-th Tribonacci Number
+struct Sol1137 {}
+
+impl Sol1137 {
+    pub fn tribonacci(n: i32) -> i32 {
+        use std::collections::{BTreeMap, HashMap};
+
+        let mut cache = HashMap::from([(0, 0), (1, 1), (2, 1)]);
+        let mut sorted_cache = BTreeMap::from([(0, 0), (1, 1), (2, 1)]);
+
+        fn tri(
+            n: i32,
+            cache: &mut HashMap<i32, i32>,
+            sorted_cache: &mut BTreeMap<i32, i32>,
+        ) -> i32 {
+            if cache.contains_key(&n) {
+                return cache[&n];
+            }
+
+            let tri_n = tri(n - 1, cache, sorted_cache)
+                + tri(n - 2, cache, sorted_cache)
+                + tri(n - 3, cache, sorted_cache);
+            cache.insert(n, tri_n);
+            sorted_cache.insert(n, tri_n);
+
+            println!("-> {sorted_cache:?}");
+
+            tri_n
+        }
+
+        tri(n, &mut cache, &mut sorted_cache)
+    }
+}
+
 #[cfg(test)]
 mod tests;

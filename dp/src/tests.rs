@@ -20,3 +20,12 @@ fn test_746() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_1137() {
+    for (rst, n) in [(4, 4), (1389537, 25)] {
+        println!("* {n}");
+        assert_eq!(Sol1137::tribonacci(n), rst);
+        println!(":: {rst:?}");
+    }
+}
