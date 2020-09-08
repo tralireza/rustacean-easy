@@ -99,6 +99,14 @@ impl Sol1137 {
             tri_n
         }
 
+        let mut tribs = vec![0; 3.max(n + 1) as usize];
+        tribs[1] = 1;
+        tribs[2] = 1;
+        for n in 3..tribs.len() {
+            tribs[n] = tribs[n - 3] + tribs[n - 2] + tribs[n - 1];
+        }
+        println!(":? {:?} {tribs:?}", tribs.last());
+
         tri(n, &mut cache, &mut sorted_cache)
     }
 }
