@@ -47,6 +47,44 @@ impl Sol198 {
     }
 }
 
+/// 740m Delete and Earn
+struct Sol740 {}
+
+impl Sol740 {
+    pub fn delete_and_earn(nums: Vec<i32>) -> i32 {
+        use std::collections::BTreeMap;
+
+        let mut freqs = BTreeMap::new();
+        for &n in nums.iter() {
+            freqs.entry(n).and_modify(|f| *f += 1).or_insert(1);
+        }
+
+        println!("-> {freqs:?}");
+
+        let mut scores = vec![0; freqs.len() + 1];
+        if let Some((n, f)) = freqs.iter().nth(0) {
+            scores[1] = n * f;
+        }
+
+        for (i, (prv, cur)) in freqs.iter().zip(freqs.iter().skip(1)).enumerate() {
+            let (&prv_n, &prv_f) = prv;
+            let (&n, &f) = cur;
+
+            if prv_n + 1 == n {
+                scores[i + 2] = scores[i + 1]
+                    .max(scores[i + 1] - prv_n * prv_f + n * f)
+                    .max(scores[i] + n * f);
+            } else {
+                scores[i + 2] = scores[i + 1] + n * f;
+            }
+        }
+
+        println!("-> {scores:?}");
+
+        scores.into_iter().last().unwrap()
+    }
+}
+
 /// 746 Min Cost Climbing Stairs
 struct Sol746 {}
 
