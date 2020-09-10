@@ -11,7 +11,11 @@ fn test_198() {
 
 #[test]
 fn test_740() {
-    for (rst, nums) in [(6, vec![3, 4, 2]), (9, vec![2, 2, 3, 3, 3, 4])] {
+    for (rst, nums) in [
+        (6, vec![3, 4, 2]),
+        (9, vec![2, 2, 3, 3, 3, 4]),
+        (21, vec![5, 4, 5, 4, 3, 5, 3]),
+    ] {
         println!("* {nums:?}");
         assert_eq!(Sol740::delete_and_earn(nums), rst);
         println!(":: {rst:?}");
