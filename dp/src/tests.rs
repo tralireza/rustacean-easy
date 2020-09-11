@@ -42,3 +42,15 @@ fn test_1137() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_1770() {
+    for (rst, nums, multipliers) in [
+        (14, vec![1, 2, 3], vec![3, 2, 1]),
+        (102, vec![-5, -3, -3, -2, 7, 1], vec![-10, -5, 3, 4, 6]),
+    ] {
+        println!("* {nums:?} {multipliers:?}");
+        assert_eq!(Sol1770::maximum_score(nums, multipliers), rst);
+        println!(":: {rst:?}");
+    }
+}

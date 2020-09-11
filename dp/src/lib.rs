@@ -149,5 +149,45 @@ impl Sol1137 {
     }
 }
 
+/// 1770h Maximum Score from Performing Multiplication Operations
+struct Sol1770 {}
+
+impl Sol1770 {
+    pub fn maximum_score(nums: Vec<i32>, multipliers: Vec<i32>) -> i32 {
+        use std::collections::HashMap;
+
+        let mut cache = HashMap::new();
+
+        fn search(
+            i: usize,
+            start: usize,
+            end: usize,
+            nums: &[i32],
+            multipliers: &[i32],
+            cache: &mut HashMap<(usize, usize, usize), i32>,
+        ) -> i32 {
+            println!("-> {i}. ({start}, {end})   {cache:?}");
+
+            if i >= multipliers.len() {
+                return 0;
+            }
+
+            if let Some(&x_score) = cache.get(&(i, start, end)) {
+                return x_score;
+            }
+
+            let l_score = search(i + 1, start + 1, end, nums, multipliers, cache)
+                + nums[start] * multipliers[i];
+            let r_score = search(i + 1, start, end - 1, nums, multipliers, cache)
+                + nums[end - 1] * multipliers[i];
+            cache.insert((i, start, end), l_score.max(r_score));
+
+            l_score.max(r_score)
+        }
+
+        search(0, 0, nums.len(), &nums, &multipliers, &mut cache)
+    }
+}
+
 #[cfg(test)]
 mod tests;
