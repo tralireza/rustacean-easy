@@ -1,5 +1,30 @@
 //! # Sliding Window
 
+/// 1493m Longest Subarray of 1's After Deleting One Element
+struct Sol1493 {}
+
+impl Sol1493 {
+    pub fn longest_subarray(nums: Vec<i32>) -> i32 {
+        let mut zeros = 0;
+        let mut left = 0;
+
+        nums.iter().enumerate().fold(0, |longest, (right, &n)| {
+            if n == 0 {
+                zeros += 1;
+            }
+
+            while zeros > 1 {
+                if nums[left] == 0 {
+                    zeros -= 1;
+                }
+                left += 1;
+            }
+
+            longest.max(right - left)
+        }) as _
+    }
+}
+
 /// 3411 Maximum Subarray With Equal Products
 struct Sol3411 {}
 
