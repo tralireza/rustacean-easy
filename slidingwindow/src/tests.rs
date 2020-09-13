@@ -14,6 +14,19 @@ fn test_1493() {
 }
 
 #[test]
+fn test_3364() {
+    for (rst, nums, l, r) in [
+        (1, vec![3, -2, 1, 4], 2, 3),
+        (-1, vec![-2, 2, -3, 1], 2, 3),
+        (3, vec![1, 2, 3, 4], 2, 4),
+    ] {
+        println!("* {nums:?} [{l}..{r}]");
+        assert_eq!(Sol3364::minimum_sum_subarray(nums, l, r), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3411() {
     for (rst, nums) in [
         (5, vec![1, 2, 1, 2, 1, 1, 1]),

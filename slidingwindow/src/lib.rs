@@ -25,6 +25,27 @@ impl Sol1493 {
     }
 }
 
+/// 3364 Minimum Positive Sum Subarray
+struct Sol3364 {}
+
+impl Sol3364 {
+    pub fn minimum_sum_subarray(nums: Vec<i32>, l: i32, r: i32) -> i32 {
+        let mut msum = i32::MAX;
+
+        for w in l..=r {
+            msum = nums.windows(w as usize).fold(msum, |msum, sarr| {
+                let sum = sarr.iter().sum();
+                if sum > 0 { msum.min(sum) } else { msum }
+            });
+        }
+
+        if msum < i32::MAX {
+            return msum;
+        }
+        -1
+    }
+}
+
 /// 3411 Maximum Subarray With Equal Products
 struct Sol3411 {}
 
