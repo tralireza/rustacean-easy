@@ -434,6 +434,22 @@ impl Sol3345 {
     }
 }
 
+/// 3362 Filter Characters by Frequency
+struct Sol3362 {}
+
+impl Sol3362 {
+    pub fn filter_characters(s: String, k: i32) -> String {
+        use std::collections::HashMap;
+
+        let mut freqs = HashMap::new();
+        for chr in s.chars() {
+            freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+        }
+
+        s.chars().filter(|chr| freqs[&chr] < k).collect()
+    }
+}
+
 /// 3438 Find Valid Pair of Adjacent Digits in String
 struct Sol3438 {}
 

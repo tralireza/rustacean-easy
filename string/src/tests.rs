@@ -210,6 +210,15 @@ fn test_3345() {
 }
 
 #[test]
+fn test_3362() {
+    for (rst, s, k) in [("dbb", "aadbbcccca", 3), ("xyz", "xyz", 2)] {
+        println!("* {s:?} {k}");
+        assert_eq!(Sol3362::filter_characters(s.to_string(), k), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3438() {
     for (rst, s) in [("23", "2523533"), ("21", "221"), ("", "22")] {
         println!("* {s:?}");
