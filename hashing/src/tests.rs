@@ -122,3 +122,12 @@ fn test_2815() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3032() {
+    for (rst, a, b) in [(19, 1, 20), (10, 9, 19), (27, 80, 120)] {
+        println!("* {a} {b}");
+        assert_eq!(Sol3032::number_count(a, b), rst);
+        println!(":: {rst:?}");
+    }
+}

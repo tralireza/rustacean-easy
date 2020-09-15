@@ -282,5 +282,25 @@ impl Sol2815 {
     }
 }
 
+/// 3032 Count Numbers With Unique Digits II
+struct Sol3032 {}
+
+impl Sol3032 {
+    pub fn number_count(a: i32, b: i32) -> i32 {
+        (a..=b).fold(0, |count, mut n| {
+            let mut freqs = [0; 10];
+            while n > 0 {
+                freqs[(n % 10) as usize] += 1;
+                if freqs[(n % 10) as usize] > 1 {
+                    return count;
+                }
+                n /= 10;
+            }
+
+            count + 1
+        }) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
