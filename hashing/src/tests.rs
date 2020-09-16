@@ -131,3 +131,23 @@ fn test_3032() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3450() {
+    for (rst, students) in [
+        (
+            3,
+            vec![vec![1, 2], vec![2, 2], vec![3, 3], vec![1, 3], vec![2, 3]],
+        ),
+        (
+            3,
+            vec![vec![1, 1], vec![2, 1], vec![3, 1], vec![4, 2], vec![5, 2]],
+        ),
+        (1, vec![vec![1, 1], vec![1, 1]]),
+        (0, vec![]),
+    ] {
+        println!("* {students:?}");
+        assert_eq!(Sol3450::max_students_on_bench(students), rst);
+        println!(":: {rst:?}");
+    }
+}

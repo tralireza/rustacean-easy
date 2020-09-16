@@ -302,5 +302,32 @@ impl Sol3032 {
     }
 }
 
+/// 3450 Maximum Students on a Single Bench
+struct Sol3450 {}
+
+impl Sol3450 {
+    pub fn max_students_on_bench(students: Vec<Vec<i32>>) -> i32 {
+        use std::collections::{HashMap, HashSet};
+
+        let mut seats: HashMap<i32, HashSet<i32>> = HashMap::new();
+        for setting in students.iter() {
+            seats
+                .entry(setting[1])
+                .and_modify(|students| {
+                    students.insert(setting[0]);
+                })
+                .or_insert(HashSet::from([setting[0]]));
+        }
+
+        println!("-> {seats:?}");
+
+        seats
+            .values()
+            .map(|students| students.len())
+            .max()
+            .unwrap_or(0) as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
