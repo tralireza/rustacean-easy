@@ -1,6 +1,22 @@
 use super::*;
 
 #[test]
+fn test_760() {
+    for (rst, nums1, nums2) in [
+        (
+            vec![1, 4, 3, 2, 0],
+            vec![12, 28, 46, 32, 50],
+            vec![50, 12, 32, 46, 28],
+        ),
+        (vec![0, 1], vec![84, 46], vec![84, 46]),
+    ] {
+        println!("* {nums1:?} {nums2:?}");
+        assert_eq!(Sol760::anagram_mappings(nums1, nums2), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1181() {
     for (rst, phrases) in [
         (

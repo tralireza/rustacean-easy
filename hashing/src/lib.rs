@@ -1,5 +1,17 @@
 //! # Hashing
 
+/// 760 Find Anagram Mappings
+struct Sol760 {}
+
+impl Sol760 {
+    pub fn anagram_mappings(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
+        use std::collections::HashMap;
+
+        let lmap: HashMap<i32, usize> = nums2.iter().enumerate().map(|(l, &n)| (n, l)).collect();
+        nums1.iter().map(|n| lmap[n] as i32).collect()
+    }
+}
+
 /// 1181m Before and After Puzzle
 struct Sol1181 {}
 
