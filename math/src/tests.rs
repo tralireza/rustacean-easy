@@ -81,3 +81,15 @@ fn test_2932() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3199() {
+    for (rst, a, b, c) in [
+        (1, vec![1], vec![2], vec![3]),
+        (4, vec![1, 1], vec![2, 3], vec![1, 5]),
+    ] {
+        println!("* {a:?} {b:?} {c:?}");
+        assert_eq!(Sol3199::triplet_count(a, b, c), rst);
+        println!(":: {rst:?}");
+    }
+}

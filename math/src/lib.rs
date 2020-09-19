@@ -173,5 +173,19 @@ impl Sol2932 {
     }
 }
 
+/// 3199 Count Triplets with Even XOR Set Bits I
+struct Sol3199 {}
+
+impl Sol3199 {
+    /// 1 <= N (a/b/c) <= 100
+    pub fn triplet_count(a: Vec<i32>, b: Vec<i32>, c: Vec<i32>) -> i32 {
+        (0..a.len())
+            .flat_map(|i| (0..b.len()).map(move |j| (i, j)))
+            .flat_map(|(i, j)| (0..c.len()).map(move |k| (i, j, k)))
+            .filter(|&(i, j, k)| (a[i] ^ b[j] ^ c[k]).count_ones() & 1 == 0)
+            .count() as _
+    }
+}
+
 #[cfg(test)]
 mod tests;
