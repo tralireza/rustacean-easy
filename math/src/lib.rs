@@ -182,6 +182,7 @@ impl Sol3199 {
         (0..a.len())
             .flat_map(|i| (0..b.len()).map(move |j| (i, j)))
             .flat_map(|(i, j)| (0..c.len()).map(move |k| (i, j, k)))
+            .inspect(|t| println!("-> {t:?}"))
             .filter(|&(i, j, k)| (a[i] ^ b[j] ^ c[k]).count_ones() & 1 == 0)
             .count() as _
     }
