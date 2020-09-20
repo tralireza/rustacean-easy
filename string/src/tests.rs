@@ -1,6 +1,15 @@
 use super::*;
 
 #[test]
+fn test_1180() {
+    for (rst, s) in [(8, "aaaba"), (55, "aaaaaaaaaa")] {
+        println!("* {s:?}");
+        assert_eq!(Sol1180::count_letters(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2399() {
     for (rst, s, distance) in [
         (

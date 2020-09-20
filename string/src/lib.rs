@@ -1,5 +1,18 @@
 //! # String
 
+/// 1180 Count Substrings with Only One Distinct Letter
+struct Sol1180 {}
+
+impl Sol1180 {
+    pub fn count_letters(s: String) -> i32 {
+        s.chars()
+            .collect::<Vec<_>>()
+            .chunk_by(|chr, n_chr| chr == n_chr)
+            .map(|chunk| (chunk.len() + 1) * chunk.len() / 2)
+            .sum::<usize>() as _
+    }
+}
+
 /// 2399 Check Distances Between Same Letters
 struct Sol2399 {}
 
