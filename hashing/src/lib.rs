@@ -56,6 +56,20 @@ struct Sol1213 {}
 impl Sol1213 {
     /// 1 <= N_1/2/3 <= 2000
     pub fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i32> {
+        let mut counter = [0; 2001];
+        for &n in arr1.iter().chain(arr2.iter().chain(arr3.iter())) {
+            counter[n as usize] += 1;
+        }
+        println!(
+            ":? {:?}",
+            counter
+                .into_iter()
+                .enumerate()
+                .filter(|&(_, f)| f == 3)
+                .map(|(n, _)| n as i32)
+                .collect::<Vec<_>>()
+        );
+
         use std::collections::HashSet;
 
         let set2: HashSet<_> = arr2.iter().collect();
