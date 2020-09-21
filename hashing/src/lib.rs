@@ -50,6 +50,26 @@ impl Sol1181 {
     }
 }
 
+/// 1213 Intersection of Three Sorted Array
+struct Sol1213 {}
+
+impl Sol1213 {
+    /// 1 <= N_1/2/3 <= 2000
+    pub fn arrays_intersection(arr1: Vec<i32>, arr2: Vec<i32>, arr3: Vec<i32>) -> Vec<i32> {
+        use std::collections::HashSet;
+
+        let set2: HashSet<_> = arr2.iter().collect();
+        let set3: HashSet<_> = arr3.iter().collect();
+
+        println!("-> {set2:?} | {set3:?}");
+
+        arr1.iter()
+            .filter(|n| set2.contains(n) && set3.contains(n))
+            .copied()
+            .collect()
+    }
+}
+
 /// 2395 Find Subarrays With Equal Sum
 struct Sol2395 {}
 

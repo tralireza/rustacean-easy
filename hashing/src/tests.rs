@@ -54,6 +54,28 @@ fn test_1181() {
 }
 
 #[test]
+fn test_1213() {
+    for (rst, arr1, arr2, arr3) in [
+        (
+            vec![1, 5],
+            vec![1, 2, 3, 4, 5],
+            vec![1, 2, 5, 7, 9],
+            vec![1, 3, 4, 5, 8],
+        ),
+        (
+            vec![],
+            vec![197, 418, 523, 876, 1356],
+            vec![501, 880, 1593, 1710, 1870],
+            vec![521, 682, 1337, 1395, 1764],
+        ),
+    ] {
+        println!("* {arr1:?} {arr2:?} {arr3:?}");
+        assert_eq!(Sol1213::arrays_intersection(arr1, arr2, arr3), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2395() {
     for (rst, nums) in [
         (true, vec![4, 2, 4]),
