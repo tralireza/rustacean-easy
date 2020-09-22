@@ -93,3 +93,12 @@ fn test_3199() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3658() {
+    for (rst, n) in [(4, 4), (5, 5)] {
+        println!("* {n}");
+        assert_eq!(Sol3658::gcd_of_odd_even_sums(n), rst);
+        println!(":: {rst:?}");
+    }
+}

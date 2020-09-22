@@ -188,5 +188,21 @@ impl Sol3199 {
     }
 }
 
+/// 3658 GCD of Odd and Even Sums
+struct Sol3658 {}
+
+impl Sol3658 {
+    pub fn gcd_of_odd_even_sums(n: i32) -> i32 {
+        let mut b = (1..).step_by(2).take(n as usize).sum();
+        let mut a = b + n;
+
+        while b > 0 {
+            (a, b) = (b, a % b);
+        }
+
+        a
+    }
+}
+
 #[cfg(test)]
 mod tests;
