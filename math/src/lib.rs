@@ -193,6 +193,8 @@ struct Sol3658 {}
 
 impl Sol3658 {
     pub fn gcd_of_odd_even_sums(n: i32) -> i32 {
+        println!(":? {n}");
+
         let mut b = (1..).step_by(2).take(n as usize).sum();
         let mut a = b + n;
 
