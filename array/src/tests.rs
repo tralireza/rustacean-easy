@@ -22,6 +22,14 @@ fn test_118() {
 }
 
 #[test]
+fn test_346() {
+    let mut o = Sol346::new(3);
+    for (rst, val) in [(1.0, 1), (5.5, 10), (4.66667, 3), (6.0, 5)] {
+        assert!((o.next(val) - rst).abs() < 1e-5);
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),

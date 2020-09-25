@@ -20,6 +20,30 @@ impl Sol118 {
     }
 }
 
+/// 346 Moving Average from Data Stream
+struct Sol346 {
+    queue: std::collections::VecDeque<i32>,
+    win_size: usize,
+}
+
+impl Sol346 {
+    fn new(size: i32) -> Self {
+        Sol346 {
+            queue: std::collections::VecDeque::new(),
+            win_size: size as usize,
+        }
+    }
+
+    fn next(&mut self, val: i32) -> f64 {
+        if self.queue.len() >= self.win_size {
+            self.queue.pop_front();
+        }
+        self.queue.push_back(val);
+
+        self.queue.iter().sum::<i32>() as f64 / self.queue.len() as f64
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 
