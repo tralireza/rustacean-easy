@@ -704,13 +704,12 @@ impl Sol3550 {
             ":? {}",
             nums.iter()
                 .enumerate()
-                .filter(|&(i, &n)| n
+                .find(|&(i, &n)| n
                     .to_string()
                     .chars()
                     .map(|chr| chr.to_digit(10).unwrap_or(0))
                     .sum::<u32>() as usize
                     == i)
-                .next()
                 .map(|(i, _)| i as i32)
                 .unwrap_or(-1)
         );
