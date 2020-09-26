@@ -411,8 +411,8 @@ impl Sol2917 {
         let mut counts = [0; 32];
 
         for n in nums {
-            for p in 0..32 {
-                counts[p] += (n & 1 << p) >> p;
+            for (p, count) in counts.iter_mut().enumerate() {
+                *count += (n & 1 << p) >> p;
             }
         }
 
