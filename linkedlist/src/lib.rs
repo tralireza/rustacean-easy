@@ -17,15 +17,17 @@ struct Sol3062 {}
 
 impl Sol3062 {
     pub fn game_result(head: Option<Box<ListNode3062>>) -> String {
+        use std::cmp::Ordering::*;
+
         let (mut evens, mut odds) = (0, 0);
 
         let mut n = *head.unwrap();
         loop {
             let n_next = *n.next.unwrap();
-            if n.val > n_next.val {
-                evens += 1;
-            } else if n.val < n_next.val {
-                odds += 1;
+            match n.val.cmp(&n_next.val) {
+                Greater => evens += 1,
+                Less => odds += 1,
+                _ => (),
             }
 
             if n_next.next.is_none() {
@@ -34,7 +36,6 @@ impl Sol3062 {
             n = *n_next.next.unwrap();
         }
 
-        use std::cmp::Ordering::*;
         match evens.cmp(&odds) {
             Greater => "Even",
             Less => "Odd",
