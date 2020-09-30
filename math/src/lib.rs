@@ -10,22 +10,22 @@ impl Sol1182 {
 
         for (i, &color) in colors.iter().enumerate() {
             for c in 0..3 {
-                if c == color as usize - 1 {
-                    dists[i + 1][c] = 0;
+                dists[i + 1][c] = if c == color as usize - 1 {
+                    0
                 } else {
-                    dists[i + 1][c] = dists[i][c].saturating_add(1);
-                }
+                    dists[i][c].saturating_add(1)
+                };
             }
         }
         println!("-> >>> {dists:?}");
 
         for (i, &color) in colors.iter().enumerate().rev() {
             for c in 0..3 {
-                if c == color as usize - 1 {
-                    dists[i + 1][c] = 0;
+                dists[i + 1][c] = if c == color as usize - 1 {
+                    0
                 } else {
-                    dists[i + 1][c] = dists[i + 1][c].min(dists[i + 2][c].saturating_add(1));
-                }
+                    dists[i + 1][c].min(dists[i + 2][c].saturating_add(1))
+                };
             }
         }
         println!("-> <<< {dists:?}");
