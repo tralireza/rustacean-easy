@@ -6,6 +6,57 @@ struct Sol1182 {}
 impl Sol1182 {
     /// 1 <= Colors, Queries <= 5*10^4
     pub fn shortest_distance_color(colors: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {
+        {
+            let mut dists = vec![vec![]; 3];
+            for c in 0..3 {
+                dists[c] = colors
+                    .iter()
+                    .enumerate()
+                    .filter(|&(_, &color)| color as usize - 1 == c)
+                    .map(|(i, _)| i)
+                    .collect();
+            }
+            println!("-> {dists:?}");
+
+            fn lbsearch(sarr: &[usize], t: usize) -> usize {
+                let (mut l, mut r) = (0, sarr.len());
+                while l < r {
+                    let m = l + ((r - l) >> 1);
+                    if sarr[m] < t {
+                        l = m + 1;
+                    } else {
+                        r = m;
+                    }
+                }
+
+                l
+            }
+
+            println!(
+                ":? {:?}",
+                queries
+                    .iter()
+                    .map(|qry| (qry[0] as usize, qry[1] as usize))
+                    .map(|(index, color)| {
+                        let cds = &dists[color - 1];
+
+                        if cds.len() == 0 {
+                            -1
+                        } else {
+                            let x = lbsearch(cds, index);
+                            (if x == 0 {
+                                cds[x] - index
+                            } else if x == cds.len() {
+                                index - cds[x - 1]
+                            } else {
+                                (index - cds[x]).min(cds[x + 1] - index)
+                            }) as i32
+                        }
+                    })
+                    .collect::<Vec<_>>()
+            );
+        }
+
         let mut dists = vec![vec![i32::MAX; 3]; colors.len() + 2];
 
         for (i, &color) in colors.iter().enumerate() {
@@ -32,7 +83,7 @@ impl Sol1182 {
 
         queries
             .iter()
-            .map(|query| (query[0] as usize, query[1] as usize))
+            .map(|qry| (qry[0] as usize, qry[1] as usize))
             .map(|(index, color)| dists[index + 1][color - 1])
             .map(|distance| if distance == i32::MAX { -1 } else { distance })
             .collect()
