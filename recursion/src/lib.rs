@@ -1,5 +1,64 @@
 //! # Recursion
 
+/// 37h Sudoku Solver
+struct Sol37 {}
+
+impl Sol37 {
+    pub fn solve_sudoku(board: &mut [Vec<char>]) {
+        fn valid(board: &[Vec<char>]) -> bool {
+            let (mut rows, mut cols, mut cells) = ([0; 9], [0; 9], [0; 9]);
+
+            for (r, row) in board.iter().enumerate() {
+                for (c, mask) in row
+                    .iter()
+                    .enumerate()
+                    .filter(|&(_, &chr)| chr != '.')
+                    .map(|(c, chr)| (c, 1 << (chr.to_digit(10).unwrap() - 1)))
+                {
+                    if rows[r] & mask == mask {
+                        return false;
+                    }
+                    rows[r] |= mask;
+
+                    if cols[c] & mask == mask {
+                        return false;
+                    }
+                    cols[c] |= mask;
+
+                    if cells[3 * (r / 3) + c / 3] & mask == mask {
+                        return false;
+                    }
+                    cells[3 * (r / 3) + c / 3] |= mask;
+                }
+            }
+
+            true
+        }
+
+        fn solve(r: usize, c: usize, board: &mut [Vec<char>]) -> bool {
+            if r == 9 {
+                return true;
+            }
+
+            if board[r][c] != '.' {
+                return solve(r + (c + 1) / 9, (c + 1) % 9, board);
+            }
+
+            for chr in '1'..='9' {
+                board[r][c] = chr;
+                if valid(board) && solve(r + (c + 1) / 9, (c + 1) % 9, board) {
+                    return true;
+                }
+                board[r][c] = '.';
+            }
+
+            false
+        }
+
+        solve(0, 0, board);
+    }
+}
+
 /// 3483
 struct Sol3483 {}
 
