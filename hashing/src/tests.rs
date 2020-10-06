@@ -189,3 +189,15 @@ fn test_3450() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3668() {
+    for (rst, order, friends) in [
+        (vec![3, 1, 4], vec![3, 1, 2, 5, 4], vec![1, 3, 4]),
+        (vec![5, 2], vec![1, 4, 5, 3, 2], vec![2, 5]),
+    ] {
+        println!("* {order:?} {friends:?}");
+        assert_eq!(Sol3668::recover_order(order, friends), rst);
+        println!(":: {rst:?}");
+    }
+}

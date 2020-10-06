@@ -375,5 +375,14 @@ impl Sol3450 {
     }
 }
 
+/// 3668 Restore Finishing Order
+struct Sol3668 {}
+
+impl Sol3668 {
+    pub fn recover_order(order: Vec<i32>, friends: Vec<i32>) -> Vec<i32> {
+        order.into_iter().filter(|f| friends.contains(f)).collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;
