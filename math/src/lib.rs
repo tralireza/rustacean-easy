@@ -1,5 +1,24 @@
 //! # Math
 
+/// 1085 Sum of Digits in the Minimum Number
+struct Sol1085 {}
+
+impl Sol1085 {
+    pub fn sum_of_digits(nums: Vec<i32>) -> i32 {
+        match nums.into_iter().min() {
+            Some(mut vmin) => {
+                let mut dsum = 0;
+                while vmin > 0 {
+                    dsum += vmin % 10;
+                    vmin /= 10;
+                }
+                1 ^ (dsum & 1)
+            }
+            _ => -1,
+        }
+    }
+}
+
 /// 1182m Shortest Distance to Target Color
 struct Sol1182 {}
 

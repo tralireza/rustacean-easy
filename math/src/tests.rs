@@ -1,6 +1,18 @@
 use super::*;
 
 #[test]
+fn test_1085() {
+    for (rst, nums) in [
+        (0, vec![34, 23, 1, 24, 75, 33, 54, 8]),
+        (1, vec![99, 77, 33, 66, 55]),
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol1085::sum_of_digits(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1182() {
     for (rst, colors, queries) in [
         (
