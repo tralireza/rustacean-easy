@@ -27,8 +27,8 @@ impl Sol1182 {
     pub fn shortest_distance_color(colors: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {
         {
             let mut dists = vec![vec![]; 3];
-            for c in 0..3 {
-                dists[c] = colors
+            for (c, c_dists) in dists.iter_mut().enumerate() {
+                *c_dists = colors
                     .iter()
                     .enumerate()
                     .filter(|&(_, &color)| color as usize - 1 == c)
@@ -59,7 +59,7 @@ impl Sol1182 {
                     .map(|(index, color)| {
                         let cds = &dists[color - 1];
 
-                        if cds.len() == 0 {
+                        if cds.is_empty() {
                             -1
                         } else {
                             let x = lbsearch(cds, index);
