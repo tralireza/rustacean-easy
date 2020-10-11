@@ -30,6 +30,49 @@ fn test_346() {
 }
 
 #[test]
+fn test_1086() {
+    for (rst, items) in [
+        (
+            vec![[1, 87], [2, 88]],
+            vec![
+                [1, 91],
+                [1, 92],
+                [2, 93],
+                [2, 97],
+                [1, 60],
+                [2, 77],
+                [1, 65],
+                [1, 87],
+                [1, 100],
+                [2, 100],
+                [2, 76],
+            ],
+        ),
+        (
+            vec![[1, 100], [7, 100]],
+            vec![
+                [1, 100],
+                [7, 100],
+                [1, 100],
+                [7, 100],
+                [1, 100],
+                [7, 100],
+                [1, 100],
+                [7, 100],
+                [1, 100],
+                [7, 100],
+            ],
+        ),
+    ] {
+        let items = items.into_iter().map(|a| a.into_iter().collect()).collect();
+
+        println!("* {items:?}");
+        assert_eq!(Sol1086::high_five(items), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),

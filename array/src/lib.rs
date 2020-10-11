@@ -44,6 +44,23 @@ impl Sol346 {
     }
 }
 
+/// 1086 High Five
+struct Sol1086 {}
+
+impl Sol1086 {
+    pub fn high_five(mut items: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        use std::cmp::Reverse;
+
+        items.sort_by_key(|v| (v[0], Reverse(v[1])));
+        println!("-> {items:?}");
+
+        items
+            .chunk_by(|v, w| v[0] == w[0])
+            .map(|chk| vec![chk[0][0], chk.iter().take(5).map(|v| v[1]).sum::<i32>() / 5])
+            .collect()
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 
