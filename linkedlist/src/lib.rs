@@ -60,11 +60,7 @@ struct ListNode3062 {
     next: Option<Box<ListNode3062>>,
 }
 
-impl ListNode3062 {
-    fn new(val: i32) -> Self {
-        ListNode3062 { val, next: None }
-    }
-}
+impl ListNode3062 {}
 
 struct Sol3062 {}
 
