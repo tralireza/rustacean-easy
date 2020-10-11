@@ -1,5 +1,58 @@
 //! # Linked List
 
+/// 1474 Delete N Nodes After M Nodes of a Linked List
+#[derive(Debug, Clone, Eq, PartialEq)]
+struct ListNode1474 {
+    val: i32,
+    next: Option<Box<ListNode1474>>,
+}
+
+impl ListNode1474 {}
+
+struct Sol1474 {}
+
+impl Sol1474 {
+    pub fn delete_nodes(
+        head: Option<Box<ListNode1474>>,
+        m: i32,
+        n: i32,
+    ) -> Option<Box<ListNode1474>> {
+        fn rdelete(
+            head: &Option<Box<ListNode1474>>,
+            m: i32,
+            n: i32,
+            counter: i32,
+        ) -> Option<Box<ListNode1474>> {
+            match head {
+                None => None,
+                Some(l) => {
+                    if counter < m {
+                        Some(Box::new(ListNode1474 {
+                            val: l.val,
+                            next: rdelete(&l.next, m, n, counter + 1),
+                        }))
+                    } else {
+                        let mut next = l.next.clone();
+                        for _ in 0..n {
+                            match next {
+                                None => next = None,
+                                Some(x) => next = x.next,
+                            }
+                        }
+
+                        Some(Box::new(ListNode1474 {
+                            val: l.val,
+                            next: rdelete(&next, m, n, 1),
+                        }))
+                    }
+                }
+            }
+        }
+
+        rdelete(&head, m, n, 1)
+    }
+}
+
 /// 3062 Winner of the Linked List Game
 #[derive(Debug)]
 struct ListNode3062 {
