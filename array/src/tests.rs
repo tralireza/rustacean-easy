@@ -73,6 +73,15 @@ fn test_1086() {
 }
 
 #[test]
+fn test_1133() {
+    for (rst, nums) in [(8, vec![5, 7, 3, 9, 4, 9, 8, 3, 1]), (-1, vec![9, 9, 8, 8])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol1133::largest_unique_number(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),

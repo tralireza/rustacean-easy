@@ -61,6 +61,22 @@ impl Sol1086 {
     }
 }
 
+/// 1133 Largest Unique Number
+struct Sol1133 {}
+
+impl Sol1133 {
+    pub fn largest_unique_number(mut nums: Vec<i32>) -> i32 {
+        use std::cmp::Reverse;
+
+        nums.sort_by_key(|&n| Reverse(n));
+        nums.chunk_by(|x, y| x == y)
+            .filter(|chk| chk.len() == 1)
+            .nth(0)
+            .map(|chk| chk[0])
+            .unwrap_or(-1)
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 
