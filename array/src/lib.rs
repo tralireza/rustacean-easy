@@ -764,5 +764,28 @@ impl Sol3550 {
     }
 }
 
+/// 3663 Find The Least Frequent Digit
+struct Sol3663 {}
+
+impl Sol3663 {
+    pub fn get_least_frequent_digit(n: i32) -> i32 {
+        let mut freqs = [0; 10];
+
+        let mut n = n as usize;
+        while n > 0 {
+            freqs[n % 10] += 1;
+            n /= 10;
+        }
+
+        freqs
+            .into_iter()
+            .enumerate()
+            .filter(|&(_, f)| f > 0)
+            .min_by(|s, t| s.1.cmp(&t.1))
+            .unwrap()
+            .0 as _
+    }
+}
+
 #[cfg(test)]
 mod tests;

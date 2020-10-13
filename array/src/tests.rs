@@ -463,3 +463,12 @@ fn test_3550() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3663() {
+    for (rst, n) in [(1, 1553322), (2, 723344511)] {
+        println!("* {n}");
+        assert_eq!(Sol3663::get_least_frequent_digit(n), rst);
+        println!(":: {rst:?}");
+    }
+}
