@@ -1,5 +1,21 @@
 //! # String
 
+/// 266 Palindrome Permutation
+struct Sol266 {}
+
+impl Sol266 {
+    pub fn can_permute_palindrome(s: String) -> bool {
+        use std::collections::HashMap;
+
+        let mut freqs = HashMap::new();
+        for chr in s.chars() {
+            freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+        }
+
+        freqs.values().filter(|&f| f & 1 == 1).count() <= 1
+    }
+}
+
 /// 1180 Count Substrings with Only One Distinct Letter
 struct Sol1180 {}
 

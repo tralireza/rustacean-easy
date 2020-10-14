@@ -1,6 +1,15 @@
 use super::*;
 
 #[test]
+fn test_266() {
+    for (rst, s) in [(false, "code"), (true, "aab"), (true, "carerac")] {
+        println!("* {s:?}");
+        assert_eq!(Sol266::can_permute_palindrome(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1180() {
     for (rst, s) in [(8, "aaaba"), (55, "aaaaaaaaaa")] {
         println!("* {s:?}");
