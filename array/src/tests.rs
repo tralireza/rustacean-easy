@@ -82,6 +82,19 @@ fn test_1133() {
 }
 
 #[test]
+fn test_1304() {
+    for (rst, n) in [
+        (vec![-7, -1, 1, 3, 4], 5),
+        (vec![-1, 0, 1], 3),
+        (vec![0], 1),
+    ] {
+        println!("* {n}");
+        assert_eq!(Sol1304::sum_zero(n).iter().sum::<i32>(), 0);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),

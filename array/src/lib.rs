@@ -77,6 +77,25 @@ impl Sol1133 {
     }
 }
 
+/// 1304 Find N Unique Integers Sum up to Zero
+struct Sol1304 {}
+
+impl Sol1304 {
+    pub fn sum_zero(n: i32) -> Vec<i32> {
+        let mut szero = vec![];
+        if n & 1 == 1 {
+            szero.push(0);
+        }
+
+        (1..n / 2 as i32).fold(szero, |mut szero, n| {
+            szero.push(n);
+            szero.push(-n);
+
+            szero
+        })
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 
