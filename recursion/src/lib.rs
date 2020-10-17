@@ -59,6 +59,40 @@ impl Sol37 {
     }
 }
 
+/// 1066m Compus Bikes II
+struct Sol1066 {}
+
+impl Sol1066 {
+    /// 1 <= Workers <= Bikes <= 10
+    pub fn assign_bikes(workers: Vec<Vec<i32>>, bikes: Vec<Vec<i32>>) -> i32 {
+        fn search(w: usize, mut bike_mask: i32, workers: &[Vec<i32>], bikes: &[Vec<i32>]) -> i32 {
+            println!("-> {w} {bike_mask:>010b}");
+            if w == workers.len() {
+                return 0;
+            }
+
+            let worker = &workers[w];
+            let mut dist = i32::MAX;
+            for (b, bike) in bikes.iter().enumerate() {
+                if bike_mask & (1 << b) == 0 {
+                    bike_mask |= 1 << b;
+
+                    let cur_dist = (worker[0] - bike[0]).abs()
+                        + (worker[1] - bike[1]).abs()
+                        + search(w + 1, bike_mask, workers, bikes);
+                    dist = dist.min(cur_dist);
+
+                    bike_mask &= !(1 << b);
+                }
+            }
+
+            dist
+        }
+
+        search(0, 0, &workers, &bikes)
+    }
+}
+
 /// 3483
 struct Sol3483 {}
 

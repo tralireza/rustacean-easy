@@ -49,6 +49,36 @@ fn test_37() {
 }
 
 #[test]
+fn test_1066() {
+    for (rst, workers, bikes) in [
+        (6, vec![[0, 0], [2, 1]], vec![[1, 2], [3, 3]]),
+        (
+            4,
+            vec![[0, 0], [1, 1], [2, 0]],
+            vec![[1, 0], [2, 2], [2, 1]],
+        ),
+        (
+            4995,
+            vec![[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]],
+            vec![[0, 999], [1, 999], [2, 999], [3, 999], [4, 999]],
+        ),
+    ] {
+        println!("* {workers:?} {bikes:?}");
+        assert_eq!(
+            Sol1066::assign_bikes(
+                workers
+                    .into_iter()
+                    .map(|a| a.into_iter().collect())
+                    .collect(),
+                bikes.into_iter().map(|a| a.into_iter().collect()).collect(),
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3483() {
     for (rst, digits) in [
         (12, vec![1, 2, 3, 4]),
