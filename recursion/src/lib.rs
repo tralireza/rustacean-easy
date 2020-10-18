@@ -65,11 +65,23 @@ struct Sol1066 {}
 impl Sol1066 {
     /// 1 <= Workers <= Bikes <= 10
     pub fn assign_bikes(workers: Vec<Vec<i32>>, bikes: Vec<Vec<i32>>) -> i32 {
-        fn search(w: usize, mut bike_mask: i32, workers: &[Vec<i32>], bikes: &[Vec<i32>]) -> i32 {
-            println!("-> {w} {bike_mask:>010b}");
+        let mut cache = vec![vec![None; 1 << bikes.len()]; workers.len()];
+
+        fn search(
+            w: usize,
+            mut bike_mask: usize,
+            workers: &[Vec<i32>],
+            bikes: &[Vec<i32>],
+            cache: &mut Vec<Vec<Option<i32>>>,
+        ) -> i32 {
             if w == workers.len() {
                 return 0;
             }
+
+            if let Some(dist) = cache[w][bike_mask] {
+                return dist;
+            }
+            println!("-> {w} {bike_mask:>010b}");
 
             let worker = &workers[w];
             let mut dist = i32::MAX;
@@ -79,17 +91,21 @@ impl Sol1066 {
 
                     let cur_dist = (worker[0] - bike[0]).abs()
                         + (worker[1] - bike[1]).abs()
-                        + search(w + 1, bike_mask, workers, bikes);
+                        + search(w + 1, bike_mask, workers, bikes, cache);
                     dist = dist.min(cur_dist);
 
                     bike_mask &= !(1 << b);
                 }
             }
 
+            cache[w][bike_mask] = Some(dist);
             dist
         }
 
-        search(0, 0, &workers, &bikes)
+        let dist = search(0, 0, &workers, &bikes, &mut cache);
+        println!("-> {cache:?}");
+
+        dist
     }
 }
 
