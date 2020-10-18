@@ -65,7 +65,10 @@ struct Sol1066 {}
 impl Sol1066 {
     /// 1 <= Workers <= Bikes <= 10
     pub fn assign_bikes(workers: Vec<Vec<i32>>, bikes: Vec<Vec<i32>>) -> i32 {
+        use std::collections::HashMap;
+
         let mut cache = vec![vec![None; 1 << bikes.len()]; workers.len()];
+        let mut hm_cache: HashMap<(usize, usize), i32> = HashMap::new();
 
         fn search(
             w: usize,
@@ -73,6 +76,7 @@ impl Sol1066 {
             workers: &[Vec<i32>],
             bikes: &[Vec<i32>],
             cache: &mut Vec<Vec<Option<i32>>>,
+            hm_cache: &mut HashMap<(usize, usize), i32>,
         ) -> i32 {
             if w == workers.len() {
                 return 0;
@@ -91,7 +95,7 @@ impl Sol1066 {
 
                     let cur_dist = (worker[0] - bike[0]).abs()
                         + (worker[1] - bike[1]).abs()
-                        + search(w + 1, bike_mask, workers, bikes, cache);
+                        + search(w + 1, bike_mask, workers, bikes, cache, hm_cache);
                     dist = dist.min(cur_dist);
 
                     bike_mask &= !(1 << b);
@@ -99,11 +103,14 @@ impl Sol1066 {
             }
 
             cache[w][bike_mask] = Some(dist);
+            hm_cache.insert((w, bike_mask), dist);
+
             dist
         }
 
-        let dist = search(0, 0, &workers, &bikes, &mut cache);
+        let dist = search(0, 0, &workers, &bikes, &mut cache, &mut hm_cache);
         println!("-> {cache:?}");
+        println!("-> {hm_cache:?}");
 
         dist
     }
