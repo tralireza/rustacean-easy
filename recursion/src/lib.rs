@@ -85,7 +85,7 @@ impl Sol1066 {
             if let Some(dist) = cache[w][bike_mask] {
                 return dist;
             }
-            println!("-> {w} {bike_mask:>010b}");
+            println!("-> {w} {bike_mask:>010b} ({bike_mask})");
 
             let worker = &workers[w];
             let mut dist = i32::MAX;
