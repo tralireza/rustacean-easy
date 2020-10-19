@@ -114,6 +114,19 @@ struct Sol1317 {}
 
 impl Sol1317 {
     pub fn get_no_zero_integers(n: i32) -> Vec<i32> {
+        {
+            let mut a = 1;
+            println!(
+                ":? {:?}",
+                loop {
+                    if !a.to_string().contains('0') && !(n - a).to_string().contains('0') {
+                        break vec![a, n - a];
+                    }
+                    a += 1;
+                }
+            );
+        }
+
         let no_zero = |mut n| {
             while n > 0 {
                 if n % 10 == 0 {
