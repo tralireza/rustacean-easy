@@ -109,6 +109,31 @@ impl Sol1182 {
     }
 }
 
+/// 1317 Convert Integer to the Sum of Two No-Zero Integers
+struct Sol1317 {}
+
+impl Sol1317 {
+    pub fn get_no_zero_integers(n: i32) -> Vec<i32> {
+        let no_zero = |mut n| {
+            while n > 0 {
+                if n % 10 == 0 {
+                    return false;
+                }
+                n /= 10;
+            }
+            true
+        };
+
+        let mut a = 1;
+        loop {
+            if no_zero(a) && no_zero(n - a) {
+                return vec![a, n - a];
+            }
+            a += 1;
+        }
+    }
+}
+
 /// 1323 Maximum 69 Number
 struct Sol1323 {}
 

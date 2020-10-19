@@ -35,6 +35,15 @@ fn test_1182() {
 }
 
 #[test]
+fn test_1317() {
+    for (rst, n) in [(vec![1, 1], 2), (vec![2, 9], 11)] {
+        println!("* {n}");
+        assert_eq!(Sol1317::get_no_zero_integers(n), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1323() {
     for (rst, num) in [(9969, 9669), (9999, 9996), (9999, 9999)] {
         println!("* {num}");
