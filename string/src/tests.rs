@@ -1,6 +1,35 @@
 use super::*;
 
 #[test]
+fn test_245() {
+    for (rst, words_dict, word1, word2) in [
+        (
+            3,
+            vec!["practice", "makes", "perfect", "coding", "makes"],
+            "coding",
+            "practice",
+        ),
+        (
+            1,
+            vec!["practice", "makes", "perfect", "coding", "makes"],
+            "makes",
+            "coding",
+        ),
+    ] {
+        println!("* {words_dict:?} {word1:?} {word2:?}");
+        assert_eq!(
+            Sol245::shortest_distance(
+                words_dict.into_iter().map(|w| w.to_string()).collect(),
+                word1.to_string(),
+                word2.to_string()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_266() {
     for (rst, s) in [(false, "code"), (true, "aab"), (true, "carerac")] {
         println!("* {s:?}");

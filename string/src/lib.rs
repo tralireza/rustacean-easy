@@ -1,5 +1,28 @@
 //! # String
 
+/// 245 Shortest Word Distance
+struct Sol245 {}
+
+impl Sol245 {
+    pub fn shortest_distance(words_dict: Vec<String>, word1: String, word2: String) -> i32 {
+        words_dict
+            .iter()
+            .enumerate()
+            .filter(|(_, w)| **w == word1)
+            .map(|(i, _)| {
+                words_dict
+                    .iter()
+                    .enumerate()
+                    .filter(|(_, w)| **w == word2)
+                    .map(|(j, _)| (i as i32 - j as i32).abs())
+                    .min()
+                    .unwrap()
+            })
+            .min()
+            .unwrap() as _
+    }
+}
+
 /// 266 Palindrome Permutation
 struct Sol266 {}
 
