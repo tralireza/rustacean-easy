@@ -49,6 +49,25 @@ struct Sol1064 {}
 
 impl Sol1064 {
     pub fn fixed_point(arr: Vec<i32>) -> i32 {
+        {
+            let mut x = -1;
+
+            let (mut l, mut r) = (0, arr.len() as i32 - 1);
+            while l <= r {
+                let m = l + ((r - l) >> 1);
+                if arr[m as usize] >= m {
+                    r = m - 1;
+                    if arr[m as usize] == m {
+                        x = m;
+                    }
+                } else {
+                    l = m + 1;
+                }
+            }
+
+            println!(":? O(log(N)): {x}");
+        }
+
         arr.into_iter()
             .enumerate()
             .filter(|&(i, n)| i as i32 == n)
