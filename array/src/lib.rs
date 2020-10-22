@@ -44,6 +44,20 @@ impl Sol346 {
     }
 }
 
+/// 1064 Fixed Point
+struct Sol1064 {}
+
+impl Sol1064 {
+    pub fn fixed_point(arr: Vec<i32>) -> i32 {
+        arr.into_iter()
+            .enumerate()
+            .filter(|&(i, n)| i as i32 == n)
+            .map(|(_, n)| n)
+            .nth(0)
+            .unwrap_or(-1)
+    }
+}
+
 /// 1086 High Five
 struct Sol1086 {}
 

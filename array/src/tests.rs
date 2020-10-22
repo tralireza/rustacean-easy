@@ -30,6 +30,19 @@ fn test_346() {
 }
 
 #[test]
+fn test_1064() {
+    for (rst, arr) in [
+        (3, vec![-10, -5, 0, 3, 7]),
+        (0, vec![0, 2, 5, 8, 17]),
+        (-1, vec![-10, -5, 3, 4, 7, 9]),
+    ] {
+        println!("* {arr:?}");
+        assert_eq!(Sol1064::fixed_point(arr), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1086() {
     for (rst, items) in [
         (
