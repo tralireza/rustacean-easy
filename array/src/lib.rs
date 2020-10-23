@@ -129,6 +129,18 @@ impl Sol1304 {
     }
 }
 
+/// 1708 Largest Subarray Length K
+struct Sol1708 {}
+
+impl Sol1708 {
+    pub fn largest_subarray(nums: Vec<i32>, k: i32) -> Vec<i32> {
+        nums.windows(k as usize)
+            .max_by_key(|w| w[0])
+            .unwrap()
+            .to_vec()
+    }
+}
+
 /// 2389 Longest Subsequence With Limited Sum
 struct Sol2389 {}
 

@@ -108,6 +108,19 @@ fn test_1304() {
 }
 
 #[test]
+fn test_1708() {
+    for (rst, nums, k) in [
+        (vec![5, 2, 3], vec![1, 4, 5, 2, 3], 3),
+        (vec![4, 5, 2, 3], vec![1, 4, 5, 2, 3], 4),
+        (vec![5], vec![1, 4, 5, 2, 3], 1),
+    ] {
+        println!("* {nums:?} {k}");
+        assert_eq!(Sol1708::largest_subarray(nums, k), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2389() {
     for (rst, nums, queries) in [
         (vec![2, 3, 4], vec![4, 5, 2, 1], vec![3, 10, 21]),
