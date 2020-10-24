@@ -667,6 +667,22 @@ impl Sol3349 {
     }
 }
 
+/// 3353 Minimum Total Operations
+struct Sol3353 {}
+
+impl Sol3353 {
+    /// 1 <= N <= 10^5
+    pub fn min_operations(nums: Vec<i32>) -> i32 {
+        nums.iter()
+            .take(nums.len() - 1)
+            .rev()
+            .skip_while(|n| *n == nums.last().unwrap())
+            .collect::<Vec<_>>()
+            .chunk_by(|x, y| x == y)
+            .count() as _
+    }
+}
+
 /// 3386 Button with Longest Push Time
 struct Sol3386 {}
 

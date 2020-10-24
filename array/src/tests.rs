@@ -410,6 +410,20 @@ fn test_3349() {
 }
 
 #[test]
+fn test_3353() {
+    for (rst, nums) in [
+        (2, vec![1, 4, 2]),
+        (0, vec![10, 10, 10]),
+        (2, vec![-8, 9, -8]), // 712/763
+        (1, vec![4, 4, -7]),  //213/763
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3353::min_operations(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3386() {
     for (rst, events) in [
         (1, vec![vec![1, 2], vec![2, 5], vec![3, 9], vec![1, 15]]),
