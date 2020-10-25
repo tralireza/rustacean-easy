@@ -525,3 +525,23 @@ fn test_3663() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3683() {
+    for (rst, tasks) in [
+        (5, vec![[1, 6], [2, 3]]),
+        (200, vec![[100, 100], [100, 100], [100, 100]]),
+    ] {
+        println!("* {tasks:?}");
+        assert_eq!(
+            Sol3683::earliest_time(
+                tasks
+                    .into_iter()
+                    .map(|a| a.into_iter().collect::<Vec<_>>())
+                    .collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}

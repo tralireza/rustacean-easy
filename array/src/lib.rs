@@ -867,5 +867,14 @@ impl Sol3663 {
     }
 }
 
+/// 3683 Earliest Time to Finish One Task
+struct Sol3683 {}
+
+impl Sol3683 {
+    pub fn earliest_time(tasks: Vec<Vec<i32>>) -> i32 {
+        tasks.iter().map(|v| v.iter().sum()).min().unwrap()
+    }
+}
+
 #[cfg(test)]
 mod tests;
