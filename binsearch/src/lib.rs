@@ -38,5 +38,14 @@ impl Sol1099 {
     }
 }
 
+/// 1150 Check if a Number Is Majority Element in a Sorted Array
+struct Sol1150 {}
+
+impl Sol1150 {
+    pub fn is_majority_element(nums: Vec<i32>, target: i32) -> bool {
+        nums.iter().filter(|&&n| n == target).count() > nums.len() / 2
+    }
+}
+
 #[cfg(test)]
 mod tests;

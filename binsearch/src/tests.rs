@@ -11,3 +11,15 @@ fn test_1099() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_1150() {
+    for (rst, nums, target) in [
+        (true, vec![2, 4, 5, 5, 5, 5, 5, 6, 6], 5),
+        (false, vec![10, 100, 101, 101], 101),
+    ] {
+        println!("* {nums:?} {target}");
+        assert_eq!(Sol1150::is_majority_element(nums, target), rst);
+        println!(":: {rst:?}");
+    }
+}
