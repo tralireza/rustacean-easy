@@ -39,6 +39,20 @@ fn test_266() {
 }
 
 #[test]
+fn test_293() {
+    for (rst, current_state) in [(vec!["--++", "+--+", "++--"], "++++"), (vec![], "+")] {
+        let rst: Vec<_> = rst.into_iter().map(|s| s.to_string()).collect();
+
+        println!("* {current_state:?}");
+        assert_eq!(
+            Sol293::generate_possible_next_moves(current_state.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1180() {
     for (rst, s) in [(8, "aaaba"), (55, "aaaaaaaaaa")] {
         println!("* {s:?}");

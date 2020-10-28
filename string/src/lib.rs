@@ -39,6 +39,18 @@ impl Sol266 {
     }
 }
 
+/// 293 Flip Game
+struct Sol293 {}
+
+impl Sol293 {
+    pub fn generate_possible_next_moves(current_state: String) -> Vec<String> {
+        (0..current_state.len() - 1)
+            .filter(|&i| &current_state[i..i + 2] == "++")
+            .map(|i| current_state[..i].to_string() + "--" + &current_state[i + 2..])
+            .collect()
+    }
+}
+
 /// 1180 Count Substrings with Only One Distinct Letter
 struct Sol1180 {}
 
