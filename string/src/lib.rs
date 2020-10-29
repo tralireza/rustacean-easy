@@ -56,6 +56,23 @@ struct Sol800 {}
 
 impl Sol800 {
     pub fn similar_rgb(color: String) -> String {
+        {
+            println!(
+                ":? {:?}",
+                (1..color.len())
+                    .step_by(2)
+                    .flat_map(|i| i32::from_str_radix(&color[i..i + 2], 16))
+                    .fold("#".to_string(), |similar, x| {
+                        similar
+                            + &format!(
+                                "{:x}{:x}",
+                                (x + (17 >> 1)) / 17, // .round()
+                                (x as f64 / 17.0).round() as i32
+                            )
+                    })
+            );
+        }
+
         let color: Vec<_> = color.chars().skip(1).collect();
         color
             .chunks(2)
