@@ -53,6 +53,15 @@ fn test_293() {
 }
 
 #[test]
+fn test_800() {
+    for (rst, color) in [("#11ee66", "#09f166"), ("#5544dd", "#4e3fe1")] {
+        println!("* {color:?}");
+        assert_eq!(Sol800::similar_rgb(color.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1180() {
     for (rst, s) in [(8, "aaaba"), (55, "aaaaaaaaaa")] {
         println!("* {s:?}");

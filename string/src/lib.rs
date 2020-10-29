@@ -51,6 +51,26 @@ impl Sol293 {
     }
 }
 
+/// 800 Similar RGB Color
+struct Sol800 {}
+
+impl Sol800 {
+    pub fn similar_rgb(color: String) -> String {
+        let color: Vec<_> = color.chars().skip(1).collect();
+        color
+            .chunks(2)
+            .map(|chk| 16 * chk[0].to_digit(16).unwrap() + chk[1].to_digit(16).unwrap())
+            .map(|x| {
+                format!(
+                    "{:x}{:x}",
+                    (x as f64 / 17.0).round() as u32,
+                    (x as f64 / 17.0).round() as u32
+                )
+            })
+            .fold("#".to_string(), |similar, s| similar + &s)
+    }
+}
+
 /// 1180 Count Substrings with Only One Distinct Letter
 struct Sol1180 {}
 
