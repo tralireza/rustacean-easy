@@ -88,6 +88,61 @@ impl Sol800 {
     }
 }
 
+/// 1065 Index Pair of a String
+struct Sol1065 {}
+
+impl Sol1065 {
+    pub fn index_pairs(text: String, words: Vec<String>) -> Vec<Vec<i32>> {
+        {
+            use std::collections::HashMap;
+
+            #[derive(Default, Debug)]
+            struct Trie {
+                children: HashMap<char, Trie>,
+                is_word: bool,
+            }
+
+            let mut trie = Trie::default();
+
+            for word in &words {
+                let mut n = &mut trie;
+                for chr in word.chars() {
+                    n = n.children.entry(chr).or_default();
+                }
+                n.is_word = true;
+            }
+            println!("-> Trie: {trie:?}");
+
+            let text: Vec<_> = text.chars().collect();
+            let mut pairs: Vec<_> = vec![];
+            for l in 0..text.len() {
+                let mut n = &trie;
+
+                for (r, chr) in text.iter().enumerate().skip(l) {
+                    if let Some(c) = n.children.get(chr) {
+                        n = c;
+                        if n.is_word {
+                            pairs.push(vec![l, r]);
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+            println!(":? {:?}", pairs);
+        }
+
+        (0..text.len())
+            .flat_map(|l| (l..text.len()).map(move |r| (l, r)))
+            .fold(vec![], |mut pairs, (l, r)| {
+                if words.contains(&text[l..=r].to_string()) {
+                    pairs.push(vec![l as i32, r as i32]);
+                }
+                pairs
+            })
+    }
+}
+
 /// 1180 Count Substrings with Only One Distinct Letter
 struct Sol1180 {}
 

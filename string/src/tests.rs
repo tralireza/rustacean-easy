@@ -62,6 +62,34 @@ fn test_800() {
 }
 
 #[test]
+fn test_1065() {
+    for (rst, text, words) in [
+        (
+            vec![[3, 7], [9, 13], [10, 17]],
+            "thestoryofleetcodeandme",
+            vec!["story", "fleet", "leetcode"],
+        ),
+        (
+            vec![[0, 1], [0, 2], [2, 3], [2, 4]],
+            "ababa",
+            vec!["aba", "ab"],
+        ),
+    ] {
+        let rst: Vec<Vec<_>> = rst.into_iter().map(|a| a.into_iter().collect()).collect();
+
+        println!("* {text:?} {words:?}");
+        assert_eq!(
+            Sol1065::index_pairs(
+                text.to_string(),
+                words.into_iter().map(|s| s.to_string()).collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1180() {
     for (rst, s) in [(8, "aaaba"), (55, "aaaaaaaaaa")] {
         println!("* {s:?}");
