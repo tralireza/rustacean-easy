@@ -99,6 +99,19 @@ fn test_1180() {
 }
 
 #[test]
+fn test_1271() {
+    for (rst, num) in [
+        ("IOI", "257"),
+        ("ERROR", "3"),
+        ("AEIDBCDIBC", "747823223228"), // 344/393
+    ] {
+        println!("* {num:?}");
+        assert_eq!(Sol1271::to_hexspeak(num.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2399() {
     for (rst, s, distance) in [
         (

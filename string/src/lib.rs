@@ -156,6 +156,32 @@ impl Sol1180 {
     }
 }
 
+/// Hexspeak
+struct Sol1271 {}
+
+impl Sol1271 {
+    pub fn to_hexspeak(num: String) -> String {
+        if let Ok(num) = num.parse::<i64>() {
+            println!("{num}");
+            let hexspeak: String = format!("{:x}", num)
+                .chars()
+                .map(|chr| match chr {
+                    '1' => 'I',
+                    '0' => 'O',
+                    _ => chr.to_ascii_uppercase(),
+                })
+                .collect();
+            if hexspeak.chars().all(|chr| "ABCDEFIO".contains(chr)) {
+                hexspeak
+            } else {
+                "ERROR".to_string()
+            }
+        } else {
+            "ERROR".to_string()
+        }
+    }
+}
+
 /// 2399 Check Distances Between Same Letters
 struct Sol2399 {}
 
