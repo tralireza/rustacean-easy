@@ -207,6 +207,40 @@ impl Sol1427 {
     }
 }
 
+/// 1933 Check if String Is Decomposable Into Value-Equal Substrings
+struct Sol1933 {}
+
+impl Sol1933 {
+    pub fn is_decomposable(s: String) -> bool {
+        let mut prv = '*';
+
+        let mut counter = 0;
+        let mut has_two = false;
+        for chr in s.chars() {
+            if counter == 0 {
+                counter += 1;
+                prv = chr;
+            } else if prv == chr {
+                counter += 1;
+                if counter == 3 {
+                    counter = 0;
+                }
+            } else if counter == 2 {
+                if has_two {
+                    return false;
+                }
+                has_two = true;
+                counter = 1;
+                prv = chr;
+            } else {
+                return false;
+            }
+        }
+
+        counter != 1 && (has_two || counter == 2)
+    }
+}
+
 /// 2399 Check Distances Between Same Letters
 struct Sol2399 {}
 

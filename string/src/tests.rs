@@ -146,6 +146,19 @@ fn test_1427() {
 }
 
 #[test]
+fn test_1933() {
+    for (rst, s) in [
+        (false, "000111000"),
+        (true, "00011111222"),
+        (false, "011100022233"),
+    ] {
+        println!("* {s:?}");
+        assert_eq!(Sol1933::is_decomposable(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2399() {
     for (rst, s, distance) in [
         (
