@@ -151,6 +151,8 @@ fn test_1933() {
         (false, "000111000"),
         (true, "00011111222"),
         (false, "011100022233"),
+        (true, "66666666666677722"), // 88/122
+        (false, "001"),              // 121/122
     ] {
         println!("* {s:?}");
         assert_eq!(Sol1933::is_decomposable(s.to_string()), rst);
