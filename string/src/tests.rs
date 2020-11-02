@@ -112,6 +112,40 @@ fn test_1271() {
 }
 
 #[test]
+fn test_1427() {
+    for (rst, s, shift) in [
+        ("cab", "abc", vec![[0, 1], [1, 2]]),
+        ("efgabcd", "abcdefg", vec![[1, 1], [1, 1], [0, 2], [1, 3]]),
+        (
+            "qpifxqgwki",
+            "xqgwkiqpif",
+            vec![
+                [1, 4],
+                [0, 7],
+                [0, 8],
+                [0, 7],
+                [0, 6],
+                [1, 3],
+                [0, 1],
+                [1, 7],
+                [0, 5],
+                [0, 6],
+            ],
+        ), // 30/43
+    ] {
+        println!("* {s:?} {shift:?}");
+        assert_eq!(
+            Sol1427::string_shift(
+                s.to_string(),
+                shift.into_iter().map(|a| a.into_iter().collect()).collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2399() {
     for (rst, s, distance) in [
         (

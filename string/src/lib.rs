@@ -182,6 +182,31 @@ impl Sol1271 {
     }
 }
 
+/// 1427 Perform String Shifts
+struct Sol1427 {}
+
+impl Sol1427 {
+    pub fn string_shift(s: String, shift: Vec<Vec<i32>>) -> String {
+        let shifts = shift
+            .iter()
+            .map(|v| ((v[0] << 1) - 1) * v[1] % s.len() as i32)
+            .map(|shift| {
+                (if shift < 0 {
+                    shift + s.len() as i32
+                } else {
+                    shift
+                }) as usize
+            })
+            .sum::<usize>()
+            % s.len();
+
+        println!("-> {shifts}");
+
+        s.chars().skip(s.len() - shifts).collect::<String>()
+            + &s.chars().take(s.len() - shifts).collect::<String>()
+    }
+}
+
 /// 2399 Check Distances Between Same Letters
 struct Sol2399 {}
 
