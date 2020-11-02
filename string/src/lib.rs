@@ -241,6 +241,17 @@ impl Sol1933 {
     }
 }
 
+/// 1935 Maximum Number of Words You Can Type
+struct Sol1935 {}
+
+impl Sol1935 {
+    pub fn can_be_typed_words(text: String, broken_letters: String) -> i32 {
+        text.split(' ')
+            .filter(|w| !broken_letters.chars().any(|chr| w.contains(chr)))
+            .count() as _
+    }
+}
+
 /// 2399 Check Distances Between Same Letters
 struct Sol2399 {}
 

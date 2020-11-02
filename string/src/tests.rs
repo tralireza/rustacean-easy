@@ -161,6 +161,22 @@ fn test_1933() {
 }
 
 #[test]
+fn test_1935() {
+    for (rst, text, broken_letters) in [
+        (1, "hello world", "ad"),
+        (1, "leet code", "lt"),
+        (0, "leet code", "e"),
+    ] {
+        println!("* {text:?} {broken_letters:?}");
+        assert_eq!(
+            Sol1935::can_be_typed_words(text.to_string(), broken_letters.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2399() {
     for (rst, s, distance) in [
         (
