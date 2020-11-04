@@ -413,6 +413,22 @@ fn test_3541() {
 }
 
 #[test]
+fn test_3571() {
+    for (rst, s1, s2) in [
+        ("abab", "aba", "bab"),
+        ("aaa", "aa", "aaa"),
+        ("ix", "x", "ix"), // 1043/1153
+    ] {
+        println!("* {s1:?} {s2:?}");
+        assert_eq!(
+            Sol3571::shortest_superstring(s1.to_string(), s2.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3602() {
     for (rst, n) in [("A91P1", 13), ("5101000", 36), ("F4240GJDGXS", 1000)] {
         println!("* {n}");

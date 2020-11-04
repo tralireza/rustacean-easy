@@ -757,6 +757,36 @@ impl Sol3541 {
     }
 }
 
+/// 3571 Find the Shortest Superstring II
+struct Sol3571 {}
+
+impl Sol3571 {
+    pub fn shortest_superstring(s1: String, s2: String) -> String {
+        fn overlap<'a>(s1: &'a str, s2: &str) -> &'a str {
+            for start in 0..s1.len() {
+                if s1[start..]
+                    .chars()
+                    .zip(s2.chars())
+                    .all(|(chr1, chr2)| chr1 == chr2)
+                {
+                    return &s1[start..];
+                }
+            }
+
+            ""
+        }
+
+        let cn12 = overlap(&s1[..], &s2[..]);
+        let cn21 = overlap(&s2[..], &s1[..]);
+
+        if cn12.len() >= cn21.len() {
+            s1.clone() + &s2[cn12.len().min(s2.len())..]
+        } else {
+            s2.clone() + &s1[cn21.len().min(s1.len())..]
+        }
+    }
+}
+
 /// 3602 Hexadeciaml and Hexatrigesimal Conversion
 struct Sol3602 {}
 
