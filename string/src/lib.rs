@@ -728,6 +728,35 @@ impl Sol3438 {
     }
 }
 
+/// 3541 Find Most Frequent Vowel and Consonant
+struct Sol3541 {}
+
+impl Sol3541 {
+    pub fn max_freq_sum(s: String) -> i32 {
+        use std::collections::HashMap;
+
+        let freqs: HashMap<char, i32> = s.chars().fold(HashMap::new(), |mut freqs, chr| {
+            freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
+            freqs
+        });
+
+        println!("-> {freqs:?}");
+
+        freqs
+            .iter()
+            .filter(|(chr, _)| "aeiou".contains(**chr))
+            .map(|(_, &f)| f)
+            .max()
+            .unwrap_or(0)
+            + freqs
+                .iter()
+                .filter(|(chr, _)| !"aeiou".contains(**chr))
+                .map(|(_, &f)| f)
+                .max()
+                .unwrap_or(0)
+    }
+}
+
 /// 3602 Hexadeciaml and Hexatrigesimal Conversion
 struct Sol3602 {}
 

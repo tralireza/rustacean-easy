@@ -404,6 +404,15 @@ fn test_3438() {
 }
 
 #[test]
+fn test_3541() {
+    for (rst, s) in [(6, "successes"), (3, "aeiaeia")] {
+        println!("* {s:?}");
+        assert_eq!(Sol3541::max_freq_sum(s.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3602() {
     for (rst, n) in [("A91P1", 13), ("5101000", 36), ("F4240GJDGXS", 1000)] {
         println!("* {n}");
