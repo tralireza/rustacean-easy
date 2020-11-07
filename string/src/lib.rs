@@ -698,7 +698,7 @@ impl Sol3362 {
             freqs.entry(chr).and_modify(|f| *f += 1).or_insert(1);
         }
 
-        s.chars().filter(|chr| freqs[&chr] < k).collect()
+        s.chars().filter(|chr| freqs[chr] < k).collect()
     }
 }
 
