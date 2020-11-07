@@ -719,8 +719,8 @@ impl Sol3438 {
             .zip(s.chars().skip(1))
             .filter(|(chr, nchr)| {
                 chr != nchr
-                    && freqs[&chr] == chr.to_digit(10).unwrap()
-                    && freqs[&nchr] == nchr.to_digit(10).unwrap()
+                    && freqs[chr] == chr.to_digit(10).unwrap()
+                    && freqs[nchr] == nchr.to_digit(10).unwrap()
             })
             .take(1)
             .flat_map(|(chr1, chr2)| vec![chr1, chr2])
