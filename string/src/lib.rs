@@ -833,7 +833,10 @@ impl Sol3606 {
             .filter(|(_, c)| {
                 !c.is_empty()
                     && c.chars().all(|chr| {
-                        chr.is_lowercase() || chr.is_uppercase() || chr.is_digit(10) || chr == '_'
+                        chr.is_lowercase()
+                            || chr.is_uppercase()
+                            || chr.is_ascii_digit()
+                            || chr == '_'
                     })
             })
             .collect();
