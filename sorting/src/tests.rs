@@ -21,6 +21,20 @@ fn test_252() {
 }
 
 #[test]
+fn test_2229() {
+    for (rst, nums) in [
+        (true, vec![1, 3, 4, 2]),
+        (false, vec![1, 3]),
+        (true, vec![3, 4, 5]),
+        (false, vec![0, 3, 0, 3]), // 138/140
+    ] {
+        println!("* {nums:?}");
+        assert_eq!(Sol2229::is_consecutive(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3667() {
     for (rst, nums) in [
         (vec![-1, 1, 3, -4, 5], vec![3, -1, -4, 1, 5]),

@@ -12,6 +12,17 @@ impl Sol252 {
     }
 }
 
+/// 2229 Check if an Array is Consecutive
+struct Sol2229 {}
+
+impl Sol2229 {
+    pub fn is_consecutive(mut nums: Vec<i32>) -> bool {
+        nums.sort();
+
+        nums.iter().zip(nums[0]..).filter(|&(&x, n)| x == n).count() == nums.len()
+    }
+}
+
 /// 3667 Sort Array By Absolute Value
 struct Sol3667 {}
 
