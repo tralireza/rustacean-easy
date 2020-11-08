@@ -45,3 +45,16 @@ fn test_3667() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3684() {
+    for (rst, nums, k) in [
+        (vec![100, 93, 90], vec![84, 93, 100, 77, 90], 3),
+        (vec![100, 93, 84], vec![84, 93, 100, 77, 93], 3),
+        (vec![2, 1], vec![1, 1, 1, 2, 2, 2], 6),
+    ] {
+        println!("* {nums:?} {k}");
+        assert_eq!(Sol3684::max_k_distinct(nums, k), rst);
+        println!(":: {rst:?}");
+    }
+}

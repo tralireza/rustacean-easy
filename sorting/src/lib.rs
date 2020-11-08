@@ -35,5 +35,17 @@ impl Sol3667 {
     }
 }
 
+/// 3684 Maximum Sum of At Most K Distinct Elements
+struct Sol3684 {}
+
+impl Sol3684 {
+    pub fn max_k_distinct(mut nums: Vec<i32>, k: i32) -> Vec<i32> {
+        nums.sort();
+        nums.dedup();
+
+        nums.into_iter().rev().take(k as usize).collect()
+    }
+}
+
 #[cfg(test)]
 mod tests;
