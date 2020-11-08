@@ -40,6 +40,23 @@ struct Sol3684 {}
 
 impl Sol3684 {
     pub fn max_k_distinct(mut nums: Vec<i32>, k: i32) -> Vec<i32> {
+        {
+            use std::cmp::Reverse;
+            use std::collections::BTreeSet;
+
+            let sorted: BTreeSet<Reverse<i32>> = nums.iter().map(|&n| Reverse(n)).collect();
+            println!("-> BTreeSet: {sorted:?}");
+
+            println!(
+                ":? {:?}",
+                sorted
+                    .iter()
+                    .take(k as usize)
+                    .map(|Reverse(n)| n)
+                    .collect::<Vec<_>>()
+            );
+        }
+
         nums.sort();
         nums.dedup();
 
