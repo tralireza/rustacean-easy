@@ -7,6 +7,32 @@ impl Sol1176 {
     /// 1 <= K <= N <= 10^5
     /// 0 <= C_i <= 2000
     pub fn diet_plan_performance(calories: Vec<i32>, k: i32, lower: i32, upper: i32) -> i32 {
+        {
+            let mut cur_sum = calories.iter().take(k as usize - 1).sum::<i32>();
+            println!(
+                ":? {}",
+                calories
+                    .iter()
+                    .skip(k as usize - 1)
+                    .scan(0, |prv, calory| {
+                        cur_sum += calory;
+
+                        let mut point = 0;
+                        if cur_sum < lower {
+                            point -= 1;
+                        } else if cur_sum > upper {
+                            point += 1;
+                        }
+
+                        cur_sum -= calories[*prv];
+                        *prv += 1;
+
+                        Some(point)
+                    })
+                    .sum::<i32>()
+            );
+        }
+
         calories
             .windows(k as usize)
             .map(|w| w.iter().sum::<i32>())
