@@ -1,6 +1,22 @@
 use super::*;
 
 #[test]
+fn test_1176() {
+    for (rst, calories, k, lower, upper) in [
+        (0, vec![1, 2, 3, 4, 5], 1, 3, 3),
+        (1, vec![3, 2], 2, 0, 1),
+        (0, vec![6, 5, 0, 0], 2, 1, 5),
+    ] {
+        println!("* {calories:?} {k} {lower} {upper}");
+        assert_eq!(
+            Sol1176::diet_plan_performance(calories, k, lower, upper),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1493() {
     for (rst, nums) in [
         (3, vec![1, 1, 0, 1]),

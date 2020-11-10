@@ -1,5 +1,28 @@
 //! # Sliding Window
 
+/// 1176 Diet Plan Performance
+struct Sol1176 {}
+
+impl Sol1176 {
+    /// 1 <= K <= N <= 10^5
+    /// 0 <= C_i <= 2000
+    pub fn diet_plan_performance(calories: Vec<i32>, k: i32, lower: i32, upper: i32) -> i32 {
+        calories
+            .windows(k as usize)
+            .map(|w| w.iter().sum::<i32>())
+            .map(|total| {
+                if total < lower {
+                    -1
+                } else if total > upper {
+                    1
+                } else {
+                    0
+                }
+            })
+            .sum()
+    }
+}
+
 /// 1493m Longest Subarray of 1's After Deleting One Element
 struct Sol1493 {}
 
