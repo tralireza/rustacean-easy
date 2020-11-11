@@ -1,6 +1,18 @@
 use super::*;
 
 #[test]
+fn test_1243() {
+    for (rst, arr) in [
+        (vec![6, 3, 3, 4], vec![6, 2, 3, 4]),
+        (vec![1, 4, 4, 4, 4, 5], vec![1, 6, 3, 4, 3, 5]),
+    ] {
+        println!("* {arr:?}");
+        assert_eq!(Sol1243::transform_array(arr), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3354() {
     for (rst, nums) in [
         (2, vec![1, 0, 2, 0, 3]),

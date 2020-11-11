@@ -1,5 +1,36 @@
 //! # Simulation
 
+/// 1243 Array Transformation
+struct Sol1243 {}
+
+impl Sol1243 {
+    pub fn transform_array(mut arr: Vec<i32>) -> Vec<i32> {
+        loop {
+            let mut n_arr = vec![];
+            n_arr.push(*arr.first().unwrap());
+            for n in arr.windows(3).map(|w| {
+                if w[0] < w[1] && w[2] < w[1] {
+                    w[1] - 1
+                } else if w[0] > w[1] && w[2] > w[1] {
+                    w[1] + 1
+                } else {
+                    w[1]
+                }
+            }) {
+                n_arr.push(n);
+            }
+            n_arr.push(*arr.last().unwrap());
+
+            if arr == n_arr {
+                return arr;
+            }
+
+            println!("-> {n_arr:?}");
+            arr = n_arr;
+        }
+    }
+}
+
 /// 3354 Make Array Element Equal to Zero
 struct Sol3354 {}
 
