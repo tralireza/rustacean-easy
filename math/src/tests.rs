@@ -13,6 +13,15 @@ fn test_1085() {
 }
 
 #[test]
+fn test_1118() {
+    for (rst, year, month) in [(31, 1992, 7), (29, 2000, 2), (28, 1900, 2)] {
+        println!("* {year} {month}");
+        assert_eq!(Sol1118::number_of_days(year, month), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1182() {
     for (rst, colors, queries) in [
         (

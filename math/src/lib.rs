@@ -19,6 +19,20 @@ impl Sol1085 {
     }
 }
 
+/// 1118 Number of Days in a Month
+struct Sol1118 {}
+
+impl Sol1118 {
+    pub fn number_of_days(year: i32, month: i32) -> i32 {
+        let mut days = [-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if year % 400 == 0 || year % 4 == 0 && year % 100 != 0 {
+            days[2] += 1;
+        }
+
+        days[month as usize]
+    }
+}
+
 /// 1182m Shortest Distance to Target Color
 struct Sol1182 {}
 
