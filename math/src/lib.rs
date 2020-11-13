@@ -123,6 +123,24 @@ impl Sol1182 {
     }
 }
 
+/// 1228 Missing Number In Arithmetic Progression
+struct Sol1228 {}
+
+impl Sol1228 {
+    pub fn missing_number(arr: Vec<i32>) -> i32 {
+        let d = (arr.last().unwrap() - arr.first().unwrap()) / arr.len() as i32;
+        println!("-> Arithmetic Difference (d): {d}");
+
+        for w in arr.windows(2) {
+            if w[1] - w[0] != d {
+                return w[0] + d;
+            }
+        }
+
+        arr[0]
+    }
+}
+
 /// 1317 Convert Integer to the Sum of Two No-Zero Integers
 struct Sol1317 {}
 

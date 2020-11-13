@@ -44,6 +44,15 @@ fn test_1182() {
 }
 
 #[test]
+fn test_1228() {
+    for (rst, arr) in [(9, vec![5, 7, 11, 13]), (14, vec![15, 13, 12])] {
+        println!("* {arr:?}");
+        assert_eq!(Sol1228::missing_number(arr), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1317() {
     for (rst, n) in [(vec![1, 1], 2), (vec![2, 9], 11)] {
         println!("* {n}");
