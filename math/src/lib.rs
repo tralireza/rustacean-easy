@@ -131,6 +131,20 @@ impl Sol1228 {
         let d = (arr.last().unwrap() - arr.first().unwrap()) / arr.len() as i32;
         println!("-> Arithmetic Difference (d): {d}");
 
+        {
+            let (mut l, mut r) = (0, arr.len() - 1);
+            while l < r {
+                let m = l + ((r - l) >> 1);
+                if arr[m] == arr[0] + d * m as i32 {
+                    l = m + 1;
+                } else {
+                    r = m;
+                }
+            }
+
+            println!(":? O(log(N)) Binary Search : {}", arr[0] + l as i32 * d);
+        }
+
         for w in arr.windows(2) {
             if w[1] - w[0] != d {
                 return w[0] + d;
