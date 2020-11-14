@@ -163,3 +163,12 @@ fn test_3658() {
         println!(":: {rst:?}");
     }
 }
+
+#[test]
+fn test_3674() {
+    for (rst, nums) in [(1, vec![1, 2]), (0, vec![5, 5, 5])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3674::min_operations(nums), rst);
+        println!(":: {rst:?}");
+    }
+}

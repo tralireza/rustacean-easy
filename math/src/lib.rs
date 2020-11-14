@@ -399,5 +399,18 @@ impl Sol3658 {
     }
 }
 
+/// 3674 Minimum Operations to Equalize Array
+struct Sol3674 {}
+
+impl Sol3674 {
+    pub fn min_operations(nums: Vec<i32>) -> i32 {
+        if nums.iter().all(|n| n == nums.first().unwrap()) {
+            return 0;
+        }
+
+        1
+    }
+}
+
 #[cfg(test)]
 mod tests;
