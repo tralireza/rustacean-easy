@@ -6,6 +6,26 @@ struct Sol1196 {}
 impl Sol1196 {
     /// 1 <= W_i <= 1000
     pub fn max_number_of_apples(mut weight: Vec<i32>) -> i32 {
+        {
+            use std::cmp::Reverse;
+            use std::collections::BinaryHeap;
+
+            // O(N + K*log(N))
+            let weight: BinaryHeap<Reverse<i32>> = weight.iter().map(|&w| Reverse(w)).collect();
+
+            println!("-> W Heap: {weight:?}");
+            println!(
+                ":? O(N + K*log(N)): {}",
+                weight
+                    .iter()
+                    .scan(0, |total_w, Reverse(w)| {
+                        *total_w += w;
+                        if *total_w <= 5000 { Some(1) } else { None }
+                    })
+                    .sum::<i32>()
+            );
+        }
+
         weight.sort(); // O(N*log(N))
         weight
             .iter()
