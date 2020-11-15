@@ -84,6 +84,25 @@ impl Sol1213 {
     }
 }
 
+/// 1426 Counting Elements
+struct Sol1426 {}
+
+impl Sol1426 {
+    pub fn count_elements(arr: Vec<i32>) -> i32 {
+        use std::collections::HashMap;
+
+        let freqs: HashMap<i32, i32> = arr.iter().fold(HashMap::new(), |mut freqs, &n| {
+            freqs.entry(n).and_modify(|f| *f += 1).or_insert(1);
+            freqs
+        });
+        println!("-> {freqs:?}");
+
+        arr.iter()
+            .filter(|&n| freqs.get(&(n + 1)).is_some())
+            .count() as _
+    }
+}
+
 /// 2395 Find Subarrays With Equal Sum
 struct Sol2395 {}
 

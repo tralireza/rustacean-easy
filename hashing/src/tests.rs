@@ -76,6 +76,19 @@ fn test_1213() {
 }
 
 #[test]
+fn test_1426() {
+    for (rst, arr) in [
+        (2, vec![1, 2, 3]),
+        (0, vec![1, 1, 3, 3, 5, 5, 7, 7]),
+        (3, vec![1, 3, 2, 3, 5, 0]), // 9/54
+    ] {
+        println!("* {arr:?}");
+        assert_eq!(Sol1426::count_elements(arr), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2395() {
     for (rst, nums) in [
         (true, vec![4, 2, 4]),
