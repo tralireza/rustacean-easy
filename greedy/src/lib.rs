@@ -1,5 +1,22 @@
 //! # Greedy
 
+/// 1196 How Many Apples Can You Put into the Basket
+struct Sol1196 {}
+
+impl Sol1196 {
+    /// 1 <= W_i <= 1000
+    pub fn max_number_of_apples(mut weight: Vec<i32>) -> i32 {
+        weight.sort(); // O(N*log(N))
+        weight
+            .iter()
+            .scan(0, |total_w, w| {
+                *total_w += w;
+                if *total_w <= 5000 { Some(1) } else { None }
+            })
+            .sum::<i32>()
+    }
+}
+
 /// 2511 Maximum Enemy Forts That Can Be Captured
 struct Sol2511 {}
 
