@@ -26,6 +26,32 @@ impl Sol1196 {
             );
         }
 
+        {
+            let freqs = weight.iter().fold([0; 1000 + 1], |mut freqs, &w| {
+                freqs[w as usize] += 1;
+                freqs
+            });
+            println!("-> W Frequency: {freqs:?}...");
+
+            println!(
+                ":? O(N): {}",
+                freqs
+                    .iter()
+                    .enumerate()
+                    .filter(|&(_, &f)| f > 0)
+                    .scan(5000, |capacity, (w, &f)| {
+                        if *capacity < w {
+                            None
+                        } else {
+                            let f = f.min(*capacity / w);
+                            *capacity -= f * w;
+                            Some(f)
+                        }
+                    })
+                    .sum::<usize>()
+            );
+        }
+
         weight.sort(); // O(N*log(N))
         weight
             .iter()
