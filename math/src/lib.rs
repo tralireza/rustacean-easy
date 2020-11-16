@@ -1,5 +1,24 @@
 //! # Math
 
+/// 1056 Confusing Number
+struct Sol1056 {}
+
+impl Sol1056 {
+    pub fn confusing_number(n: i32) -> bool {
+        n.to_string().chars().all(|chr| "01689".contains(chr))
+            && n.to_string()
+                .chars()
+                .map(|chr| match chr {
+                    '6' => '9',
+                    '9' => '6',
+                    _ => chr,
+                })
+                .rev()
+                .collect::<String>()
+                != n.to_string()
+    }
+}
+
 /// 1085 Sum of Digits in the Minimum Number
 struct Sol1085 {}
 

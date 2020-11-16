@@ -13,6 +13,15 @@ fn test_1085() {
 }
 
 #[test]
+fn test_1056() {
+    for (rst, n) in [(true, 6), (true, 89), (false, 11)] {
+        println!("* {n}");
+        assert_eq!(Sol1056::confusing_number(n), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1118() {
     for (rst, year, month) in [(31, 1992, 7), (29, 2000, 2), (28, 1900, 2)] {
         println!("* {year} {month}");
