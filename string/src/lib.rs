@@ -51,6 +51,28 @@ impl Sol293 {
     }
 }
 
+/// Sentence Similarity
+struct Sol734 {}
+
+impl Sol734 {
+    pub fn are_sentences_similar(
+        sentence1: Vec<String>,
+        sentence2: Vec<String>,
+        similar_pairs: Vec<Vec<String>>,
+    ) -> bool {
+        sentence1.len() == sentence2.len()
+            && sentence1
+                .iter()
+                .zip(sentence2.iter())
+                .filter(|(w1, w2)| w1 != w2)
+                .all(|(w1, w2)| {
+                    similar_pairs.iter().any(|pair| {
+                        pair[0] == *w1 && pair[1] == *w2 || pair[1] == *w1 && pair[0] == *w2
+                    })
+                })
+    }
+}
+
 /// 800 Similar RGB Color
 struct Sol800 {}
 

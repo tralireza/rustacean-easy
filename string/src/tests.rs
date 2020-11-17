@@ -53,6 +53,39 @@ fn test_293() {
 }
 
 #[test]
+fn test_734() {
+    for (rst, sentence1, sentence2, similar_pairs) in [
+        (
+            true,
+            vec!["great", "acting", "skills"],
+            vec!["fine", "drama", "talent"],
+            vec![["great", "fine"], ["drama", "acting"], ["skills", "talent"]],
+        ),
+        (true, vec!["great"], vec!["great"], vec![]),
+        (
+            false,
+            vec!["great"],
+            vec!["doubleplus", "great"],
+            vec![["great", "doubleplus"]],
+        ),
+    ] {
+        println!("* {sentence1:?} {sentence2:?} {similar_pairs:?}");
+        assert_eq!(
+            Sol734::are_sentences_similar(
+                sentence1.into_iter().map(|s| s.to_string()).collect(),
+                sentence2.into_iter().map(|s| s.to_string()).collect(),
+                similar_pairs
+                    .into_iter()
+                    .map(|a| a.into_iter().map(|s| s.to_string()).collect())
+                    .collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_800() {
     for (rst, color) in [("#11ee66", "#09f166"), ("#5544dd", "#4e3fe1")] {
         println!("* {color:?}");
