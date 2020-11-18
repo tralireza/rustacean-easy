@@ -53,6 +53,22 @@ fn test_293() {
 }
 
 #[test]
+fn test_422() {
+    for (rst, words) in [
+        (true, vec!["abcd", "bnrt", "crmy", "dtye"]),
+        (true, vec!["abcd", "bnrt", "crm", "dt"]),
+        (false, vec!["ball", "area", "read", "lady"]),
+    ] {
+        println!("* {words:?}");
+        assert_eq!(
+            Sol422::valid_word_square(words.into_iter().map(|w| w.to_string()).collect()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_734() {
     for (rst, sentence1, sentence2, similar_pairs) in [
         (

@@ -51,6 +51,21 @@ impl Sol293 {
     }
 }
 
+/// 422 Valid Word Square
+struct Sol422 {}
+
+impl Sol422 {
+    pub fn valid_word_square(words: Vec<String>) -> bool {
+        words.iter().enumerate().all(|(i, word)| {
+            *word
+                == words
+                    .iter()
+                    .flat_map(|word| word.chars().nth(i))
+                    .collect::<String>()
+        })
+    }
+}
+
 /// Sentence Similarity
 struct Sol734 {}
 
