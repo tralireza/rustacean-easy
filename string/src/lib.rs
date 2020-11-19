@@ -51,6 +51,38 @@ impl Sol293 {
     }
 }
 
+/// 408 Valid Word Abberviation
+struct Sol408 {}
+
+impl Sol408 {
+    pub fn valid_word_abbreviation(word: String, abbr: String) -> bool {
+        let word: Vec<_> = word.chars().collect();
+        let abbr: Vec<_> = abbr.chars().collect();
+
+        let (mut w, mut a) = (0, 0);
+
+        while w < word.len() && a < abbr.len() {
+            if word[w] == abbr[a] {
+                w += 1;
+                a += 1;
+            } else if abbr[a] == '0' {
+                return false;
+            } else if "0123456789".contains(abbr[a]) {
+                let mut count = 0;
+                while a < abbr.len() && "0123456789".contains(abbr[a]) {
+                    count = 10 * count + abbr[a].to_digit(10).unwrap();
+                    a += 1;
+                }
+                w += count as usize;
+            } else {
+                return false;
+            }
+        }
+
+        w == word.len() && a == abbr.len()
+    }
+}
+
 /// 422 Valid Word Square
 struct Sol422 {}
 

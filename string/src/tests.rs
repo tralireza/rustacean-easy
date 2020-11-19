@@ -53,6 +53,22 @@ fn test_293() {
 }
 
 #[test]
+fn test_408() {
+    for (rst, word, abbr) in [
+        (true, "internationalization", "i12iz4n"),
+        (false, "apple", "a2e"),
+        (false, "hi", "1"), // 317/324
+    ] {
+        println!("* {word:?} {abbr:?}");
+        assert_eq!(
+            Sol408::valid_word_abbreviation(word.to_string(), abbr.to_string()),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_422() {
     for (rst, words) in [
         (true, vec!["abcd", "bnrt", "crmy", "dtye"]),
