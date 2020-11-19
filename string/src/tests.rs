@@ -57,7 +57,8 @@ fn test_408() {
     for (rst, word, abbr) in [
         (true, "internationalization", "i12iz4n"),
         (false, "apple", "a2e"),
-        (false, "hi", "1"), // 317/324
+        (false, "hi", "1"),                        // 317/324
+        (true, "internationalization", "i5a11o1"), // 181/324
     ] {
         println!("* {word:?} {abbr:?}");
         assert_eq!(
