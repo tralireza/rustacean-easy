@@ -22,6 +22,25 @@ fn test_118() {
 }
 
 #[test]
+fn test_163() {
+    for (rst, nums, lower, upper) in [
+        (
+            vec![[2, 2], [4, 49], [51, 74], [76, 99]],
+            vec![0, 1, 3, 50, 75],
+            0,
+            99,
+        ),
+        (vec![], vec![-1], -1, -1),
+    ] {
+        let rst: Vec<Vec<_>> = rst.into_iter().map(|a| a.into_iter().collect()).collect();
+
+        println!("* {nums:?} [{lower} {upper}]");
+        assert_eq!(Sol163::find_missing_ranges(nums, lower, upper), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_346() {
     let mut o = Sol346::new(3);
     for (rst, val) in [(1.0, 1), (5.5, 10), (4.66667, 3), (6.0, 5)] {

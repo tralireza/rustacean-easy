@@ -20,6 +20,39 @@ impl Sol118 {
     }
 }
 
+/// 163 Missing Ranges
+struct Sol163 {}
+
+impl Sol163 {
+    /// -10^9 <= L <= U <= 10^9
+    pub fn find_missing_ranges(nums: Vec<i32>, lower: i32, upper: i32) -> Vec<Vec<i32>> {
+        let mut missing: Vec<_> = nums
+            .windows(2)
+            .flat_map(|w| {
+                if w[0] + 1 == w[1] {
+                    None
+                } else {
+                    Some(vec![w[0] + 1, w[1] - 1])
+                }
+            })
+            .collect();
+
+        if let Some(&first) = nums.first() {
+            if lower < first {
+                missing.insert(0, vec![lower, first - 1]);
+            }
+        }
+
+        if let Some(&last) = nums.last() {
+            if last < upper {
+                missing.push(vec![last + 1, upper]);
+            }
+        }
+
+        missing
+    }
+}
+
 /// 346 Moving Average from Data Stream
 struct Sol346 {
     queue: std::collections::VecDeque<i32>,
