@@ -26,6 +26,10 @@ struct Sol163 {}
 impl Sol163 {
     /// -10^9 <= L <= U <= 10^9
     pub fn find_missing_ranges(nums: Vec<i32>, lower: i32, upper: i32) -> Vec<Vec<i32>> {
+        if nums.is_empty() {
+            return vec![vec![lower, upper]];
+        }
+
         let mut missing: Vec<_> = nums
             .windows(2)
             .flat_map(|w| {

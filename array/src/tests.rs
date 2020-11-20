@@ -31,6 +31,7 @@ fn test_163() {
             99,
         ),
         (vec![], vec![-1], -1, -1),
+        (vec![[1, 1]], vec![], 1, 1), // 33/39
     ] {
         let rst: Vec<Vec<_>> = rst.into_iter().map(|a| a.into_iter().collect()).collect();
 
