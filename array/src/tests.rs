@@ -548,7 +548,11 @@ fn test_3663() {
 
 #[test]
 fn test_3678() {
-    for (rst, nums) in [(6, vec![3, 5]), (3, vec![-1, 1, 2])] {
+    for (rst, nums) in [
+        (6, vec![3, 5]),
+        (3, vec![-1, 1, 2]),
+        (1, vec![-34]), // 3381/3500
+    ] {
         println!("* {nums:?}");
         assert_eq!(Sol3678::smallest_absent(nums), rst);
         println!(":: {rst:?}");
