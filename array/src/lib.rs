@@ -904,6 +904,21 @@ impl Sol3663 {
     }
 }
 
+/// 3678 Smallest Absent Positive Greater Than Average
+struct Sol3678 {}
+
+impl Sol3678 {
+    pub fn smallest_absent(nums: Vec<i32>) -> i32 {
+        let mut x = (nums.iter().sum::<i32>() / nums.len() as i32 + 1).max(1);
+        loop {
+            if !nums.contains(&x) {
+                return x;
+            }
+            x += 1;
+        }
+    }
+}
+
 /// 3683 Earliest Time to Finish One Task
 struct Sol3683 {}
 
