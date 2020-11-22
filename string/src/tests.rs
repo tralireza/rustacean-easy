@@ -86,6 +86,28 @@ fn test_422() {
 }
 
 #[test]
+fn test_604() {
+    let mut o = StringIterator604::new("L1e2t1C1o1d1e1".to_string());
+
+    for rst in "LeetCo".chars() {
+        println!("* {rst:?}");
+        assert_eq!(o.next(), rst);
+    }
+    for rst in [true, true] {
+        println!("* {rst:?}");
+        assert_eq!(o.has_next(), rst);
+    }
+    for rst in "de ".chars() {
+        println!("* {rst:?}");
+        assert_eq!(o.next(), rst);
+    }
+    for rst in [false, false] {
+        println!("* {rst:?}");
+        assert_eq!(o.has_next(), rst);
+    }
+}
+
+#[test]
 fn test_734() {
     for (rst, sentence1, sentence2, similar_pairs) in [
         (

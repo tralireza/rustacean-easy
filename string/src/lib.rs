@@ -98,6 +98,58 @@ impl Sol422 {
     }
 }
 
+/// 604 Design Compressed String Iterator
+struct StringIterator604 {
+    cstr: Vec<char>,
+    cstr_cur: usize,
+    chr: char,
+    chr_counter: u32,
+}
+
+impl StringIterator604 {
+    fn new(compressed_string: String) -> Self {
+        StringIterator604 {
+            cstr: compressed_string.chars().collect(),
+            cstr_cur: 0,
+            chr: ' ',
+            chr_counter: 0,
+        }
+    }
+
+    fn next(&mut self) -> char {
+        if !self.has_next() {
+            return ' ';
+        }
+
+        if self.chr_counter > 0 {
+            self.chr_counter -= 1;
+        } else {
+            self.chr = self.cstr[self.cstr_cur];
+            self.cstr_cur += 1;
+
+            self.chr_counter = 0;
+            for d in self
+                .cstr
+                .iter()
+                .skip(self.cstr_cur)
+                .take_while(|&&chr| "0123456789".contains(chr))
+                .flat_map(|chr| chr.to_digit(10))
+            {
+                self.cstr_cur += 1;
+                self.chr_counter = 10 * self.chr_counter + d;
+            }
+
+            self.chr_counter -= 1;
+        }
+
+        self.chr
+    }
+
+    fn has_next(&mut self) -> bool {
+        self.chr_counter > 0 || self.cstr_cur < self.cstr.len()
+    }
+}
+
 /// Sentence Similarity
 struct Sol734 {}
 
