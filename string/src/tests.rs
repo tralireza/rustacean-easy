@@ -88,7 +88,6 @@ fn test_422() {
 #[test]
 fn test_604() {
     let mut o = StringIterator604::new("L1e2t1C1o1d1e1".to_string());
-
     for rst in "LeetCo".chars() {
         println!("* {rst:?}");
         assert_eq!(o.next(), rst);
@@ -101,7 +100,7 @@ fn test_604() {
         println!("* {rst:?}");
         assert_eq!(o.next(), rst);
     }
-    for rst in [false, false] {
+    for rst in [false, false, false] {
         println!("* {rst:?}");
         assert_eq!(o.has_next(), rst);
     }
