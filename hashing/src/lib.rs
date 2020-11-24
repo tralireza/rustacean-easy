@@ -347,6 +347,25 @@ impl Sol2815 {
     }
 }
 
+/// 3005 Count Elements With Maximum Frequency
+struct Sol3005 {}
+
+impl Sol3005 {
+    pub fn max_frequency_elements(nums: Vec<i32>) -> i32 {
+        use std::collections::HashMap;
+
+        let freqs = nums.iter().fold(HashMap::new(), |mut freqs, &n| {
+            freqs.entry(n).and_modify(|f| *f += 1).or_insert(1);
+
+            freqs
+        });
+
+        nums.iter()
+            .filter(|n| freqs.get(n) == freqs.values().max())
+            .count() as _
+    }
+}
+
 /// 3032 Count Numbers With Unique Digits II
 struct Sol3032 {}
 

@@ -175,6 +175,15 @@ fn test_2815() {
 }
 
 #[test]
+fn test_3005() {
+    for (rst, nums) in [(4, vec![1, 2, 2, 3, 1, 4]), (5, vec![1, 2, 3, 4, 5])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol3005::max_frequency_elements(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3032() {
     for (rst, a, b) in [(19, 1, 20), (10, 9, 19), (27, 80, 120)] {
         println!("* {a} {b}");
