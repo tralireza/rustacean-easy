@@ -271,6 +271,8 @@ struct Sol2396 {}
 
 impl Sol2396 {
     pub fn is_strictly_palindromic(n: i32) -> bool {
+        println!(":? false");
+
         (2..=n - 2).all(|base| {
             let mut digits = vec![];
             let mut n = n;
