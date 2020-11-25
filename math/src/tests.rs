@@ -93,6 +93,15 @@ fn test_2348() {
 }
 
 #[test]
+fn test_2396() {
+    for (rst, n) in [(false, 9), (false, 4)] {
+        println!("* {n}");
+        assert_eq!(Sol2396::is_strictly_palindromic(n), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2413() {
     for (rst, n) in [(10, 5), (6, 6)] {
         println!("* {n}");

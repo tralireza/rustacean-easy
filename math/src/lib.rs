@@ -266,6 +266,28 @@ impl Sol2348 {
     }
 }
 
+/// 2396m Strictly Palindromic Number
+struct Sol2396 {}
+
+impl Sol2396 {
+    pub fn is_strictly_palindromic(n: i32) -> bool {
+        (2..=n - 2).all(|base| {
+            let mut digits = vec![];
+            let mut n = n;
+            while n > 0 {
+                digits.push(n % base);
+                n /= base;
+            }
+
+            digits
+                .iter()
+                .zip(digits.iter().rev())
+                .take(digits.len() / 2)
+                .all(|(d, q)| d == q)
+        })
+    }
+}
+
 /// 2413 Smallest Even Multiple
 struct Sol2413 {}
 
