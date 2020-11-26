@@ -80,6 +80,15 @@ fn test_1323() {
 }
 
 #[test]
+fn test_1689() {
+    for (rst, n) in [(3, "32"), (8, "82734"), (9, "27346209830709182346")] {
+        println!("* {n}");
+        assert_eq!(Sol1689::min_partitions(n.to_string()), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2348() {
     for (rst, nums) in [
         (6, vec![1, 3, 0, 0, 2, 0, 0, 4]),

@@ -247,6 +247,15 @@ impl Sol1323 {
     }
 }
 
+/// 1689m Partitioning Into Minimum Number Of Deci-Binary Numbers
+struct Sol1689 {}
+
+impl Sol1689 {
+    pub fn min_partitions(n: String) -> i32 {
+        n.chars().flat_map(|chr| chr.to_digit(10)).max().unwrap() as _
+    }
+}
+
 /// 2348m Number of Zero-Filled Subarrays
 struct Sol2348 {}
 
