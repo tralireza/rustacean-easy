@@ -309,6 +309,23 @@ impl Sol2413 {
     }
 }
 
+/// 2433m Find The Original Array of Prefix Xor
+struct Sol2433 {}
+
+impl Sol2433 {
+    pub fn find_array(pref: Vec<i32>) -> Vec<i32> {
+        pref.iter()
+            .take(1)
+            .copied()
+            .chain(
+                pref.iter()
+                    .zip(pref.iter().skip(1))
+                    .map(|(&cur, &next)| cur ^ next),
+            )
+            .collect()
+    }
+}
+
 /// 2525 Categorize Box According to Criteria
 struct Sol2525 {}
 

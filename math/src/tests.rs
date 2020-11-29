@@ -120,6 +120,18 @@ fn test_2413() {
 }
 
 #[test]
+fn test_2433() {
+    for (rst, pref) in [
+        (vec![5, 7, 2, 3, 2], vec![5, 2, 0, 3, 1]),
+        (vec![13], vec![13]),
+    ] {
+        println!("* {pref:?}");
+        assert_eq!(Sol2433::find_array(pref), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2525() {
     for (rst, length, width, height, mass) in
         [("Heavy", 1000, 35, 700, 300), ("Neither", 200, 50, 800, 50)]
