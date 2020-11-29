@@ -314,6 +314,15 @@ struct Sol2433 {}
 
 impl Sol2433 {
     pub fn find_array(pref: Vec<i32>) -> Vec<i32> {
+        println!(
+            ":? {:?}",
+            pref[..1]
+                .iter()
+                .copied()
+                .chain(pref.windows(2).map(|w| w[0] ^ w[1]))
+                .collect::<Vec<_>>()
+        );
+
         pref.iter()
             .take(1)
             .copied()
