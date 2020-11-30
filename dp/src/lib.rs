@@ -81,7 +81,7 @@ impl Sol740 {
 
         println!("-> {scores:?}");
 
-        scores.into_iter().last().unwrap()
+        scores.into_iter().next_back().unwrap()
     }
 }
 
