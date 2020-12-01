@@ -11,6 +11,8 @@ impl Sol120 {
             .flat_map(|row| row.iter().copied())
             .collect();
 
+        println!("-> {cur:?}");
+
         for row in triangle.iter().skip(1) {
             let mut next = vec![];
             next.push(row[0] + cur[0]);
