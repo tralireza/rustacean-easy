@@ -1,6 +1,21 @@
 use super::*;
 
 #[test]
+fn test_120() {
+    for (rst, triangle) in [
+        (
+            11,
+            vec![vec![2], vec![3, 4], vec![6, 5, 7], vec![4, 1, 8, 3]],
+        ),
+        (-10, vec![vec![-10]]),
+    ] {
+        println!("* {triangle:?}");
+        assert_eq!(Sol120::minimum_total(triangle), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_198() {
     for (rst, nums) in [(4, vec![1, 2, 3, 1]), (12, vec![2, 7, 9, 3, 1])] {
         println!("* {nums:?}");

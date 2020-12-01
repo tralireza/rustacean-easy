@@ -1,5 +1,34 @@
 //! # DP (aka: Dynamic Programming)
 
+/// 120m Triangle
+struct Sol120 {}
+
+impl Sol120 {
+    pub fn minimum_total(triangle: Vec<Vec<i32>>) -> i32 {
+        let mut cur: Vec<_> = triangle
+            .iter()
+            .take(1)
+            .flat_map(|row| row.iter().copied())
+            .collect();
+
+        for row in triangle.iter().skip(1) {
+            let mut next = vec![];
+            next.push(row[0] + cur[0]);
+
+            for (c, dist) in row.iter().take(row.len() - 1).enumerate().skip(1) {
+                next.push(cur[c - 1].min(cur[c]) + dist);
+            }
+
+            next.push(row.last().unwrap() + cur.last().unwrap());
+            cur = next;
+
+            println!("-> {cur:?}");
+        }
+
+        cur.into_iter().min().unwrap() as _
+    }
+}
+
 /// 198m House Robber
 struct Sol198 {}
 
