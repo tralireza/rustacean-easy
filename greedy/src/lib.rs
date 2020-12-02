@@ -63,6 +63,35 @@ impl Sol1196 {
     }
 }
 
+/// 1282m Group the People Given the Group Size They Belong To
+struct Sol1282 {}
+
+impl Sol1282 {
+    pub fn group_the_people(group_sizes: Vec<i32>) -> Vec<Vec<i32>> {
+        use std::collections::HashMap;
+
+        let members: HashMap<i32, Vec<_>> =
+            group_sizes
+                .iter()
+                .enumerate()
+                .fold(HashMap::new(), |mut members, (person, &group)| {
+                    members.entry(group).or_insert(vec![]).push(person);
+
+                    members
+                });
+        println!("-> {members:?}");
+
+        members
+            .iter()
+            .flat_map(|(group, members)| {
+                members
+                    .chunks(*group as usize)
+                    .map(|chk| chk.iter().map(|&v| v as i32).collect::<Vec<_>>())
+            })
+            .collect()
+    }
+}
+
 /// 2511 Maximum Enemy Forts That Can Be Captured
 struct Sol2511 {}
 

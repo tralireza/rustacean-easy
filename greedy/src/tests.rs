@@ -13,6 +13,25 @@ fn test_1196() {
 }
 
 #[test]
+fn test_1282() {
+    for (rst, group_sizes) in [
+        (
+            vec![vec![5], vec![0, 1, 2], vec![3, 4, 6]],
+            vec![3, 3, 3, 3, 3, 1, 3],
+        ),
+        (
+            vec![vec![1], vec![0, 5], vec![2, 3, 4]],
+            vec![2, 1, 3, 3, 3, 2],
+        ),
+    ] {
+        println!("* {group_sizes:?}");
+        let groups = Sol1282::group_the_people(group_sizes);
+        assert!(groups.len() == rst.len() && groups.iter().all(|group| rst.contains(group)));
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2511() {
     for (rst, forts) in [
         (4, vec![1, 0, 0, -1, 0, 0, 0, 0, 1]),
