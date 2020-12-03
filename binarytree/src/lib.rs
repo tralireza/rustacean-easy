@@ -30,7 +30,7 @@ impl Sol2265 {
 
                     (lcount + rcount + 1, lsum + rsum + n.val, x)
                 }
-                None => return (0, 0, 0),
+                None => (0, 0, 0),
             }
         }
 
