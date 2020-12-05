@@ -1,6 +1,26 @@
 use super::*;
 
 #[test]
+fn test_812() {
+    for (rst, points) in [
+        (2.0, vec![[0, 0], [0, 1], [1, 0], [0, 2], [2, 0]]),
+        (0.5, vec![[1, 0], [0, 0], [0, 1]]),
+    ] {
+        println!("* {points:?}");
+        assert_eq!(
+            Sol812::largest_triangle_area(
+                points
+                    .into_iter()
+                    .map(|a| a.into_iter().collect())
+                    .collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1085() {
     for (rst, nums) in [
         (0, vec![34, 23, 1, 24, 75, 33, 54, 8]),

@@ -1,5 +1,34 @@
 //! # Math
 
+/// 812 Largest Triangle Area
+struct Sol812 {}
+
+impl Sol812 {
+    /// 3 <= N <= 50
+    pub fn largest_triangle_area(points: Vec<Vec<i32>>) -> f64 {
+        fn gauss_area(p: &[i32], q: &[i32], r: &[i32]) -> i32 {
+            (p[0] * q[1] - p[1] * q[0] + q[0] * r[1] - q[1] * r[0] + r[0] * p[1] - r[1] * p[0])
+                .abs()
+        }
+
+        points
+            .iter()
+            .enumerate()
+            .take(points.len() - 2)
+            .flat_map(|(i, p)| {
+                points
+                    .iter()
+                    .enumerate()
+                    .take(points.len() - 1)
+                    .skip(i + 1)
+                    .flat_map(|(j, q)| points.iter().skip(j + 1).map(|r| gauss_area(p, q, r)))
+            })
+            .max()
+            .unwrap() as f64
+            * 0.5
+    }
+}
+
 /// 1056 Confusing Number
 struct Sol1056 {}
 
