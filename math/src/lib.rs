@@ -7,6 +7,8 @@ impl Sol812 {
     /// 3 <= N <= 50
     pub fn largest_triangle_area(points: Vec<Vec<i32>>) -> f64 {
         fn gauss_area(p: &[i32], q: &[i32], r: &[i32]) -> i32 {
+            println!("-> {p:?} {q:?} {r:?}");
+
             (p[0] * q[1] - p[1] * q[0] + q[0] * r[1] - q[1] * r[0] + r[0] * p[1] - r[1] * p[0])
                 .abs()
         }
