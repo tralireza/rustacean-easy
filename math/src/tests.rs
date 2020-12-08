@@ -21,6 +21,15 @@ fn test_812() {
 }
 
 #[test]
+fn test_976() {
+    for (rst, nums) in [(5, vec![2, 1, 2]), (0, vec![1, 2, 1, 10])] {
+        println!("* {nums:?}");
+        assert_eq!(Sol976::largest_perimeter(nums), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1085() {
     for (rst, nums) in [
         (0, vec![34, 23, 1, 24, 75, 33, 54, 8]),

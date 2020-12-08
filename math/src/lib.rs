@@ -31,6 +31,22 @@ impl Sol812 {
     }
 }
 
+/// 976 Largest Perimeter Triangle
+struct Sol976 {}
+
+impl Sol976 {
+    pub fn largest_perimeter(mut nums: Vec<i32>) -> i32 {
+        nums.sort_unstable();
+        nums.reverse();
+
+        nums.windows(3)
+            .filter(|w| w[0] < w[1] + w[2])
+            .map(|w| w.iter().sum())
+            .max()
+            .unwrap_or(0)
+    }
+}
+
 /// 1056 Confusing Number
 struct Sol1056 {}
 
