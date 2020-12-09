@@ -11,6 +11,16 @@ struct TreeNode {
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
+impl TreeNode {
+    fn new(val: i32) -> Self {
+        TreeNode {
+            val,
+            left: None,
+            right: None,
+        }
+    }
+}
+
 /// 2265m Count Nodes Equal to Average of Subtree
 struct Sol2265 {}
 
