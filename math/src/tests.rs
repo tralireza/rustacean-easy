@@ -118,6 +118,31 @@ fn test_1689() {
 }
 
 #[test]
+fn test_1828() {
+    for (rst, points, queries) in [(
+        vec![3, 2, 2],
+        vec![[1, 3], [3, 3], [5, 3], [2, 2]],
+        vec![[2, 3, 1], [4, 3, 1], [1, 1, 2]],
+    )] {
+        println!("* {points:?} {queries:?}");
+        assert_eq!(
+            Sol1828::count_points(
+                points
+                    .into_iter()
+                    .map(|a| a.into_iter().collect())
+                    .collect(),
+                queries
+                    .into_iter()
+                    .map(|a| a.into_iter().collect())
+                    .collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_2348() {
     for (rst, nums) in [
         (6, vec![1, 3, 0, 0, 2, 0, 0, 4]),

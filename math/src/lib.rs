@@ -303,6 +303,26 @@ impl Sol1689 {
     }
 }
 
+/// 1828m Queries on Number of Points Inside a Circle
+struct Sol1828 {}
+
+impl Sol1828 {
+    /// 1 <= N, Q <= 500
+    pub fn count_points(points: Vec<Vec<i32>>, queries: Vec<Vec<i32>>) -> Vec<i32> {
+        queries
+            .iter()
+            .map(|v| (v[0], v[1], v[2]))
+            .map(|(x, y, r)| {
+                points
+                    .iter()
+                    .map(|v| (v[0], v[1]))
+                    .filter(|(p, q)| (p - x).pow(2) + (q - y).pow(2) <= r * r)
+                    .count() as i32
+            })
+            .collect()
+    }
+}
+
 /// 2348m Number of Zero-Filled Subarrays
 struct Sol2348 {}
 
