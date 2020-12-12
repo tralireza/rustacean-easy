@@ -21,7 +21,7 @@ impl Sol535 {
         self.codec.insert(hash.clone(), long_url);
         println!("-> {:?}", self.codec);
 
-        format!("http://tinyurl.com/{}", hash)
+        format!("http://tinyurl.com/{hash}")
     }
 
     fn decode(&self, short_url: String) -> String {
@@ -129,9 +129,7 @@ impl Sol1426 {
         });
         println!("-> {freqs:?}");
 
-        arr.iter()
-            .filter(|&n| freqs.get(&(n + 1)).is_some())
-            .count() as _
+        arr.iter().filter(|&n| freqs.contains_key(&(n + 1))).count() as _
     }
 }
 
