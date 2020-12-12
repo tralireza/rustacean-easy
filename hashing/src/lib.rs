@@ -1,15 +1,14 @@
 //! # Hashing
 
 /// 535m Encode and Decode TinyURL
+#[derive(Default)]
 struct Sol535 {
     codec: std::collections::HashMap<String, String>,
 }
 
 impl Sol535 {
     fn new() -> Self {
-        Sol535 {
-            codec: std::collections::HashMap::new(),
-        }
+        Self::default()
     }
 
     fn encode(&mut self, long_url: String) -> String {
