@@ -1,5 +1,38 @@
 //! # Hashing
 
+/// 535m Encode and Decode TinyURL
+struct Sol535 {
+    codec: std::collections::HashMap<String, String>,
+}
+
+impl Sol535 {
+    fn new() -> Self {
+        Sol535 {
+            codec: std::collections::HashMap::new(),
+        }
+    }
+
+    fn encode(&mut self, long_url: String) -> String {
+        use std::hash::{DefaultHasher, Hash, Hasher};
+
+        let mut hasher = DefaultHasher::new();
+        long_url.hash(&mut hasher);
+        let hash = hasher.finish().to_string();
+
+        self.codec.insert(hash.clone(), long_url);
+        println!("-> {:?}", self.codec);
+
+        format!("http://tinyurl.com/{}", hash)
+    }
+
+    fn decode(&self, short_url: String) -> String {
+        short_url
+            .strip_prefix("http://tinyurl.com/")
+            .map_or("", |hash_str| self.codec.get(hash_str).unwrap())
+            .to_string()
+    }
+}
+
 /// 760 Find Anagram Mappings
 struct Sol760 {}
 

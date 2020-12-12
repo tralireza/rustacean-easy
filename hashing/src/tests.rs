@@ -1,6 +1,15 @@
 use super::*;
 
 #[test]
+fn test_535() {
+    let mut o = Sol535::new();
+    for url in ["https://leetcode.com/problems/design-tinyurl"].iter() {
+        let tiny = o.encode(url.to_string());
+        assert_eq!(o.decode(tiny), url.to_string());
+    }
+}
+
+#[test]
 fn test_760() {
     for (rst, nums1, nums2) in [
         (
