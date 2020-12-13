@@ -4,6 +4,7 @@
 #[derive(Default)]
 struct Sol535 {
     codec: std::collections::HashMap<String, String>,
+    t_codec: std::collections::HashMap<u64, String>,
 }
 
 impl Sol535 {
@@ -16,15 +17,33 @@ impl Sol535 {
 
         let mut hasher = DefaultHasher::new();
         long_url.hash(&mut hasher);
-        let hash = hasher.finish().to_string();
 
-        self.codec.insert(hash.clone(), long_url);
+        let hash = hasher.finish();
+        let hash_str = hasher.finish().to_string();
+
+        self.codec.insert(hash_str.clone(), long_url.clone());
+        self.t_codec.insert(hash, long_url.clone());
+
         println!("-> {:?}", self.codec);
+        println!("-> http://tinyurl.com/{hash:x}   {:?}", self.t_codec);
 
-        format!("http://tinyurl.com/{hash}")
+        format!("http://tinyurl.com/{hash_str}")
     }
 
     fn decode(&self, short_url: String) -> String {
+        println!(
+            "-> {:?}",
+            self.t_codec
+                .get(
+                    &short_url
+                        .strip_prefix("http://tinyurl.com/")
+                        .unwrap()
+                        .parse::<u64>()
+                        .unwrap()
+                )
+                .unwrap()
+        );
+
         short_url
             .strip_prefix("http://tinyurl.com/")
             .map_or("", |hash_str| self.codec.get(hash_str).unwrap())
