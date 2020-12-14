@@ -45,7 +45,7 @@ impl Sol1302 {
 
         println!("-> {dsum:?}");
 
-        *dsum.last_entry().unwrap().get()
+        dsum.last_entry().map_or(0, |e| *e.get())
     }
 }
 
