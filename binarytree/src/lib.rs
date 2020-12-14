@@ -21,6 +21,34 @@ impl TreeNode {
     }
 }
 
+/// 1302m Deepest Leaves Sum
+struct Sol1302 {}
+
+impl Sol1302 {
+    pub fn deepest_leaves_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        use std::collections::BTreeMap;
+
+        let mut dsum = BTreeMap::new();
+        fn walk(dsum: &mut BTreeMap<usize, i32>, n: Option<Rc<RefCell<TreeNode>>>, d: usize) {
+            if let Some(n) = n {
+                let n = n.borrow();
+                dsum.entry(d)
+                    .and_modify(|sum| *sum += n.val)
+                    .or_insert(n.val);
+
+                walk(dsum, n.left.clone(), d + 1);
+                walk(dsum, n.right.clone(), d + 1);
+            }
+        }
+
+        walk(&mut dsum, root, 0);
+
+        println!("-> {dsum:?}");
+
+        *dsum.last_entry().unwrap().get()
+    }
+}
+
 /// 2265m Count Nodes Equal to Average of Subtree
 struct Sol2265 {}
 
