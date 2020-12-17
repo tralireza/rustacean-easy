@@ -5,6 +5,21 @@ struct Sol1518 {}
 
 impl Sol1518 {
     pub fn num_water_bottles(mut num_bottles: i32, num_exchange: i32) -> i32 {
+        {
+            let mut total = 0;
+
+            let mut full = num_bottles;
+            while full >= num_exchange {
+                let e = full / num_exchange;
+                total += e * num_exchange;
+
+                full -= e * num_exchange;
+                full += e;
+            }
+
+            println!(":? {}", total + full);
+        }
+
         let mut total = 0;
         while num_bottles >= num_exchange {
             total += num_exchange;
