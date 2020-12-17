@@ -1,6 +1,15 @@
 use super::*;
 
 #[test]
+fn test_1518() {
+    for (rst, num_bottles, num_exchanges) in [(13, 9, 3), (19, 15, 4)] {
+        println!("* {num_bottles} {num_exchanges}");
+        assert_eq!(Sol1518::num_water_bottles(num_bottles, num_exchanges), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1243() {
     for (rst, arr) in [
         (vec![6, 3, 3, 4], vec![6, 2, 3, 4]),

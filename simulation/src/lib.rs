@@ -1,5 +1,22 @@
 //! # Simulation
 
+/// 1518 Water Bottles
+struct Sol1518 {}
+
+impl Sol1518 {
+    pub fn num_water_bottles(mut num_bottles: i32, num_exchange: i32) -> i32 {
+        let mut total = 0;
+        while num_bottles >= num_exchange {
+            total += num_exchange;
+
+            num_bottles -= num_exchange;
+            num_bottles += 1;
+        }
+
+        total + num_bottles
+    }
+}
+
 /// 1243 Array Transformation
 struct Sol1243 {}
 
