@@ -22,6 +22,15 @@ fn test_1243() {
 }
 
 #[test]
+fn test_3100() {
+    for (rst, num_bottles, num_exchange) in [(15, 13, 6), (13, 10, 3)] {
+        println!("* {num_bottles} {num_exchange}");
+        assert_eq!(Sol3100::max_bottles_drunk(num_bottles, num_exchange), rst);
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_3354() {
     for (rst, nums) in [
         (2, vec![1, 0, 2, 0, 3]),

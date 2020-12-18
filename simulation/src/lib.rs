@@ -63,6 +63,27 @@ impl Sol1243 {
     }
 }
 
+/// 3100m Water Bottles II
+struct Sol3100 {}
+
+impl Sol3100 {
+    pub fn max_bottles_drunk(num_bottles: i32, mut num_exchange: i32) -> i32 {
+        let mut total = num_bottles;
+        let mut empty = num_bottles;
+
+        while empty >= num_exchange {
+            empty -= num_exchange;
+
+            total += 1;
+            empty += 1;
+
+            num_exchange += 1;
+        }
+
+        total
+    }
+}
+
 /// 3354 Make Array Element Equal to Zero
 struct Sol3354 {}
 
