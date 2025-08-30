@@ -1,6 +1,28 @@
 use super::*;
 
 #[test]
+fn test_1182() {
+    for (rst, colors, queries) in [
+        (
+            vec![3, 0, 3],
+            vec![1, 1, 2, 1, 3, 2, 2, 3, 3],
+            vec![[1, 3], [2, 2], [6, 1]],
+        ),
+        (vec![-1], vec![1, 2], vec![[0, 3]]),
+    ] {
+        println!("* {colors:?} {queries:?}");
+        assert_eq!(
+            Sol1182::shortest_distance_color(
+                colors,
+                queries.into_iter().map(|a| Vec::from(a)).collect()
+            ),
+            rst
+        );
+        println!(":: {rst:?}");
+    }
+}
+
+#[test]
 fn test_1323() {
     for (rst, num) in [(9969, 9669), (9999, 9996), (9999, 9999)] {
         println!("* {num}");

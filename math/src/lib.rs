@@ -1,5 +1,44 @@
 //! # Math
 
+/// 1182m Shortest Distance to Target Color
+struct Sol1182 {}
+
+impl Sol1182 {
+    /// 1 <= Colors, Queries <= 5*10^4
+    pub fn shortest_distance_color(colors: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {
+        let mut dists = vec![vec![i32::MAX; 3]; colors.len() + 2];
+
+        for (i, &color) in colors.iter().enumerate() {
+            for c in 0..3 {
+                if c == color as usize - 1 {
+                    dists[i + 1][c] = 0;
+                } else {
+                    dists[i + 1][c] = dists[i][c].saturating_add(1);
+                }
+            }
+        }
+        println!("-> >>> {dists:?}");
+
+        for (i, &color) in colors.iter().enumerate().rev() {
+            for c in 0..3 {
+                if c == color as usize - 1 {
+                    dists[i + 1][c] = 0;
+                } else {
+                    dists[i + 1][c] = dists[i + 1][c].min(dists[i + 2][c].saturating_add(1));
+                }
+            }
+        }
+        println!("-> <<< {dists:?}");
+
+        queries
+            .iter()
+            .map(|query| (query[0] as usize, query[1] as usize))
+            .map(|(index, color)| dists[index + 1][color - 1])
+            .map(|distance| if distance == i32::MAX { -1 } else { distance })
+            .collect()
+    }
+}
+
 /// 1323 Maximum 69 Number
 struct Sol1323 {}
 
